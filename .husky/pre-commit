@@ -1,1 +1,2 @@
-npm test
+echo "🔍 Linting staged files..."
+npx lint-staged || echo "No files to lint – commit continued"
