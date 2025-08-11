@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --color-bg-1: #18181B;
+    --color-bg-2: #252527;
+    --color-bg-3: #4B4B4B;
+    --color-primary: #5271FF;
+    --color-primary-light: #758DFF;
+}
