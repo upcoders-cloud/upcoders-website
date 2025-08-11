@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-bg-1 text-white px-6 md:px-10 py-20 md:py-28">
       {/* Dekoracje */}
-      <ZigZag5 className="absolute left-6 md:left-10 top-10 opacity-90" />
+      <DiagonalPair className="absolute left-6 md:left-10 top-10 opacity-90" />
       <DiagonalPair className="absolute right-6 md:right-10 top-8 opacity-90" />
       <DiagonalPair className="absolute right-24 md:right-40 top-32 opacity-60 rotate-180" />
       {/* niebieski „blok” w prawym-dolnym rogu hero */}
