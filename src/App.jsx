@@ -1,12 +1,21 @@
-import './App.css'
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Offer from "./components/Offer";
+import Separator from "./components/Separator";
+import Team from "./components/Team";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-function App() {
-
+export default function App() {
   return (
-    <h1>
-      Test
-    </h1>
-  )
+    <>
+      <Navbar />
+      <Hero />
+      <Offer />
+      <Separator />
+      <Team />
+      <Contact />
+      <Footer />
+    </>
+  );
 }
-
-export default App
