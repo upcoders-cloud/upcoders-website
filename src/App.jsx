@@ -1,10 +1,11 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Offer from "./components/Offer";
-import Separator from "./components/Separator";
-import Team from "./components/Team";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Hero from "./components/Hero/Hero.jsx";
+import Offer from "./components/Offer/Offer.jsx";
+import Separator from "./components/Separator/Separator.jsx";
+import Team from "./components/Team/Team.jsx";
+import Contact from "./components/Contact/Contact.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+
 import ScrollToTop from 'react-scroll-to-top'
 import { FaArrowUp } from "react-icons/fa6";
 

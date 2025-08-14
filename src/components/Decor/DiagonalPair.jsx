@@ -1,7 +1,6 @@
 import React from "react";
 import PixelGrid from "./PixelGrid";
 
-/** 2 kwadraty po przekątnej (↘). Obróć kontenerem, by zmienić kierunek. */
 export default function DiagonalPair(props) {
   const matrix = [
     [1,0],
@@ -10,7 +9,7 @@ export default function DiagonalPair(props) {
   return (
     <PixelGrid
       matrix={matrix}
-      size={props.size ?? 16}    // nieco większe jak prosiłeś
+      size={props.size ?? 16}
       gap={props.gap ?? 6}
       color={props.color ?? "bg-primary"}
       className={props.className}

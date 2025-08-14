@@ -1,5 +1,5 @@
 import React from "react";
-import ZigZag5 from "./decor/ZigZag5";
+import ZigZag5 from "../Decor/ZigZag5.jsx";
 
 export default function Offer() {
   return (

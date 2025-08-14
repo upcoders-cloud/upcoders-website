@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/uc-logo.png";
+import Logo from "../../assets/uc-logo.png";
 
 const NavElement = [
   { href: "#offer", label: "Offer" },
