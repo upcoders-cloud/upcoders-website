@@ -1,13 +1,14 @@
 import React from "react";
-import ZigZag5 from "../Decor/ZigZag5.jsx";
+import ZigZag5 from "components/Decor/ZigZag5.jsx";
+import Accordion from './Accordion.jsx'
 
 export default function Offer() {
   return (
-    <section id="offer" className="relative bg-bg-2 text-white py-16 md:py-20 px-6 md:px-10">
+    <section id="offer" className="relative bg-bg-2 text-white section-wrapper">
       {/* Dekor w lewym dolnym rogu sekcji */}
       <ZigZag5 className="hidden md:block absolute left-8 bottom-8 opacity-90" size={12} />
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-2 gap-12 section-inner">
         {/* LEFT */}
         <div>
           <h3 className="text-xs tracking-widest text-gray-400 mb-2">OFFER</h3>
@@ -54,32 +55,5 @@ export default function Offer() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Accordion({ title, content, open }) {
-  const [isOpen, setIsOpen] = React.useState(!!open);
-  const ref = React.useRef(null);
-
-  return (
-    <li className="border-b border-gray-600 pb-2">
-      <button
-        className="flex items-center justify-between w-full text-left font-medium hover:text-primary transition-colors"
-        onClick={() => setIsOpen(v => !v)}
-        aria-expanded={isOpen}
-      >
-        <span>{title}</span>
-        <span className="text-base">{isOpen ? "−" : "+"}</span>
-      </button>
-
-      {/* płynne rozwijanie */}
-      <div
-        ref={ref}
-        style={{ maxHeight: isOpen ? `${ref.current?.scrollHeight ?? 0}px` : "0px" }}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-      >
-        <p className="text-gray-400 text-sm mt-2 mb-4">{content}</p>
-      </div>
-    </li>
   );
 }
