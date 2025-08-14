@@ -1,9 +1,11 @@
 import React from "react";
+import ArrowRight from 'components/utils/ArrowRight.jsx'
+import FieldWrapper from './FieldWrapper.jsx'
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative bg-bg-1 text-white py-20 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section id="contact" className="relative bg-bg-1 text-white section-wrapper">
+      <div className="grid md:grid-cols-2 gap-12 items-center section-inner">
         {/* LEFT: copy stylu ze screena */}
         <div className="relative">
           {/* mały niebieski kwadrat u góry */}
@@ -28,22 +30,22 @@ export default function Contact() {
             onSubmit={(e) => e.preventDefault()}
             className="relative bg-[#2B2B2B] rounded-lg p-6 md:p-7 w-full shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
           >
-            <Field label="Email">
+            <FieldWrapper label="Email">
               <input
                 type="email"
                 placeholder="Placeholder"
                 className="w-full bg-transparent outline-none border-b border-gray-600/80 focus:border-primary/90 py-3 text-sm placeholder:text-gray-400"
                 required
               />
-            </Field>
+            </FieldWrapper>
 
-            <Field label="Phone number" className="mt-4">
+            <FieldWrapper label="Phone number" className="mt-4">
               <input
                 type="tel"
                 placeholder="Placeholder"
                 className="w-full bg-transparent outline-none border-b border-gray-600/80 focus:border-primary/90 py-3 text-sm placeholder:text-gray-400"
               />
-            </Field>
+            </FieldWrapper>
 
             <label className="mt-5 flex items-start gap-3 text-sm text-gray-300">
               <input
@@ -71,30 +73,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* — helpers — */
-function Field({ label, className = "", children }) {
-  return (
-    <div className={className}>
-      <div className="text-xs tracking-widest text-gray-400 mb-1">{label}</div>
-      {children}
-    </div>
-  );
-}
-
-function ArrowRight(props) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-      {...props}
-    >
-      <path d="M4 10h10m0 0-4-4m4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
   );
 }

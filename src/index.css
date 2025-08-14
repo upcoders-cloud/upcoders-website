@@ -7,3 +7,12 @@
     --color-primary: #5271FF;
     --color-primary-light: #758DFF;
 }
+
+@layer components {
+    .section-wrapper {
+        @apply py-20 md:py-28 px-6 md:px-10;
+    }
+    .section-inner {
+        @apply max-w-6xl mx-auto;
+    }
+}
