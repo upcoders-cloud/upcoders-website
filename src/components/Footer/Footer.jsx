@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from 'assets/uc-logo.png'
 import { TiSocialLinkedin, TiSocialInstagram } from 'react-icons/ti'
 import { FaSquareXTwitter } from 'react-icons/fa6'
+import Partners from 'components/Footer/Partners.jsx'
 
 export default function Footer() {
   return (
@@ -27,27 +28,9 @@ export default function Footer() {
           <div>
             <div className="text-xs tracking-widest text-gray-400 mb-3">Follow us</div>
             <div className="flex items-center gap-4 text-lg">
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="hover:text-primary transition-colors"
-              >
-                <TiSocialLinkedin />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="hover:text-primary transition-colors"
-              >
-                <TiSocialInstagram />
-              </a>
-              <a
-                href="#"
-                aria-label="X / Twitter"
-                className="hover:text-primary transition-colors"
-              >
-                <FaSquareXTwitter />
-              </a>
+              <a href="#" aria-label="LinkedIn" className="hover:text-primary transition-colors"><TiSocialLinkedin /></a>
+              <a href="#" aria-label="Instagram" className="hover:text-primary transition-colors"><TiSocialInstagram /></a>
+              <a href="#" aria-label="X / Twitter" className="hover:text-primary transition-colors"><FaSquareXTwitter /></a>
             </div>
           </div>
 
@@ -59,10 +42,7 @@ export default function Footer() {
                 <a
                   href="#offer"
                   className="hover:text-white transition"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector("#offer").scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={(e) => { e.preventDefault(); document.querySelector("#offer").scrollIntoView({ behavior: "smooth" }) }}
                 >
                   OFFER
                 </a>
@@ -71,10 +51,7 @@ export default function Footer() {
                 <a
                   href="#about"
                   className="hover:text-white transition"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={(e) => { e.preventDefault(); document.querySelector("#about").scrollIntoView({ behavior: "smooth" }) }}
                 >
                   ABOUT US
                 </a>
@@ -85,30 +62,16 @@ export default function Footer() {
           {/* Col 4: Contact */}
           <div>
             <div className="text-xs tracking-widest text-gray-400 mb-3">Contact</div>
-            <a href="mailto:hello@upcoders.com" className="text-sm hover:text-white transition">
-              hello@upcoders.com
-            </a>
+            <a href="mailto:hello@upcoders.com" className="text-sm hover:text-white transition">hello@upcoders.com</a>
           </div>
         </div>
 
         {/* Divider */}
         <hr className="my-10 border-white/10" />
 
-        {/* Partners */}
-        <div>
-          <div className="text-xs tracking-widest text-gray-500 mb-4">Partners</div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center">
-            {[0, 1, 2, 3].map((i) => (
-              <img
-                key={i}
-                src={Logo}
-                alt="Partner logo"
-                className="h-6 w-auto opacity-30 grayscale"
-              />
-            ))}
-          </div>
-        </div>
+        {/* Partners (lekki fade-in on scroll) */}
+        <Partners logos={[Logo, Logo, Logo, Logo]} />
       </div>
     </footer>
-  );
+  )
 }

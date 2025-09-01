@@ -8,7 +8,7 @@ import Footer from 'components/Footer/Footer.jsx'
 
 import ScrollToTop from 'react-scroll-to-top'
 import { FaArrowUp } from 'react-icons/fa6'
-import SmoothFollower from '@/animations/SmoothFollower/SmoothFollower.jsx'
+import FluidCursor from '@/animations/FluidCursor/FluidCursor.jsx'
 
 const ScrollToTopStyles = { display: "flex", justifyContent:'center', alignItems: 'center' }
 
@@ -24,7 +24,9 @@ export default function App() {
       <Team />
       <Contact />
       <Footer />
-      <SmoothFollower/>
+      {/*<div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }}>*/}
+      {/*  <FluidCursor />*/}
+      {/*</div>*/}
     </>
   );
 }

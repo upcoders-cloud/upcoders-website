@@ -1,4 +1,5 @@
 import { FaLinkedinIn } from "react-icons/fa";
+import { DrawCircleText } from 'components/Team/DrawCircleText.jsx'
 
 export default function Team() {
   const members = [
@@ -19,7 +20,9 @@ export default function Team() {
   return (
     <section id="about" className="bg-bg-2 text-white section-wrapper">
       <div className="text-center section-inner">
-        <h3 className="text-sm text-gray-400 mb-2">ABOUT US</h3>
+        <h3 className="text-xl text-gray-400 mb-2">
+          <DrawCircleText text={"MEET OUR TEAM"}/>
+        </h3>
         <p className="max-w-3xl mx-auto text-gray-300 mb-12">
           Działamy zwinnie, mówimy ludzkim językiem i wierzymy, że partnerska współpraca przynosi najlepsze efekty.
         </p>

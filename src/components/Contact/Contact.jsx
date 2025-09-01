@@ -1,16 +1,19 @@
 import React from "react";
-import ArrowRight from 'components/utils/ArrowRight.jsx'
+import ArrowRight from 'utils/ArrowRight.jsx'
 import FieldWrapper from './FieldWrapper.jsx'
+import InteractiveDots from '@/animations/InteractiveDots/InteractiveDots.jsx'
+import KeyFramePixel from '@/animations/KeyFramePixel/KeyFramePixel.jsx'
 
 export default function Contact() {
   return (
     <section id="contact" className="relative bg-bg-1 text-white section-wrapper">
+      <InteractiveDots/>
       <div className="grid md:grid-cols-2 gap-12 items-center section-inner">
         {/* LEFT: copy stylu ze screena */}
         <div className="relative">
           {/* mały niebieski kwadrat u góry */}
-          <span className="absolute -top-6 -left-4 w-6 h-6 bg-primary-light rounded-sm" />
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
+          <KeyFramePixel size={30} color="#5271FF" customStyles={{position: "absolute", top: -25, left: -25 }}/>
+          <h2 className="w-fit text-4xl md:text-5xl font-semibold leading-tight">
             Let’s talk about
             <br /> your project!
           </h2>
