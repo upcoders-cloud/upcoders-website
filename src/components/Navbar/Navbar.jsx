@@ -49,7 +49,7 @@ export default function Navbar() {
             {/* Navigation desktop */}
             <div className="hidden md:flex space-x-6 text-gray-300">
               {NavElement.map((item) => (
-                <NavBarItem key={item.id} item={item}/>
+                <NavBarItem key={item.id} item={item} className='px-3 py-1 border border-transparent rounded transition-all duration-300 hover:border-primary hover:text-white'/>
               ))}
             </div>
 
