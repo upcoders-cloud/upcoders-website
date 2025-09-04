@@ -15,12 +15,13 @@ export default function Footer() {
             <img src={Logo} alt="Upcoders logo" className="h-7 w-auto mb-4" />
             <div className="text-xs tracking-widest text-gray-400 mb-2">UPCODERS</div>
             <address className="not-italic text-sm leading-6">
-              ul.Nazwa ulicy 87c/76<br />
-              61-675 Poznań, Poland
+              ul. Wawrzyńca Engeströma 10<br />
+              60-571 Poznań, Poland
             </address>
             <div className="mt-4 text-sm leading-6">
-              <div>REGON: 000987654</div>
-              <div>KRS: 098907656</div>
+              <div>NIP: 7812090103</div>
+              <div>REGON: 541840267</div>
+              <div>KRS: 0001175084</div>
             </div>
           </div>
 
@@ -62,7 +63,7 @@ export default function Footer() {
           {/* Col 4: Contact */}
           <div>
             <div className="text-xs tracking-widest text-gray-400 mb-3">Contact</div>
-            <a href="mailto:hello@upcoders.com" className="text-sm hover:text-white transition">hello@upcoders.com</a>
+            <a href="mailto:contact@upcoders.cloud" className="text-sm hover:text-white transition">contact@upcoders.cloud</a>
           </div>
         </div>
 

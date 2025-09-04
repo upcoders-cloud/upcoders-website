@@ -34,7 +34,6 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (data, e) => {
-    console.log(data);
     try {
       const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: POST,

@@ -1,17 +1,29 @@
-import React from 'react'
+import React from "react";
 
-export const NavBarItem = ({item}) => {
+export const NavBarItem = ({
+                             item,
+                             href,
+                             label,
+                             children,
+                             className = "",
+                             onClick,
+                           }) => {
+  const linkHref = href ?? item?.href ?? "#";
+  const linkLabel = label ?? children ?? item?.label ?? "";
+
+  const handleClick = (e) => {
+    if (onClick) onClick(e);
+
+    if (linkHref.startsWith("#")) {
+      e.preventDefault();
+      const el = document.querySelector(linkHref);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <a
-      key={item.href}
-      href={item.href}
-      onClick={(e) => {
-        e.preventDefault();
-        document.querySelector(item.href).scrollIntoView({ behavior: "smooth" });
-      }}
-      className="px-3 py-1 border border-transparent rounded transition-all duration-300 hover:border-primary hover:text-white"
-    >
-      {item.label}
+    <a href={linkHref} onClick={handleClick} className={className}>
+      {linkLabel}
     </a>
-  )
-}
+  );
+};
