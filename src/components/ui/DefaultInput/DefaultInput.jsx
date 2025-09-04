@@ -30,7 +30,7 @@ const DefaultInput = React.forwardRef(function DefaultInput(
           placeholder={placeholder}
           aria-invalid={hasError || undefined}
           aria-describedby={describedBy}
-          autocomplete={autocomplete}
+          autoComplete={autocomplete}
           className={`w-full bg-transparent outline-none border-b border-gray-600/80 focus:border-primary/90 py-3 text-sm placeholder:text-gray-400 ${
             hasError ? "border-red-500 focus:border-red-400" : ""
           }`}
