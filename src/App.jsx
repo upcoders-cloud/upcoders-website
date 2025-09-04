@@ -7,6 +7,7 @@ import Contact from 'components/Contact/Contact.jsx'
 import Footer from 'components/Footer/Footer.jsx'
 
 import ScrollToTop from 'react-scroll-to-top'
+import { Toaster } from "react-hot-toast";
 import { FaArrowUp } from 'react-icons/fa6'
 import FluidCursor from '@/animations/FluidCursor/FluidCursor.jsx'
 
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false}/>
       <ScrollToTop smooth component={<FaArrowUp />} style={ScrollToTopStyles}/>
       <Navbar />
       <Hero />

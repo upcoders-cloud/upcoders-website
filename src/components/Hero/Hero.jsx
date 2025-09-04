@@ -7,6 +7,7 @@ import {
   UPCODERS_SIZES_MAP
 } from "patterns/upcodersShape.js";
 import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
+import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 
 const TYPEWRITER_WORLDS = ["FUTURE", "CODE", "INNOVATION", "IDEAS", "FUTURE"];
 
@@ -38,17 +39,14 @@ export default function Hero() {
             We design and develop modern applications tailored to the processes of
             industrial and technical companies.
           </p>
-
-          <a
-            href="#contact"
-            className="mt-10 inline-flex items-center rounded-full bg-primary px-8 py-3 text-sm md:text-base font-medium hover:bg-primary-light transition-colors"
+          <DefaultButton
+            label="UMÓW KONSULTACJĘ →"
+            className="mt-10 inline-flex items-center px-8 py-3 text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();
               document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
             }}
-          >
-            UMÓW KONSULTACJĘ →
-          </a>
+          />
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-end max-lg:w-[55%] max-md:hidden">
             <FallingPixelsPattern
               coords={UPCODERS_SHAPE_COORDS}
