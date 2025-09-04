@@ -1,7 +1,10 @@
 'use client';
 import { useEffect, useRef, useCallback } from 'react';
+
+const CLICK_HEX = '#758DFF';
+
 const InteractiveDots = ({
-                           backgroundColor = '#18181b',
+                           backgroundColor = '#252527',
                            dotColor = '#666666',
                            gridSpacing = 30,
                            animationSpeed = 0.005,
@@ -140,11 +143,19 @@ const InteractiveDots = ({
       );
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, dotSize, 0, Math.PI * 2);
-      const red = Number.parseInt(dotColor.slice(1, 3), 16);
-      const green = Number.parseInt(dotColor.slice(3, 5), 16);
-      const blue = Number.parseInt(dotColor.slice(5, 7), 16);
-      ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${opacity})`;
-      ctx.fill();
+      const red   = parseInt(dotColor.slice(1,3),16);
+      const green = parseInt(dotColor.slice(3,5),16);
+      const blue  = parseInt(dotColor.slice(5,7),16);
+      const [cr,cg,cb] = [
+        parseInt(CLICK_HEX.slice(1,3),16),
+        parseInt(CLICK_HEX.slice(3,5),16),
+        parseInt(CLICK_HEX.slice(5,7),16),
+       ];
+      const influenced = rippleInfluence > 0.05; // zmniejszamy próg
+      ctx.fillStyle = influenced
+         ? `rgba(${cr}, ${cg}, ${cb}, ${opacity})`
+         : `rgba(${red}, ${green}, ${blue}, ${opacity})`;
+      + ctx.fill();
     });
     if (!removeWaveLine) {
       ripples.current.forEach((ripple) => {
@@ -177,15 +188,15 @@ const InteractiveDots = ({
     resizeCanvas();
     const handleResize = () => resizeCanvas();
     window.addEventListener('resize', handleResize);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('pointermove', handleMouseMove, { passive: true });
+    window.addEventListener('pointerdown', handleMouseDown, { passive: true });
+    window.addEventListener('pointerup', handleMouseUp, { passive: true });
     animate();
     return () => {
       window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('pointermove', handleMouseMove);
+      window.removeEventListener('pointerdown', handleMouseDown);
+      window.removeEventListener('pointerup', handleMouseUp);
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
         animationFrameId.current = null;
@@ -197,7 +208,7 @@ const InteractiveDots = ({
   }, [animate, resizeCanvas, handleMouseMove, handleMouseDown, handleMouseUp]);
   return (
     <div
-      className="absolute inset-0 w-full h-full overflow-hidden"
+      className="pointer-events-none absolute inset-0 w-full h-full overflow-hidden"
       style={{ backgroundColor }}>
       <canvas ref={canvasRef} className="block w-full h-full" />
     </div>

@@ -17,7 +17,6 @@ export default defineConfig({
       'utils': path.resolve(__dirname, './src/utils'),
       'patterns': path.resolve(__dirname, './src/patterns'),
       'hooks': path.resolve(__dirname, './src/hooks'),
-      'Decor': path.resolve(__dirname, './src/Decor'),
 
       // (opcjonalnie) ogólny alias „@” do całego src/
       '@': path.resolve(__dirname, './src'),
