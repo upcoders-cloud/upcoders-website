@@ -8,6 +8,7 @@ import {
 } from "patterns/upcodersShape.js";
 import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
+import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
 
 const TYPEWRITER_WORLDS = ["FUTURE", "CODE", "INNOVATION", "IDEAS", "FUTURE"];
 
@@ -22,6 +23,7 @@ export default function Hero() {
     <>
       <section className="relative overflow-hidden bg-bg-1 text-white section-wrapper">
         <div className="section-inner">
+          <DiagonalPair className="relative -left-4 -top-6" gap={0} />
           <h1 className="text-6xl md:text-8xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
             BRIGHT<br />THE&nbsp;
             <span className="inline-flex items-baseline font-extrabold ">
@@ -40,7 +42,7 @@ export default function Hero() {
             industrial and technical companies.
           </p>
           <DefaultButton
-            label="UMÓW KONSULTACJĘ →"
+            label="ASK ABOUT PROJECT →"
             className="mt-10 inline-flex items-center px-8 py-3 text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();
@@ -57,7 +59,6 @@ export default function Hero() {
               color="#5271FF"
               duration={2.8}
               staggerFraction={0.75}
-              className="opacity-95"
               sizes={UPCODERS_SIZES_MAP}
             />
           </div>
