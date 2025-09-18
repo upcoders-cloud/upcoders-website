@@ -27,7 +27,7 @@ export default function Hero() {
           <h1 className="text-6xl md:text-8xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
             BRIGHT<br />THE&nbsp;
             <span className="inline-flex items-baseline font-extrabold ">
-              <span className={isDone ? "text-primary-light" : ""}>{text}</span>
+              <span className={isDone ? "text-[#C7FF7F]" : ""}>{text}</span>
               <span className="inline-block align-baseline translate-y-[-0.06em]">
                 {!isDone && (
                   <Cursor
@@ -42,8 +42,8 @@ export default function Hero() {
             industrial and technical companies.
           </p>
           <DefaultButton
-            label="ASK ABOUT PROJECT →"
-            className="mt-10 inline-flex items-center px-8 py-3 text-sm md:text-base"
+            label="START YOUR PROJECT"
+            className="mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();
               document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
