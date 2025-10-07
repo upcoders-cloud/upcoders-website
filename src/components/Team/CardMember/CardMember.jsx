@@ -43,7 +43,7 @@ export default function CardMember({ member, index }) {
             <img
               src={member.img}
               alt={`${member.firstName} ${member.lastName}`}
-              className="w-full h-full object-cover grayscale"
+              className="w-full h-full object-cover"
             />
 
             {/* Blue falling pixels */}
@@ -76,7 +76,7 @@ export default function CardMember({ member, index }) {
         <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="relative h-full bg-[#1C1C1C]">
             {/* Dekor / tło */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-primary/10 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#A0CFFF]/40 via-[#FFFFFF]/5 to-transparent pointer-events-none" />
 
             {/* LinkedIn (back) */}
             {member.linkedin && (
@@ -92,7 +92,7 @@ export default function CardMember({ member, index }) {
             )}
 
             {/* Treść „back side” */}
-            <div className="relative h-full flex flex-col justify-end gap-3 p-4 text-white">
+            <div className="relative h-full flex flex-col items-center justify-center gap-3 p-4 text-white">
               <h4 className="text-2xl sm:text-3xl md:text-4xl leading-none">
                 {member.firstName}
                 <br />
@@ -104,22 +104,9 @@ export default function CardMember({ member, index }) {
               )}
 
               {member.about && (
-                <p className="text-gray-300 text-sm">
+                <p className="text-white text-sm">
                   {member.about}
                 </p>
-              )}
-
-              {Array.isArray(member.tags) && member.tags.length > 0 && (
-                <ul className="flex flex-wrap gap-2 pt-1">
-                  {member.tags.slice(0, 6).map((t) => (
-                    <li
-                      key={t}
-                      className="text-xs px-2 py-1 rounded-full bg-white/5 ring-1 ring-white/10"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
               )}
             </div>
           </div>
