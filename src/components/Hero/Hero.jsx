@@ -42,7 +42,7 @@ export default function Hero() {
             industrial and technical companies.
           </p>
           <DefaultButton
-            label="START YOUR PROJECT"
+            label="ASK ABOUT YOUR PROJECT"
             className="mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();

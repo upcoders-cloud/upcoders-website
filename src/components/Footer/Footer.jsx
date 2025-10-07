@@ -29,9 +29,9 @@ export default function Footer() {
           <div>
             <div className="text-xs tracking-widest text-gray-400 mb-3">Follow us</div>
             <div className="flex items-center gap-4 text-lg">
-              <a href="#" aria-label="LinkedIn" className="hover:text-primary transition-colors"><TiSocialLinkedin /></a>
-              <a href="#" aria-label="Instagram" className="hover:text-primary transition-colors"><TiSocialInstagram /></a>
-              <a href="#" aria-label="X / Twitter" className="hover:text-primary transition-colors"><FaSquareXTwitter /></a>
+              <a href="https://www.linkedin.com/company/upcoders-cloud" aria-label="LinkedIn" className="hover:text-primary transition-colors"><TiSocialLinkedin /></a>
+              {/*<a href="#" aria-label="Instagram" className="hover:text-primary transition-colors"><TiSocialInstagram /></a>*/}
+              {/*<a href="#" aria-label="X / Twitter" className="hover:text-primary transition-colors"><FaSquareXTwitter /></a>*/}
             </div>
           </div>
 

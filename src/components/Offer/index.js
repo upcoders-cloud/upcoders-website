@@ -6,8 +6,8 @@ export const OFFER_ITEMS = [
   },
   {
     id: "2",
-    title: "Agile Development",
-    content: "Our agile teams deliver value fast. We iterate quickly, adapt to change, and keep you in the loop at every step.",
+    title: "KSeF Integration",
+    content: "We help companies seamlessly integrate with the Polish National e-Invoicing System (KSeF). From API connections to automated invoice flows — we ensure compliance and efficiency.",
   },
   {
     id: "3",
@@ -27,6 +27,6 @@ export const OFFER_ITEMS = [
   {
     id: "6",
     title: "Long-Term Tech Partnership",
-    content: "We partner for the long run, staying close to your evolving needs.",
+    content: "We are partners for the long run, staying close to your evolving needs.",
   },
 ];
