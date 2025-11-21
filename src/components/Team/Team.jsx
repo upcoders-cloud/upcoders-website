@@ -18,7 +18,7 @@ export default function Team() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {MEMBERS.map((m, i) => (
-            <CardMember key={`${m.firstName}-${m.lastName}-${i}`} member={m} index={i} />
+            <CardMember key={`${m.firstName}-${m.lastName}-${i}`} member={m} index={i} length={MEMBERS.length}/>
           ))}
         </div>
       </div>

@@ -55,7 +55,7 @@ export const MEMBERS = [
       "##.....",
       "#####...",
       "######..",
-      "########",
+      "#######.",
     ]),
     role: "Co-Founder & Integration Architect",
     about:

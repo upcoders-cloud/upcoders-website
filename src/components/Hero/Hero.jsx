@@ -6,9 +6,9 @@ import {
   UPCODERS_SHAPE_COLS,
   UPCODERS_SIZES_MAP
 } from "patterns/upcodersShape.js";
-import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
+import FallingPixelsCanvas from '@/animations/FallingPixelsCanvas/FallingPixelsCanvas.jsx'
 
 const TYPEWRITER_WORLDS = ["FUTURE", "CODE", "INNOVATION", "IDEAS", "FUTURE"];
 
@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <>
       <section className="relative overflow-hidden bg-bg-1 text-white section-wrapper">
-        <div className="section-inner">
+        <div className="section-inner relative z-10">
           <DiagonalPair className="relative -left-4 -top-6" gap={0} />
           <h1 className="text-6xl md:text-8xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
             BRIGHT<br />THE&nbsp;
@@ -37,10 +37,12 @@ export default function Hero() {
               </span>
             </span>
           </h1>
+
           <p className="mt-6 max-w-2xl text-gray-300 text-base md:text-xl">
             We design and develop modern applications tailored to the processes of
             industrial and technical companies.
           </p>
+
           <DefaultButton
             label="ASK ABOUT YOUR PROJECT"
             className="mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base"
@@ -49,19 +51,19 @@ export default function Hero() {
               document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
             }}
           />
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-end max-lg:w-[55%] max-md:hidden">
-            <FallingPixelsPattern
-              coords={UPCODERS_SHAPE_COORDS}
-              rows={UPCODERS_SHAPE_ROWS}
-              cols={UPCODERS_SHAPE_COLS}
-              cell="clamp(32px, 5vw, 50px)"
-              gap="0"
-              color="#5271FF"
-              duration={2.8}
-              staggerFraction={0.75}
-              sizes={UPCODERS_SIZES_MAP}
-            />
-          </div>
+        </div>
+
+        {/* PIXELS BEHIND EVERYTHING */}
+        <div className="pointer-events-none z-0 hidden lg:flex w-full absolute inset-y-0 right-0 items-center justify-end">
+          <FallingPixelsCanvas
+            coords={UPCODERS_SHAPE_COORDS}
+            rows={UPCODERS_SHAPE_ROWS}
+            cols={UPCODERS_SHAPE_COLS}
+            cell={48}
+            color="#5271FF"
+            sizes={UPCODERS_SIZES_MAP}
+            className=" right-0 top-0 pointer-events-none"
+          />
         </div>
       </section>
     </>
