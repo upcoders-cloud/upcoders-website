@@ -1,29 +1,59 @@
-import React, { useState } from "react";
-import { FaLinkedinIn } from "react-icons/fa";
-import FallingPixelsPattern from "@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx";
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { FaLinkedinIn } from 'react-icons/fa'
+import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
+import { isMobile } from 'react-device-detect'
 
-export default function CardMember({ member, index }) {
-  const [flipped, setFlipped] = useState(false);
+export default function CardMember({ member, index, length }) {
+  const [flipped, setFlipped] = useState(false)
 
+  const handleMouseEnter = () => {
+    if (!isMobile) setFlipped(true)
+  }
+
+  const handleMouseLeave = () => {
+    if (!isMobile) setFlipped(false)
+  }
+
+  const handleClick = () => {
+    if (isMobile) setFlipped(f => !f)
+  }
+
+  const shake = {
+    animate: {
+      x: [0, -3, 3, -2, 2, 0],
+      rotate: [0, -1, 1, -0.5, 0.5, 0],
+    },
+    transition: {
+      duration: 1,           // 1 sekunda drgania
+      delay: index * 2,      // 0s, 2s, 4s, 6s
+      repeat: Infinity,
+      repeatDelay: (length - 1) * 2, // (4 - 1) * 2 = 6s
+      ease: 'easeInOut',
+    },
+  }
   return (
-    <div
+    <motion.div
+      {...shake}
       className="relative group [perspective:1000px]"
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      onClick={() => setFlipped((f) => !f)} // tap na mobile
-      role="button"
-      aria-pressed={flipped}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       <div
         className={[
-          "relative w-full aspect-[387/464]",
-          "transition-transform duration-500 ease-out will-change-transform",
-          "[transform-style:preserve-3d]",
-          "group-hover:[transform:rotateY(180deg)] focus-within:[transform:rotateY(180deg)]",
-          flipped ? "[transform:rotateY(180deg)]" : "",
-        ].join(" ")}
+          'relative w-full aspect-[387/464]',
+          'transition-transform duration-500 ease-out will-change-transform',
+          '[transform-style:preserve-3d]',
+
+          // desktop → flip via hover
+          !isMobile ? 'group-hover:[transform:rotateY(180deg)]' : '',
+
+          // mobile → flip via click
+          isMobile && flipped ? '[transform:rotateY(180deg)]' : '',
+        ].join(' ')}
       >
-        {/* === FRONT === */}
+        {/* FRONT */}
         <div className="absolute inset-0 [backface-visibility:hidden]">
           <div className="relative h-full bg-[#1C1C1C] overflow-hidden">
             {/* LinkedIn (front) */}
@@ -52,7 +82,7 @@ export default function CardMember({ member, index }) {
                 coords={member?.pattern?.coords}
                 rows={member?.pattern?.rows}
                 cols={member?.pattern?.cols}
-                cell="clamp(10px, 4vw, 34px)"
+                cell={isMobile ? "clamp(18px, 6vw, 40px)" : "clamp(10px, 4vw, 34px)"}
                 gap="0"
                 color="#5271FF"
                 duration={2.4}
@@ -112,15 +142,6 @@ export default function CardMember({ member, index }) {
           </div>
         </div>
       </div>
-
-      {/* Ułatwienie dla klawiatury (focus) */}
-      <button
-        className="sr-only"
-        onFocus={() => setFlipped(true)}
-        onBlur={() => setFlipped(false)}
-        aria-hidden="true"
-        tabIndex={-1}
-      />
-    </div>
-  );
+    </motion.div>
+  )
 }
