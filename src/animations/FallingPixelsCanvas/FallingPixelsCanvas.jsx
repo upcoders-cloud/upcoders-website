@@ -18,19 +18,64 @@ export default function FallingPixelsCanvas({
     canvas.width = cols * cell;
     canvas.height = rows * cell;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    coords.forEach(([r, c]) => {
+    const pixels = coords.map(([r, c], i) => {
       const key = `${r},${c}`;
       const s = sizes?.[key] ?? 1;
 
-      const size = cell * s;
-      const x = c * cell + (cell - size) / 2;
-      const y = r * cell + (cell - size) / 2;
+      const targetSize = cell * s;
+      const targetX = c * cell + (cell - targetSize) / 2;
+      const targetY = r * cell + (cell - targetSize) / 2;
 
-      ctx.fillStyle = color;
-      ctx.fillRect(x, y, size, size);
+      return {
+        x: targetX,
+        y: targetY,
+        size: targetSize,
+
+        startY: targetY - (1000 + Math.random() * 1200),
+
+        delay: i * 10,
+
+        duration: 180 + Math.random() * 120,
+      };
     });
+
+    let startTime = null;
+
+    function animate(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      let allDone = true;
+
+      pixels.forEach((p) => {
+        const t = elapsed - p.delay;
+
+        if (t < 0) {
+          ctx.fillStyle = color;
+          ctx.fillRect(p.x, p.startY, p.size, p.size);
+          allDone = false;
+          return;
+        }
+
+        const progress = Math.min(t / p.duration, 1);
+
+        const eased =
+          1 - Math.pow(1 - progress, 3); // cubic ease-out
+
+        const currentY = p.startY + (p.y - p.startY) * eased;
+
+        if (progress < 1) allDone = false;
+
+        ctx.fillStyle = color;
+        ctx.fillRect(p.x, currentY, p.size, p.size);
+      });
+
+      if (!allDone) requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
   }, [coords, rows, cols, cell, color, sizes]);
 
   return <canvas ref={canvasRef} className={className} />;

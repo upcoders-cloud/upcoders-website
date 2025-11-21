@@ -3,12 +3,38 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import sitemapPlugin from 'vite-plugin-sitemap';
+import { robots } from 'vite-plugin-robots'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    sitemapPlugin({
+      hostname: 'https://upcoders.cloud',
+      gzip: true,
+      changefreq: 'weekly',
+      priority: 0.8,
+      dynamicRoutes: [
+        '/',        // hero page
+        '/#offer',
+        '/#about',
+        '/#contact'
+      ]
+    }),
+    robots({
+      rules: [
+        {
+          userAgent: '*',
+          allow: '/'
+        }
+      ],
+      sitemap: 'https://upcoders.cloud/sitemap.xml',
+    })
+  ],
   resolve: {
     alias: {
       // aliasy „gołych” ścieżek względem src/
