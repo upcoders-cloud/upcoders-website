@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from 'public/uc-logo.png'
+import Logo from '/uc-logo.png'
 import { TiSocialLinkedin, TiSocialInstagram } from 'react-icons/ti'
 import { FaSquareXTwitter } from 'react-icons/fa6'
 import Partners from 'components/Footer/Partners.jsx'

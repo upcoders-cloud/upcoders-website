@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import Logo from 'public/uc-logo.png'
+import Logo from '/uc-logo.png'
 import { NAV_ELEMENT as NavElement } from 'components/Navbar/index.js'
 import { NavBarItem } from 'components/Navbar/NavBarItem/NavBarItem.jsx'
 import { IoMdMenu } from "react-icons/io";
