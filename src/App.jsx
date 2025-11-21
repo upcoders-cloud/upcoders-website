@@ -9,7 +9,6 @@ import Footer from 'components/Footer/Footer.jsx'
 import ScrollToTop from 'react-scroll-to-top'
 import { Toaster } from "react-hot-toast";
 import { FaArrowUp } from 'react-icons/fa6'
-import FluidCursor from '@/animations/FluidCursor/FluidCursor.jsx'
 
 const ScrollToTopStyles = { display: "flex", justifyContent:'center', alignItems: 'center' }
 
@@ -26,9 +25,6 @@ export default function App() {
       <Team />
       <Contact />
       <Footer />
-      {/*<div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }}>*/}
-      {/*  <FluidCursor />*/}
-      {/*</div>*/}
     </>
   );
 }
