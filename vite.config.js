@@ -18,12 +18,6 @@ export default defineConfig({
       gzip: true,
       changefreq: 'weekly',
       priority: 0.8,
-      dynamicRoutes: [
-        '/',        // hero page
-        '/#offer',
-        '/#about',
-        '/#contact'
-      ]
     }),
     robots({
       rules: [
