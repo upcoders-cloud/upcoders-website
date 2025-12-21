@@ -82,18 +82,18 @@ export default function CardMember({ member, index, length }) {
                 coords={member?.pattern?.coords}
                 rows={member?.pattern?.rows}
                 cols={member?.pattern?.cols}
-                cell={isMobile ? 'clamp(18px, 6vw, 40px)' : 'clamp(10px, 4vw, 34px)'}
+                cell="var(--pixel-cell)"
                 gap="0"
                 color="#5271FF"
                 duration={2.4}
                 staggerFraction={0.7}
-                className="opacity-95"
+                className="opacity-95 [--pixel-cell:clamp(20px,6vw,40px)] sm:[--pixel-cell:clamp(10px,5vw,30px)] md:[--pixel-cell:clamp(8px,3.2vw,24px)] lg:[--pixel-cell:clamp(12px,3.2vw,28px)]"
               />
             </div>
 
             {/* Name */}
             <div className="absolute bottom-4 left-0 right-0 z-10">
-              <p className="px-4 text-white text-left leading-[0.9] text-2xl sm:text-3xl md:text-4xl">
+              <p className="px-4 text-white text-left leading-[0.9] text-2xl sm:text-3xl md:text-2xl lg:text-3xl">
                 {member.firstName}
                 <br />
                 {member.lastName}
