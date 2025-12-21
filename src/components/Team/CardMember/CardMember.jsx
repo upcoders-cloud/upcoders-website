@@ -74,6 +74,8 @@ export default function CardMember({ member, index, length }) {
               src={member.img}
               alt={`${member.firstName} ${member.lastName}`}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Blue falling pixels */}

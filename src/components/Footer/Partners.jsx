@@ -15,6 +15,8 @@ export default function Partners({ logos = [], stagger = 120 }) {
             key={i}
             src={src}
             alt="Partner logo"
+            loading="lazy"
+            decoding="async"
             // bez Tailwind `opacity-30` — animacja startuje z 0
             className={`h-6 w-auto grayscale ${styles.partner} ${inView ? styles.visible : ''}`}
             style={inView ? { animationDelay: `${i * stagger}ms` } : undefined}
