@@ -35,7 +35,7 @@ export default function CardMember({ member, index, length }) {
   return (
     <motion.div
       {...shake}
-      className="relative group [perspective:1000px]"
+      className="relative group [perspective:1000px] [-webkit-perspective:1000px]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
@@ -44,7 +44,7 @@ export default function CardMember({ member, index, length }) {
         className={[
           'relative w-full aspect-[387/464]',
           'transition-transform duration-500 ease-out will-change-transform',
-          '[transform-style:preserve-3d]',
+          '[transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]',
 
           // desktop → flip via hover
           !isMobile ? 'group-hover:[transform:rotateY(180deg)]' : '',
@@ -54,7 +54,7 @@ export default function CardMember({ member, index, length }) {
         ].join(' ')}
       >
         {/* FRONT */}
-        <div className="absolute inset-0 [backface-visibility:hidden]">
+        <div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:translateZ(0)]">
           <div className="relative h-full bg-[#1C1C1C] overflow-hidden">
             {/* LinkedIn (front) */}
             {member.linkedin && (
@@ -82,7 +82,7 @@ export default function CardMember({ member, index, length }) {
                 coords={member?.pattern?.coords}
                 rows={member?.pattern?.rows}
                 cols={member?.pattern?.cols}
-                cell={isMobile ? "clamp(18px, 6vw, 40px)" : "clamp(10px, 4vw, 34px)"}
+                cell={isMobile ? 'clamp(18px, 6vw, 40px)' : 'clamp(10px, 4vw, 34px)'}
                 gap="0"
                 color="#5271FF"
                 duration={2.4}
@@ -103,7 +103,7 @@ export default function CardMember({ member, index, length }) {
         </div>
 
         {/* === BACK === */}
-        <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
           <div className="relative h-full bg-[#1C1C1C]">
             {/* Dekor / tło */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#A0CFFF]/40 via-[#FFFFFF]/5 to-transparent pointer-events-none" />
@@ -123,18 +123,20 @@ export default function CardMember({ member, index, length }) {
 
             {/* Treść „back side” */}
             <div className="relative h-full flex flex-col items-center justify-center gap-3 p-4 text-white">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl leading-none">
+              <h4 className="text-3xl sm:text-2xl md:text-lg lg:text-3xl leading-[0.95]">
                 {member.firstName}
                 <br />
                 {member.lastName}
               </h4>
 
               {member.role && (
-                <p className="text-primary text-sm font-medium">{member.role}</p>
+                <p className="text-primary sm:text-sm md:text-[11px] lg:text-sm font-medium">
+                  {member.role}
+                </p>
               )}
 
               {member.about && (
-                <p className="text-white text-sm">
+                <p className="text-white sm:text-sm md:text-[11px] lg:text-sm leading-relaxed">
                   {member.about}
                 </p>
               )}
