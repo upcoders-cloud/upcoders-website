@@ -69,8 +69,8 @@ export const MEMBERS = [
     pattern: buildPattern([
       "........",
       "##......",
-      "#####...",
       "######..",
+      "######.",
       "########",
     ]),
     role: "Co-Founder & Full-Stack Architect",
