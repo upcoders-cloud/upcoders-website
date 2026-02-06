@@ -26,7 +26,7 @@ export const MEMBERS = [
       "######..",
       "########",
     ]),
-    role: "Co-Founder & Solution Architect",
+    role: "Co-Founder",
     about:
       "Turning vision into scalable solutions."
   },
