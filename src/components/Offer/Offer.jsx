@@ -11,26 +11,31 @@ export default function Offer() {
         <div>
           <h3 className="text-xs tracking-widest text-gray-400 mb-2">OFFER</h3>
           <h2 className="text-2xl md:text-[28px] font-semibold mb-4">
-            We design and create applications tailored to the real processes of
-            industrial, technical and manufacturing companies.
+            We design and build digital products tailored to real business needs, everyday
+            workflows, and long-term growth.
           </h2>
+
           <p className="text-gray-400 text-sm md:text-base">
-            No ready-made solutions, no unnecessary features – only what really
-            works and brings value.
+            We are a modern startup-driven team focused on creating high-quality
+            web and mobile applications for companies that want to move faster, work smarter, and
+            build better digital experiences.
           </p>
-          {!isMobile && (
-            <ZigZag5 size={16} className="opacity-90 mt-16" />
-          )}
+
+          <p className="text-gray-400 text-sm md:text-base mt-4">
+            We also explore emerging technologies - including artificial intelligence and automation
+            - to help our clients unlock new opportunities, optimize processes, and stay ahead in a
+            rapidly changing world.
+          </p>
+
+          {!isMobile && <ZigZag5 size={16} className="opacity-90 mt-16" />}
         </div>
 
         <div>
           <h3 className="text-xs tracking-widest text-gray-400 mb-4">WHAT DO WE SPECIALIZE IN?</h3>
           <Accordion items={OFFER_ITEMS} defaultOpenIndex={0} />
-          {isMobile && (
-              <ZigZag5 size={14} className="opacity-90 mt-10 mx-auto" />
-          )}
+          {isMobile && <ZigZag5 size={14} className="opacity-90 mt-10 mx-auto" />}
         </div>
       </div>
     </section>
-  );
+  )
 }
