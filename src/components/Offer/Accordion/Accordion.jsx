@@ -24,6 +24,7 @@ export default function Accordion({ items = [], defaultOpenIndex = null, classNa
           key={item.id ?? idx}
           title={item.title}
           content={item.content}
+          cta={item.cta}
           isOpen={openIndex === idx}
           onToggle={() => handleToggle(idx)}
         />

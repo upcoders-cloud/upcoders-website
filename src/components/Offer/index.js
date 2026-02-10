@@ -20,6 +20,44 @@ export const OFFER_ITEMS = [
     title: 'Hosting & Website Administration',
     content:
       'We provide reliable hosting, ongoing maintenance, updates, and full technical support for your digital products.',
+    cta: {
+      label: 'See details',
+      modalTitle: 'Hosting & Website Administration',
+      packages: [
+        {
+          name: 'Basic',
+          price: '199 PLN/mo',
+          features: [
+            'Custom domain',
+            'SSL certificate',
+            'Monthly backups',
+            'Email support',
+          ],
+        },
+        {
+          name: 'Pro',
+          price: '499 PLN/mo',
+          recommended: true,
+          features: [
+            'Everything in Basic',
+            'Weekly backups',
+            'Monitoring 24/7',
+            'Priority support',
+            'Performance optimization',
+          ],
+        },
+        {
+          name: 'Enterprise',
+          price: 'Custom pricing',
+          features: [
+            'Everything in Pro',
+            'Dedicated server',
+            'SLA guarantee',
+            'Custom integrations',
+          ],
+        },
+      ],
+    },
   },
   {
     id: '5',

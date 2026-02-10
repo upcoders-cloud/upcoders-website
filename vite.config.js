@@ -29,6 +29,10 @@ export default defineConfig({
       sitemap: 'https://upcoders.cloud/sitemap.xml',
     })
   ],
+  server: {
+    host: true,
+    port: 5173,
+  },
   resolve: {
     alias: {
       // aliasy „gołych” ścieżek względem src/
