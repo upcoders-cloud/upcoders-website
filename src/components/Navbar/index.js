@@ -2,16 +2,21 @@ export const NAV_ELEMENT = [
   {
     id: 1,
     href: "#offer",
-    label: "Offer"
+    labelKey: "navbar.items.offer",
   },
   {
     id: 2,
     href: "#about",
-    label: "About us"
+    labelKey: "navbar.items.about",
   },
   {
     id: 3,
+    href: "/projects",
+    labelKey: "navbar.items.projects",
+  },
+  {
+    id: 4,
     href: "#contact",
-    label: "Contact"
+    labelKey: "navbar.items.contact",
   },
 ];

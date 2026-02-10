@@ -1,8 +1,11 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
+import { useI18n } from '@/i18n/useI18n.js'
 
 export default function Modal({ isOpen, onClose, children }) {
+  const { t } = useI18n()
+
   React.useEffect(() => {
     if (!isOpen) return;
     document.body.style.overflow = "hidden";
@@ -46,7 +49,7 @@ export default function Modal({ isOpen, onClose, children }) {
           >
             <button
               onClick={onClose}
-              aria-label="Close"
+              aria-label={t('common.close')}
               className="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors cursor-pointer text-xl leading-none"
             >
               ✕

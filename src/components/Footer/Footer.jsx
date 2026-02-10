@@ -1,22 +1,24 @@
 import React from 'react'
 import Logo from '/uc-logo.png'
-import { TiSocialLinkedin, TiSocialInstagram } from 'react-icons/ti'
-import { FaSquareXTwitter } from 'react-icons/fa6'
+import { TiSocialLinkedin } from 'react-icons/ti'
 import Partners from 'components/Footer/Partners.jsx'
+import { NavBarItem } from '@/components/Navbar/NavBarItem/NavBarItem.jsx'
+import { useI18n } from '@/i18n/useI18n.js'
 
 export default function Footer() {
+  const { t } = useI18n()
+
   return (
     <footer className="bg-bg-2 text-gray-300 py-16 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto" >
-        {/* Top: 4 columns */}
+      <div className="max-w-6xl mx-auto">
         <div className="grid gap-10 md:grid-cols-4">
-          {/* Col 1: Logo + address */}
           <div>
             <img src={Logo} alt="Upcoders logo" className="h-7 w-auto mb-4" />
             <div className="text-xs tracking-widest text-gray-400 mb-2">UPCODERS</div>
             <address className="not-italic text-sm leading-6">
-              ul. Wawrzyńca Engeströma 10<br />
-              60-571 Poznań, Poland
+              ul. Wawrzynca Engestroma 10
+              <br />
+              60-571 Poznan, Poland
             </address>
             <div className="mt-4 text-sm leading-6">
               <div>NIP: 7812090103</div>
@@ -25,53 +27,51 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Follow us */}
           <div>
-            <div className="text-xs tracking-widest text-gray-400 mb-3">Follow us</div>
+            <div className="text-xs tracking-widest text-gray-400 mb-3">{t('footer.followUs')}</div>
             <div className="flex items-center gap-4 text-lg">
-              <a href="https://www.linkedin.com/company/upcoders-cloud" aria-label="LinkedIn" className="hover:text-primary transition-colors"><TiSocialLinkedin /></a>
-              {/*<a href="#" aria-label="Instagram" className="hover:text-primary transition-colors"><TiSocialInstagram /></a>*/}
-              {/*<a href="#" aria-label="X / Twitter" className="hover:text-primary transition-colors"><FaSquareXTwitter /></a>*/}
+              <a
+                href="https://www.linkedin.com/company/upcoders-cloud"
+                aria-label="LinkedIn"
+                className="hover:text-primary transition-colors"
+              >
+                <TiSocialLinkedin />
+              </a>
             </div>
           </div>
 
-          {/* Col 3: Company */}
           <div>
-            <div className="text-xs tracking-widest text-gray-400 mb-3">Company</div>
+            <div className="text-xs tracking-widest text-gray-400 mb-3">{t('footer.company')}</div>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#offer"
-                  className="hover:text-white transition"
-                  onClick={(e) => { e.preventDefault(); document.querySelector("#offer").scrollIntoView({ behavior: "smooth" }) }}
-                >
-                  OFFER
-                </a>
+                <NavBarItem href="#offer" className="hover:text-white transition">
+                  {t('navbar.items.offer')}
+                </NavBarItem>
               </li>
               <li>
-                <a
-                  href="#about"
-                  className="hover:text-white transition"
-                  onClick={(e) => { e.preventDefault(); document.querySelector("#about").scrollIntoView({ behavior: "smooth" }) }}
-                >
-                  ABOUT US
-                </a>
+                <NavBarItem href="#about" className="hover:text-white transition">
+                  {t('navbar.items.about')}
+                </NavBarItem>
+              </li>
+              <li>
+                <NavBarItem href="/projects" className="hover:text-white transition">
+                  {t('navbar.items.projects')}
+                </NavBarItem>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Contact */}
           <div>
-            <div className="text-xs tracking-widest text-gray-400 mb-3">Contact</div>
-            <a href="mailto:contact@upcoders.cloud" className="text-sm hover:text-white transition">contact@upcoders.cloud</a>
+            <div className="text-xs tracking-widest text-gray-400 mb-3">{t('footer.contact')}</div>
+            <a href="mailto:contact@upcoders.cloud" className="text-sm hover:text-white transition">
+              contact@upcoders.cloud
+            </a>
           </div>
         </div>
 
-        {/* Divider */}
         <hr className="my-10 border-white/10" />
 
-        {/* Partners (lekki fade-in on scroll) */}
-        <Partners logos={[Logo, Logo, Logo, Logo]} />
+        <Partners logos={[Logo, Logo, Logo, Logo]} title={t('footer.partners')} />
       </div>
     </footer>
   )

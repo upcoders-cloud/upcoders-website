@@ -1,7 +1,10 @@
 import React from "react";
 import DefaultButton from "components/ui/DefaultButton/DefaultButton.jsx";
+import { useI18n } from '@/i18n/useI18n.js'
 
 export default function PackageCard({ pkg, onContact }) {
+  const { t } = useI18n()
+
   return (
     <div
       className={`flex flex-col p-5 border ${
@@ -12,7 +15,7 @@ export default function PackageCard({ pkg, onContact }) {
     >
       {pkg.recommended && (
         <span className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
-          Recommended
+          {t('offer.packageCard.recommended')}
         </span>
       )}
       <h3 className="text-lg font-bold text-white">{pkg.name}</h3>
@@ -26,7 +29,7 @@ export default function PackageCard({ pkg, onContact }) {
         ))}
       </ul>
       <DefaultButton
-        label="Contact us"
+        label={t('offer.packageCard.contactButton')}
         onClick={onContact}
         className="w-full text-center text-sm"
       />

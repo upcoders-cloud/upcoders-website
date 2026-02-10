@@ -1,59 +1,60 @@
 export const OFFER_ITEMS = [
   {
     id: '1',
-    title: 'Tailored Software Solutions',
-    content: 'We create software fully customized to your business processes.',
+    titleKey: 'offer.items.tailored.title',
+    contentKey: 'offer.items.tailored.content',
   },
   {
     id: '2',
-    title: 'Web & Mobile Development',
-    content:
-      'We build modern web platforms, business apps, and mobile solutions - from landing pages to complex systems.',
+    titleKey: 'offer.items.webMobile.title',
+    contentKey: 'offer.items.webMobile.content',
   },
   {
     id: '3',
-    title: 'User-Centered Design',
-    content: 'We craft intuitive, accessible, and engaging user experiences.',
+    titleKey: 'offer.items.userCentered.title',
+    contentKey: 'offer.items.userCentered.content',
   },
   {
     id: '4',
-    title: 'Hosting & Website Administration',
-    content:
-      'We provide reliable hosting, ongoing maintenance, updates, and full technical support for your digital products.',
+    titleKey: 'offer.items.hosting.title',
+    contentKey: 'offer.items.hosting.content',
     cta: {
-      label: 'See details',
-      modalTitle: 'Hosting & Website Administration',
+      labelKey: 'offer.items.hosting.cta.label',
+      modalTitleKey: 'offer.items.hosting.cta.modalTitle',
       packages: [
         {
-          name: 'Basic',
-          price: '199 PLN/mo',
-          features: [
-            'Custom domain',
-            'SSL certificate',
-            'Monthly backups',
-            'Email support',
+          key: 'basic',
+          nameKey: 'offer.items.hosting.packages.basic.name',
+          priceKey: 'offer.items.hosting.packages.basic.price',
+          featureKeys: [
+            'offer.items.hosting.packages.basic.features.0',
+            'offer.items.hosting.packages.basic.features.1',
+            'offer.items.hosting.packages.basic.features.2',
+            'offer.items.hosting.packages.basic.features.3',
           ],
         },
         {
-          name: 'Pro',
-          price: '499 PLN/mo',
+          key: 'pro',
+          nameKey: 'offer.items.hosting.packages.pro.name',
+          priceKey: 'offer.items.hosting.packages.pro.price',
           recommended: true,
-          features: [
-            'Everything in Basic',
-            'Weekly backups',
-            'Monitoring 24/7',
-            'Priority support',
-            'Performance optimization',
+          featureKeys: [
+            'offer.items.hosting.packages.pro.features.0',
+            'offer.items.hosting.packages.pro.features.1',
+            'offer.items.hosting.packages.pro.features.2',
+            'offer.items.hosting.packages.pro.features.3',
+            'offer.items.hosting.packages.pro.features.4',
           ],
         },
         {
-          name: 'Enterprise',
-          price: 'Custom pricing',
-          features: [
-            'Everything in Pro',
-            'Dedicated server',
-            'SLA guarantee',
-            'Custom integrations',
+          key: 'enterprise',
+          nameKey: 'offer.items.hosting.packages.enterprise.name',
+          priceKey: 'offer.items.hosting.packages.enterprise.price',
+          featureKeys: [
+            'offer.items.hosting.packages.enterprise.features.0',
+            'offer.items.hosting.packages.enterprise.features.1',
+            'offer.items.hosting.packages.enterprise.features.2',
+            'offer.items.hosting.packages.enterprise.features.3',
           ],
         },
       ],
@@ -61,20 +62,17 @@ export const OFFER_ITEMS = [
   },
   {
     id: '5',
-    title: 'Cloud & DevOps',
-    content:
-      'Scalable infrastructure and modern CI/CD practices to ensure reliability, security, and speed.',
+    titleKey: 'offer.items.cloudDevops.title',
+    contentKey: 'offer.items.cloudDevops.content',
   },
   {
     id: '6',
-    title: 'AI & Intelligent Automation',
-    content:
-      'We leverage artificial intelligence and automation to build smarter products, streamline workflows, and unlock new business opportunities.',
+    titleKey: 'offer.items.aiAutomation.title',
+    contentKey: 'offer.items.aiAutomation.content',
   },
   {
     id: '7',
-    title: 'Long-Term Tech Partnership',
-    content:
-      'We stay with you long-term, supporting and evolving your software as your business grows.',
+    titleKey: 'offer.items.longTerm.title',
+    contentKey: 'offer.items.longTerm.content',
   },
 ]

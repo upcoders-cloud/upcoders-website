@@ -15,6 +15,7 @@ const buildPattern = (ascii) => ({
 
 export const MEMBERS = [
   {
+    id: "pawel",
     firstName: "Paweł",
     lastName: "Biniak",
     img: pawelImg,
@@ -26,11 +27,11 @@ export const MEMBERS = [
       "######..",
       "########",
     ]),
-    role: "Co-Founder",
-    about:
-      "Turning vision into scalable solutions."
+    roleKey: "team.members.pawel.role",
+    aboutKey: "team.members.pawel.about",
   },
   {
+    id: "fabian",
     firstName: "Fabian",
     lastName: "Filipiak",
     img: fabianImg,
@@ -41,11 +42,11 @@ export const MEMBERS = [
       "######..",
       "#######.",
     ]),
-    role: "Co-Founder & Project Manager",
-    about:
-      "Clear goals, seamless delivery."
+    roleKey: "team.members.fabian.role",
+    aboutKey: "team.members.fabian.about",
   },
   {
+    id: "michal",
     firstName: "Michał",
     lastName: "Patz",
     img: michalImg,
@@ -57,11 +58,11 @@ export const MEMBERS = [
       "######..",
       "#######.",
     ]),
-    role: "Co-Founder & Integration Architect",
-    about:
-      "Clean code, strong foundations."
+    roleKey: "team.members.michal.role",
+    aboutKey: "team.members.michal.about",
   },
   {
+    id: "wojciech",
     firstName: "Wojciech",
     lastName: "Witczak",
     img: wojciechImg,
@@ -73,8 +74,7 @@ export const MEMBERS = [
       "######.",
       "########",
     ]),
-    role: "Co-Founder & Full-Stack Architect",
-    about:
-      "Bridging frontend and backend with clarity."
+    roleKey: "team.members.wojciech.role",
+    aboutKey: "team.members.wojciech.about",
   },
 ];
