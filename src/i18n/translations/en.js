@@ -17,6 +17,7 @@ const en = {
     title: {
       line1: 'BRIGHT',
       line2Prefix: 'THE',
+      line2PrefixDone: 'THE',
       words: ['FUTURE', 'CODE', 'INNOVATION', 'IDEAS', 'FUTURE'],
     },
     description:

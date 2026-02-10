@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "motion/react";
 
-export const DrawCircleText = ({text}) => {
+export const DrawCircleText = ({text, svgClassName}) => {
   return (
     <span className="relative">
       {text}
       <svg
         viewBox="0 0 286 73"
         fill="none"
-        className="absolute -left-2 -right-3 -top-5 bottom-0 translate-y-1"
+        className={svgClassName || "absolute -left-2 -right-3 -top-5 bottom-0 translate-y-1"}
       >
         <motion.path
           initial={{ pathLength: 0 }}

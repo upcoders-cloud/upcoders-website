@@ -17,7 +17,8 @@ const pl = {
     title: {
       line1: 'TWORZYMY',
       line2Prefix: 'LEPSZE',
-      words: ['ROZWIAZANIA', 'PRODUKTY', 'INNOWACJE', 'POMYSLY', 'ROZWIAZANIA'],
+      line2PrefixDone: 'LEPSZĄ',
+      words: ['ROZWIĄZANIA', 'PRODUKTY', 'INNOWACJE', 'POMYSŁY', 'PRZYSZŁOŚĆ'],
     },
     description:
       'Projektujemy i rozwijamy nowoczesne aplikacje dopasowane do procesow firm przemyslowych i technicznych.',
