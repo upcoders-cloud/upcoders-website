@@ -24,6 +24,9 @@ const en = {
       'We design and develop modern applications tailored to the processes of industrial and technical companies.',
     cta: 'ASK ABOUT YOUR PROJECT',
   },
+  separator: {
+    items: ['Inspiration', 'Technology', 'Innovation', 'Design', 'Solution'],
+  },
   offer: {
     eyebrow: 'OFFER',
     title:

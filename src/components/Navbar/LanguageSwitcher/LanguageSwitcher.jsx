@@ -9,7 +9,7 @@ const LANGUAGE_META = {
   pl: { flag: '🇵🇱', label: 'Polski' },
 }
 
-export default function LanguageSwitcher({ className = '', onLanguageChange }) {
+export default function LanguageSwitcher({ className = '', onLanguageChange, dropUp = false }) {
   const { language, languages, setLanguage, t } = useI18n()
   const location = useLocation()
   const navigate = useNavigate()
@@ -73,13 +73,15 @@ export default function LanguageSwitcher({ className = '', onLanguageChange }) {
       <AnimatePresence>
         {open && (
           <motion.ul
-            initial={{ opacity: 0, y: -4, scale: 0.97 }}
+            initial={{ opacity: 0, y: dropUp ? 4 : -4, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -4, scale: 0.97 }}
+            exit={{ opacity: 0, y: dropUp ? 4 : -4, scale: 0.97 }}
             transition={{ type: 'spring', duration: 0.25, bounce: 0.1 }}
             role="listbox"
             aria-label={t('navbar.languageSwitcher.ariaLabel')}
-            className="absolute right-0 mt-1.5 min-w-[130px] rounded border border-white/10 bg-bg-1 shadow-lg shadow-black/40 overflow-hidden z-50"
+            className={`absolute left-0 min-w-[130px] rounded border border-white/10 bg-bg-1 shadow-lg shadow-black/40 overflow-hidden z-50 ${
+              dropUp ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
+            }`}
           >
             {languages.map((code) => {
               const meta = LANGUAGE_META[code]

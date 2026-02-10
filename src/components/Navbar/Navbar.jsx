@@ -93,7 +93,8 @@ export default function Navbar() {
               ))}
 
               <LanguageSwitcher
-                className="pt-3"
+                className="pt-3 pb-8"
+                dropUp
                 onLanguageChange={() => setIsMobileMenuOpen(false)}
               />
             </div>

@@ -24,6 +24,9 @@ const pl = {
       'Projektujemy i rozwijamy nowoczesne aplikacje dopasowane do procesow firm przemyslowych i technicznych.',
     cta: 'ZAPYTAJ O SWOJ PROJEKT',
   },
+  separator: {
+    items: ['Inspiracja', 'Technologia', 'Innowacja', 'Projektowanie', 'Rozwiazanie'],
+  },
   offer: {
     eyebrow: 'OFERTA',
     title:
