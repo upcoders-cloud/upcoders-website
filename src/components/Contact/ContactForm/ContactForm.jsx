@@ -1,29 +1,27 @@
-import React, { useEffect } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import toast from "react-hot-toast";
-import DefaultInput from "components/ui/DefaultInput/DefaultInput.jsx";
-import DefaultCheckbox from "components/ui/DefaultCheckbox/DefaultCheckbox.jsx";
-import DefaultButton from "components/ui/DefaultButton/DefaultButton.jsx";
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
+import DefaultInput from 'components/ui/DefaultInput/DefaultInput.jsx'
+import DefaultCheckbox from 'components/ui/DefaultCheckbox/DefaultCheckbox.jsx'
+import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
+import { useI18n } from '@/i18n/useI18n.js'
 
-const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-const WEB3FORMS_ACCESS_KEY = '186b0ac8-8348-4913-9963-ea419a09886e';
-const EMPTY_STRING = "";
-const ON_TOUCHED_EVENT = "onTouched";
-const POST = "POST";
-const APPLICATION_JSON = "application/json";
-const CONTENT_TYPE = "Content-Type";
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+const EMPTY_STRING = ''
+const ON_TOUCHED_EVENT = 'onTouched'
+const POST = 'POST'
+const APPLICATION_JSON = 'application/json'
+const CONTENT_TYPE = 'Content-Type'
 
 export default function ContactForm() {
-  const [integrationResult, setIntegrationResult] = React.useState(false);
-  const [integrationMessage, setIntegrationMessage] = React.useState(EMPTY_STRING);
+  const { t } = useI18n()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-    setValue,
     setFocus,
     reset,
-    control
   } = useForm({
     mode: ON_TOUCHED_EVENT,
     defaultValues: {
@@ -31,9 +29,14 @@ export default function ContactForm() {
       phone: EMPTY_STRING,
       privacy: false,
     },
-  });
+  })
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = async (data) => {
+    if (!WEB3FORMS_ACCESS_KEY) {
+      toast.error(t('contact.form.toasts.missingConfig'))
+      return
+    }
+
     try {
       const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: POST,
@@ -44,36 +47,29 @@ export default function ContactForm() {
         body: JSON.stringify({
           ...data,
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "Someone sent a message from our Website",
-          from_name: "Upcoders page"
+          subject: t('contact.form.web3.subject'),
+          from_name: t('contact.form.web3.fromName'),
         }),
-      });
+      })
 
-      const result = await response.json();
+      const result = await response.json()
       if (result.success) {
-        toast.success(result.message || "Message sent successfully.");
-        setIntegrationResult(true);
-        setIntegrationMessage(result.message);
-        e.target.reset();
-        reset();
+        toast.success(result.message || t('contact.form.toasts.success'))
+        reset()
       } else {
-        toast.error(result.message || "Submission failed.");
-        setIntegrationResult(false);
-        setIntegrationMessage(result.message || "Submission failed.");
+        toast.error(result.message || t('contact.form.toasts.failed'))
       }
     } catch (error) {
-      toast.error("Submission failed.");
-      console.error(error);
-      setIntegrationResult(false);
-      setIntegrationMessage("Client Error. Please check the console for more info");
+      toast.error(t('contact.form.toasts.failed'))
+      console.error(error)
+      console.error(t('contact.form.toasts.clientError'))
     }
-  };
+  }
 
-  const onError = (errs) => {
-    console.log(errs)
-    const first = Object.keys(errs)[0];
-    if (first) setFocus(first);
-  };
+  const onError = (formErrors) => {
+    const firstErrorField = Object.keys(formErrors)[0]
+    if (firstErrorField) setFocus(firstErrorField)
+  }
 
   return (
     <form
@@ -82,47 +78,50 @@ export default function ContactForm() {
       className="relative bg-[#2B2B2B] rounded-lg p-6 md:p-7 w-full shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
     >
       <DefaultInput
-        label="Email"
+        label={t('contact.form.labels.email')}
         type="email"
-        placeholder="Type here..."
-        registration={register("email", {
-          required: "Email is required.",
+        placeholder={t('contact.form.placeholders.input')}
+        registration={register('email', {
+          required: t('contact.form.errors.emailRequired'),
           pattern: {
             value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "Please enter a valid email address.",
+            message: t('contact.form.errors.emailInvalid'),
           },
         })}
         error={errors.email?.message}
       />
+
       <DefaultInput
-        label="Phone number"
+        label={t('contact.form.labels.phone')}
         type="tel"
-        placeholder="Type here..."
+        placeholder={t('contact.form.placeholders.input')}
         className="mt-4"
-        registration={register("phone", {
+        registration={register('phone', {
           pattern: {
             value: /^[0-9+\s()-]{5,}$/,
-            message: "Please enter a valid phone number.",
+            message: t('contact.form.errors.phoneInvalid'),
           },
         })}
         error={errors.phone?.message}
       />
+
       <DefaultCheckbox
         className="mt-8"
-        label="I agree to the privacy policy terms *"
-        registration={register("privacy", {
-          required: "Check the agreement to continue",
+        label={t('contact.form.labels.privacy')}
+        registration={register('privacy', {
+          required: t('contact.form.errors.privacyRequired'),
         })}
         error={errors.privacy?.message}
       />
+
       <div className="mt-4 flex justify-end">
         <DefaultButton
           type="submit"
-          label={isSubmitSuccessful ? "SENT" : "SEND MESSAGE"}
+          label={isSubmitSuccessful ? t('contact.form.buttons.sent') : t('contact.form.buttons.send')}
           disabled={isSubmitting}
           loading={isSubmitting}
         />
       </div>
     </form>
-  );
+  )
 }

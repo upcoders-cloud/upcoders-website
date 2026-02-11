@@ -1,42 +1,48 @@
 export const OFFER_ITEMS = [
   {
     id: '1',
-    title: 'Tailored Software Solutions',
-    content: 'We create software fully customized to your business processes.',
+    titleKey: 'offer.items.tailored.title',
+    contentKey: 'offer.items.tailored.content',
   },
   {
     id: '2',
-    title: 'Web & Mobile Development',
-    content:
-      'We build modern web platforms, business apps, and mobile solutions - from landing pages to complex systems.',
+    titleKey: 'offer.items.webMobile.title',
+    contentKey: 'offer.items.webMobile.content',
   },
   {
     id: '3',
-    title: 'User-Centered Design',
-    content: 'We craft intuitive, accessible, and engaging user experiences.',
+    titleKey: 'offer.items.userCentered.title',
+    contentKey: 'offer.items.userCentered.content',
   },
   {
     id: '4',
-    title: 'Hosting & Website Administration',
-    content:
-      'We provide reliable hosting, ongoing maintenance, updates, and full technical support for your digital products.',
+    anchor: 'hosting',
+    titleKey: 'offer.items.hosting.title',
+    contentKey: 'offer.items.hosting.content',
+    cta: {
+      labelKey: 'offer.items.hosting.cta.label',
+      modalTitleKey: 'offer.items.hosting.cta.modalTitle',
+      packagesBasePath: 'offer.items.hosting.packages',
+      packages: [
+        { key: 'basic' },
+        { key: 'pro', recommended: true },
+        { key: 'enterprise' },
+      ],
+    },
   },
   {
     id: '5',
-    title: 'Cloud & DevOps',
-    content:
-      'Scalable infrastructure and modern CI/CD practices to ensure reliability, security, and speed.',
+    titleKey: 'offer.items.cloudDevops.title',
+    contentKey: 'offer.items.cloudDevops.content',
   },
   {
     id: '6',
-    title: 'AI & Intelligent Automation',
-    content:
-      'We leverage artificial intelligence and automation to build smarter products, streamline workflows, and unlock new business opportunities.',
+    titleKey: 'offer.items.aiAutomation.title',
+    contentKey: 'offer.items.aiAutomation.content',
   },
   {
     id: '7',
-    title: 'Long-Term Tech Partnership',
-    content:
-      'We stay with you long-term, supporting and evolving your software as your business grows.',
+    titleKey: 'offer.items.longTerm.title',
+    contentKey: 'offer.items.longTerm.content',
   },
 ]

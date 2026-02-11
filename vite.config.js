@@ -8,6 +8,7 @@ import { robots } from 'vite-plugin-robots'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const SITEMAP_STATIC_ROUTES = ['/en', '/pl', '/en/projects', '/pl/projects']
 
 export default defineConfig({
   plugins: [
@@ -16,8 +17,19 @@ export default defineConfig({
     sitemapPlugin({
       hostname: 'https://upcoders.cloud',
       gzip: true,
-      changefreq: 'weekly',
-      priority: 0.8,
+      readable: true,
+      dynamicRoutes: SITEMAP_STATIC_ROUTES,
+      exclude: ['/'],
+      changefreq: {
+        '*': 'weekly',
+        '/en': 'daily',
+        '/pl': 'daily',
+      },
+      priority: {
+        '*': 0.8,
+        '/en': 1.0,
+        '/pl': 1.0,
+      },
     }),
     robots({
       rules: [
@@ -29,6 +41,10 @@ export default defineConfig({
       sitemap: 'https://upcoders.cloud/sitemap.xml',
     })
   ],
+  server: {
+    host: true,
+    port: 5173,
+  },
   resolve: {
     alias: {
       // aliasy „gołych” ścieżek względem src/

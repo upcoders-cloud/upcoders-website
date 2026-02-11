@@ -1,0 +1,500 @@
+{
+  "name": "upcoders-website",
+  "path": "/Users/pawel.biniak/coding/apps/upcoders-website",
+  "type": "directory",
+  "children": [
+    {
+      "name": "public",
+      "type": "folder",
+      "children": [
+        {
+          "name": "og-image.png",
+          "type": "file"
+        },
+        {
+          "name": "uc-logo-small.svg",
+          "type": "file"
+        },
+        {
+          "name": "uc-logo.png",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "src",
+      "type": "folder",
+      "children": [
+        {
+          "name": "animations",
+          "type": "folder",
+          "children": [
+            {
+              "name": "FallingPixelsCanvas",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "FallingPixelsCanvas.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "FallingPixelsPattern",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "FallingPixelsPattern.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "InteractiveDots",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "InteractiveDots.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "KeyFramePixel",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "KeyFramePixel.jsx",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "assets",
+          "type": "folder",
+          "children": [
+            {
+              "name": "fonts",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "DM_Sans",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "DMSans-Bold.ttf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DMSans-Medium.ttf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DMSans-Regular.ttf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "DMSans-SemiBold.ttf",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "teamPhoto",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "fabianImg.JPEG",
+                  "type": "file"
+                },
+                {
+                  "name": "michalImg.JPEG",
+                  "type": "file"
+                },
+                {
+                  "name": "pawelImg.JPEG",
+                  "type": "file"
+                },
+                {
+                  "name": "wojciechImg.JPEG",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "components",
+          "type": "folder",
+          "children": [
+            {
+              "name": "Contact",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "ContactForm",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "ContactForm.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "ContactHeader",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "ContactHeader.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "Contact.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Decor",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "DiagonalPair.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "PixelGrid.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "ZigZag5.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Footer",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Footer.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Partners.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Partners.module.css",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Hero",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Hero.jsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Navbar",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "NavBarItem",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "NavBarItem.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "Navbar.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "index.js",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Offer",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Accordion",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "Accordion.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "AccordionItem",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "AccordionItem.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "Offer.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "index.js",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Separator",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "Separator.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "Separator.module.css",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Team",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "CardMember",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "CardMember.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "Team.jsx",
+                  "type": "file"
+                },
+                {
+                  "name": "index.js",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "ui",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "DefaultButton",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "DefaultButton.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "DefaultCheckbox",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "DefaultCheckbox.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "DefaultInput",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "DefaultInput.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "DrawCircleText",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "DrawCircleText.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "Modal",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "Modal.jsx",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "PackageCard",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "PackageCard.jsx",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "hooks",
+          "type": "folder",
+          "children": [
+            {
+              "name": "useOnScreen",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "useOnScreen.jsx",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "patterns",
+          "type": "folder",
+          "children": [
+            {
+              "name": "upcodersShape.js",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "utils",
+          "type": "folder",
+          "children": [
+            {
+              "name": "ArrowRight.jsx",
+              "type": "file"
+            },
+            {
+              "name": "pixelPattern.jsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "App.jsx",
+          "type": "file"
+        },
+        {
+          "name": "index.css",
+          "type": "file"
+        },
+        {
+          "name": "main.jsx",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": ".eslintrc.json",
+      "type": "file"
+    },
+    {
+      "name": ".gitignore",
+      "type": "file"
+    },
+    {
+      "name": ".nvmrc",
+      "type": "file"
+    },
+    {
+      "name": ".prettierrc",
+      "type": "file"
+    },
+    {
+      "name": ".robots.development.txt",
+      "type": "file"
+    },
+    {
+      "name": ".robots.production.txt",
+      "type": "file"
+    },
+    {
+      "name": "CONTRIBUTING.md",
+      "type": "file"
+    },
+    {
+      "name": "LICENSE",
+      "type": "file"
+    },
+    {
+      "name": "README.md",
+      "type": "file"
+    },
+    {
+      "name": "SETUP.md",
+      "type": "file"
+    },
+    {
+      "name": "eslint.config.js",
+      "type": "file"
+    },
+    {
+      "name": "index.html",
+      "type": "file"
+    },
+    {
+      "name": "jsconfig.json",
+      "type": "file"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file"
+    },
+    {
+      "name": "package.json",
+      "type": "file"
+    },
+    {
+      "name": "vite.config.js",
+      "type": "file"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-02-10T17:28:52.520Z",
+    "generator": "FileTree Pro Extension",
+    "version": "0.2.0",
+    "showIcons": false,
+    "maxDepth": 10
+  }
+}

@@ -1,39 +1,67 @@
-# Contributing Guidelines – upcoders-website
+# Contributing
 
----
+Thanks for contributing to `upcoders-website`.
 
-## 🧭 Branching Strategy
+## Source of truth
 
-We use a simplified Git Flow model:
+- Project setup, environment variables, routing, SEO and deployment notes are maintained in `README.md`.
+- This file focuses only on contribution workflow and quality gates.
 
-- `main` – production-ready, stable code
-- `dev` – active development branch
-- `feature/*` – individual features and tasks
+## Branching model
 
-### Branching Rules
+We use:
+- `main` - production-ready releases
+- `dev` - integration branch for ongoing work
+- `feature/*`, `fix/*`, `chore/*` - working branches
 
-- Do **not** commit directly to `main` or `dev`.
-- Every new feature or fix should be implemented in a separate branch based on `dev`, named `feature/your-feature-name`.
-- Pull Requests (PRs) must target the `dev` branch.
-- Only maintainers are allowed to merge `dev` into `main` for releases.
+Rules:
+- Do not commit directly to `main` or `dev`.
+- Create your branch from `dev`.
+- Open PRs into `dev`.
+- Merge `dev` -> `main` only for release.
 
----
+## Suggested branch naming
 
-## 🛠️ Workflow
+- `feature/language-routes`
+- `fix/contact-form-validation`
+- `chore/update-readme`
 
-1. **Create a feature branch**
-   ```
-   git checkout dev
-   git pull origin dev
-   git checkout -b feature/your-feature-name
-   ```
-Keep commits clean and descriptive [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+## Commit style
 
-`npm install` – install dependencies
+Use clear commit messages.
+Conventional Commits are recommended, e.g.:
+- `feat: add language-aware router redirects`
+- `fix: handle missing web3forms key`
+- `docs: update deployment section`
 
-`npm run dev` – start local dev server
+## Pull request checklist
 
-`npm run build` – build for production
+Before opening a PR:
 
-`npm run lint` – run linter
+1. Rebase or merge latest `dev` into your branch.
+2. Run checks locally:
 
+```bash
+npm run lint
+npm run build
+```
+
+3. Verify key user paths manually:
+- `/en`
+- `/pl`
+- `/en/projects`
+- `/pl/projects`
+- contact form submit flow
+
+4. If you touched routing/SEO, confirm:
+- canonical/hreflang tags are correct,
+- sitemap output is still valid.
+
+5. If you touched env/config docs, update `README.md`.
+
+## Security and secrets
+
+- Never commit secrets to git.
+- Keep real values in `.env` only.
+- Keep placeholders only in `.env.example`.
+- If a secret was leaked, rotate it immediately.

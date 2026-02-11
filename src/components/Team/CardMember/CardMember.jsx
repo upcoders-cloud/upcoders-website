@@ -3,8 +3,10 @@ import { motion } from 'framer-motion'
 import { FaLinkedinIn } from 'react-icons/fa'
 import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
 import { isMobile } from 'react-device-detect'
+import { useI18n } from '@/i18n/useI18n.js'
 
 export default function CardMember({ member, index, length }) {
+  const { t } = useI18n()
   const [flipped, setFlipped] = useState(false)
 
   const handleMouseEnter = () => {
@@ -131,15 +133,15 @@ export default function CardMember({ member, index, length }) {
                 {member.lastName}
               </h4>
 
-              {member.role && (
+              {(member.roleKey || member.role) && (
                 <p className="text-primary sm:text-sm md:text-[11px] lg:text-sm font-medium">
-                  {member.role}
+                  {member.roleKey ? t(member.roleKey) : member.role}
                 </p>
               )}
 
-              {member.about && (
+              {(member.aboutKey || member.about) && (
                 <p className="text-white sm:text-sm md:text-[11px] lg:text-sm leading-relaxed">
-                  {member.about}
+                  {member.aboutKey ? t(member.aboutKey) : member.about}
                 </p>
               )}
             </div>
