@@ -38,7 +38,7 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
       return
     }
     setLanguage(code)
-    navigate(buildLocalizedPath(code, location.pathname, location.search, location.hash))
+    navigate(buildLocalizedPath(code, location.pathname, location.search, window.location.hash))
     setOpen(false)
     onLanguageChange?.()
   }

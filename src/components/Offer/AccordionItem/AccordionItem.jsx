@@ -4,7 +4,7 @@ import DefaultButton from "components/ui/DefaultButton/DefaultButton.jsx";
 import Modal from "components/ui/Modal/Modal.jsx";
 import PackageCard from "components/ui/PackageCard/PackageCard.jsx";
 
-export default function AccordionItem({ title, content, cta, isOpen, onToggle }) {
+export default function AccordionItem({ title, content, cta, isOpen, onToggle, anchor, autoOpenModal, onModalAutoOpened }) {
   const [contentHeight, setContentHeight] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const ref = React.useRef(null);
@@ -30,6 +30,13 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle })
     };
   }, []);
 
+  React.useEffect(() => {
+    if (autoOpenModal && cta) {
+      setModalOpen(true)
+      onModalAutoOpened?.()
+    }
+  }, [autoOpenModal])
+
   const handleContact = () => {
     setModalOpen(false);
     setTimeout(() => {
@@ -38,7 +45,7 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle })
   };
 
   return (
-    <li className="border-b border-gray-600 pb-2">
+    <li id={anchor} className="border-b border-gray-600 pb-2">
       <button
         id={buttonId}
         className="flex items-center justify-between w-full text-left font-medium hover:text-primary transition-colors"

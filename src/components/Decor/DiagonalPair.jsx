@@ -2,7 +2,7 @@ import React from "react";
 import PixelGrid from "./PixelGrid";
 
 export default function DiagonalPair(props) {
-  const matrix = [
+  const matrix = props.matrix ?? [
     [1,0],
     [0,1],
   ];

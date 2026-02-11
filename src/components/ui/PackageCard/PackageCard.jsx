@@ -7,16 +7,28 @@ export default function PackageCard({ pkg, onContact }) {
 
   return (
     <div
-      className={`flex flex-col p-5 border ${
+      className={`relative flex flex-col p-5 border overflow-hidden ${
         pkg.recommended
           ? "border-primary bg-bg-2"
           : "border-bg-3 bg-bg-1"
       }`}
     >
       {pkg.recommended && (
-        <span className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
-          {t('offer.packageCard.recommended')}
-        </span>
+        <div className="absolute top-0 right-0 w-36 h-36 pointer-events-none">
+          <div
+            className="absolute top-[24px] right-[-54px] w-[180px] rotate-45 bg-primary py-1 text-center text-[10px] font-bold uppercase tracking-wider text-white shadow-md"
+          >
+            <span className="relative z-10">{t('offer.packageCard.recommended')}</span>
+            <span
+              className="absolute inset-0 animate-shimmer"
+              style={{
+                background:
+                  'linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%)',
+                backgroundSize: '200% 100%',
+              }}
+            />
+          </div>
+        </div>
       )}
       <h3 className="text-lg font-bold text-white">{pkg.name}</h3>
       <p className="text-primary text-xl font-semibold mt-1 mb-4">{pkg.price}</p>

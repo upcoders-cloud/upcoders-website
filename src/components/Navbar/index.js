@@ -5,6 +5,11 @@ export const NAV_ELEMENT = [
     labelKey: "navbar.items.offer",
   },
   {
+    id: 5,
+    href: "#how-we-work",
+    labelKey: "navbar.items.howWeWork",
+  },
+  {
     id: 2,
     href: "#about",
     labelKey: "navbar.items.about",

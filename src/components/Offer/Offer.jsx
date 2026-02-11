@@ -10,18 +10,22 @@ export default function Offer() {
 
   const translatedItems = OFFER_ITEMS.map((item) => ({
     id: item.id,
+    anchor: item.anchor,
     title: t(item.titleKey),
     content: t(item.contentKey),
     cta: item.cta
       ? {
           label: t(item.cta.labelKey),
           modalTitle: t(item.cta.modalTitleKey),
-          packages: item.cta.packages.map((pkg) => ({
-            name: t(pkg.nameKey),
-            price: t(pkg.priceKey),
-            recommended: pkg.recommended,
-            features: pkg.featureKeys.map((featureKey) => t(featureKey)),
-          })),
+          packages: item.cta.packages.map((pkg) => {
+            const base = `${item.cta.packagesBasePath}.${pkg.key}`
+            return {
+              name: t(`${base}.name`),
+              price: t(`${base}.price`),
+              recommended: pkg.recommended,
+              features: t(`${base}.features`) || [],
+            }
+          }),
         }
       : undefined,
   }))

@@ -16,47 +16,17 @@ export const OFFER_ITEMS = [
   },
   {
     id: '4',
+    anchor: 'hosting',
     titleKey: 'offer.items.hosting.title',
     contentKey: 'offer.items.hosting.content',
     cta: {
       labelKey: 'offer.items.hosting.cta.label',
       modalTitleKey: 'offer.items.hosting.cta.modalTitle',
+      packagesBasePath: 'offer.items.hosting.packages',
       packages: [
-        {
-          key: 'basic',
-          nameKey: 'offer.items.hosting.packages.basic.name',
-          priceKey: 'offer.items.hosting.packages.basic.price',
-          featureKeys: [
-            'offer.items.hosting.packages.basic.features.0',
-            'offer.items.hosting.packages.basic.features.1',
-            'offer.items.hosting.packages.basic.features.2',
-            'offer.items.hosting.packages.basic.features.3',
-          ],
-        },
-        {
-          key: 'pro',
-          nameKey: 'offer.items.hosting.packages.pro.name',
-          priceKey: 'offer.items.hosting.packages.pro.price',
-          recommended: true,
-          featureKeys: [
-            'offer.items.hosting.packages.pro.features.0',
-            'offer.items.hosting.packages.pro.features.1',
-            'offer.items.hosting.packages.pro.features.2',
-            'offer.items.hosting.packages.pro.features.3',
-            'offer.items.hosting.packages.pro.features.4',
-          ],
-        },
-        {
-          key: 'enterprise',
-          nameKey: 'offer.items.hosting.packages.enterprise.name',
-          priceKey: 'offer.items.hosting.packages.enterprise.price',
-          featureKeys: [
-            'offer.items.hosting.packages.enterprise.features.0',
-            'offer.items.hosting.packages.enterprise.features.1',
-            'offer.items.hosting.packages.enterprise.features.2',
-            'offer.items.hosting.packages.enterprise.features.3',
-          ],
-        },
+        { key: 'basic' },
+        { key: 'pro', recommended: true },
+        { key: 'enterprise' },
       ],
     },
   },

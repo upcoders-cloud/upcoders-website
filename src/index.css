@@ -56,4 +56,10 @@ body {
 @theme {
     --font-upcoders: "Upcoders Sans", system-ui, ui-sans-serif, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --animate-shimmer: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }

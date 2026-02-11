@@ -5,6 +5,7 @@ const en = {
   navbar: {
     items: {
       offer: 'Offer',
+      howWeWork: 'How We Work',
       about: 'About us',
       projects: 'Projects',
       contact: 'Contact',
@@ -51,9 +52,9 @@ const en = {
         content: 'We craft intuitive, accessible, and engaging user experiences.',
       },
       hosting: {
-        title: 'Hosting & Website Administration',
+        title: 'Managed Hosting, Website Administration',
         content:
-          'We provide reliable hosting, ongoing maintenance, updates, and full technical support for your digital products.',
+          'We provide comprehensive Managed Hosting services for WordPress and other web and mobile applications. We handle full technical care, monitoring, updates, and optimization of your infrastructure - you focus on business, we take care of the technology.',
         cta: {
           label: 'See details',
           modalTitle: 'Hosting & Website Administration',
@@ -61,15 +62,18 @@ const en = {
         packages: {
           basic: {
             name: 'Basic',
-            price: '199 PLN/mo',
-            features: ['Custom domain', 'SSL certificate', 'Monthly backups', 'Email support'],
+            price: '99 PLN/mo',
+            features: [
+              'Managed WordPress or Landing Page',
+              'Server configuration and management',
+              'Email support',
+            ],
           },
           pro: {
             name: 'Pro',
-            price: '499 PLN/mo',
+            price: '299 PLN/mo',
             features: [
               'Everything in Basic',
-              'Weekly backups',
               'Monitoring 24/7',
               'Priority support',
               'Performance optimization',
@@ -78,12 +82,7 @@ const en = {
           enterprise: {
             name: 'Enterprise',
             price: 'Custom pricing',
-            features: [
-              'Everything in Pro',
-              'Dedicated server',
-              'SLA guarantee',
-              'Custom integrations',
-            ],
+            features: ['Everything in Pro', 'Dedicated server', 'Custom integrations'],
           },
         },
       },
@@ -99,13 +98,42 @@ const en = {
       },
       longTerm: {
         title: 'Long-Term Tech Partnership',
-        content: 'We stay with you long-term, supporting and evolving your software as your business grows.',
+        content:
+          'We stay with you long-term, supporting and evolving your software as your business grows.',
       },
     },
     packageCard: {
       recommended: 'Recommended',
       contactButton: 'Contact us',
     },
+  },
+  howWeWork: {
+    eyebrow: 'OUR PROCESS',
+    title: 'How do we work?',
+    steps: [
+      {
+        title: 'Discovery',
+        description:
+          'Research client requirments. Define project goals, objectives and scope to ensure aligment.',
+      },
+      {
+        title: 'Scope & Estimate',
+        description:
+          'Define scope, priorities and timeline. Align budget and milestones before development starts.',
+      },
+      {
+        title: 'Build & Iterate',
+        description:
+          'Build in focused sprints with regular demos. Gather feedback and refine features step by step.',
+      },
+      {
+        title: 'Launch & Support',
+        description:
+          'Deploy safely and monitor performance from day one. Provide maintenance, updates and further development.',
+      },
+    ],
+    highlights: ['Kickoff in 7 days', 'Weekly progress updates', 'Long-term support'],
+    cta: 'BOOK A DISCOVERY CALL',
   },
   team: {
     eyebrow: 'MEET OUR TEAM',
@@ -117,15 +145,15 @@ const en = {
         about: 'Turning vision into scalable solutions.',
       },
       fabian: {
-        role: 'Co-Founder & Project Manager',
+        role: 'Co-Founder',
         about: 'Clear goals, seamless delivery.',
       },
       michal: {
-        role: 'Co-Founder & Integration Architect',
+        role: 'Co-Founder',
         about: 'Clean code, strong foundations.',
       },
       wojciech: {
-        role: 'Co-Founder & Full-Stack Architect',
+        role: 'Co-Founder',
         about: 'Bridging frontend and backend with clarity.',
       },
     },
