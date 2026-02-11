@@ -115,7 +115,7 @@ const pl = {
     title: 'Jak działamy?',
     steps: [
       {
-        title: 'Discovery',
+        title: 'Faza discovery',
         description:
           'Badanie wymagań klienta. Definiujemy cele, założenia i zakres projektu, aby zapewnić spójność.',
       },

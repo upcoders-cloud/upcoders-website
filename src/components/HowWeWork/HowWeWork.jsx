@@ -36,8 +36,8 @@ function buildDesktopPath(n) {
 }
 
 // ── Mobile wave (vertical / transposed sine) ───────────
-const M_H = 720
-const M_AMP_X = 40          // px offset from center (±)
+const M_H = 850
+const M_AMP_X = 32          // px offset from center (±)
 const M_SVG_PX_W = 100      // SVG pixel width (covers wave area)
 const M_SVG_CX = M_SVG_PX_W / 2 // wave center in SVG coords = 50
 
@@ -75,6 +75,23 @@ export default function HowWeWork() {
 
   const [activeStep, setActiveStep] = useState(-1)
   const activeStepRef = useRef(-1)
+
+  const mobileRef = useRef(null)
+  const [mobileHeight, setMobileHeight] = useState(M_H)
+
+  useEffect(() => {
+    const el = mobileRef.current
+    if (!el) return
+    const stepEls = el.querySelectorAll('[data-mobile-step]')
+    if (!stepEls.length) return
+    const containerTop = el.getBoundingClientRect().top
+    let maxBottom = 0
+    stepEls.forEach((s) => {
+      const bottom = s.getBoundingClientRect().bottom - containerTop
+      if (bottom > maxBottom) maxBottom = bottom
+    })
+    setMobileHeight(Math.max(M_H, maxBottom + 16))
+  }, [steps])
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on('change', (latest) => {
@@ -144,7 +161,7 @@ export default function HowWeWork() {
               >
                 <span
                   className={`text-[6.5rem] font-bold leading-none select-none transition-all duration-700 ${
-                    isActive ? 'text-primary/50' : 'text-bg-3'
+                    isActive ? 'text-primary/70' : 'text-bg-3'
                   }`}
                   style={{ textShadow: isActive ? '0 0 40px currentColor' : 'none' }}
                 >
@@ -166,11 +183,11 @@ export default function HowWeWork() {
         </div>
 
         {/* ── Mobile — transposed sine, centered on 50% ── */}
-        <div className="md:hidden relative" style={{ height: M_H }}>
+        <div className="md:hidden relative" ref={mobileRef} style={{ height: mobileHeight }}>
           {/* SVG centered at 50% — its center (50) maps to screen center */}
           <svg
-            className="absolute top-0 h-full pointer-events-none"
-            style={{ width: M_SVG_PX_W, left: '50%', transform: 'translateX(-50%)' }}
+            className="absolute top-0 pointer-events-none"
+            style={{ width: M_SVG_PX_W, height: M_H, left: '50%', transform: 'translateX(-50%)' }}
             viewBox={`0 0 ${M_SVG_PX_W} ${M_H}`}
             fill="none"
           >
@@ -203,6 +220,7 @@ export default function HowWeWork() {
             return (
               <div
                 key={i}
+                data-mobile-step
                 className={`absolute flex items-start gap-3 ${isRight ? 'flex-row' : 'flex-row-reverse'}`}
                 style={{ ...pos, top: y - ICON / 2 }}
               >
@@ -212,10 +230,10 @@ export default function HowWeWork() {
                   }`,
                   fill: STEP_ICONS[i] === MousePointer ? 'currentColor' : 'none',
                 })}
-                <div className={isRight ? '' : 'text-right'}>
+                <div className={`max-w-[calc(50vw-60px)] ${isRight ? '' : 'text-right'}`}>
                   <span
                     className={`text-3xl font-bold leading-none select-none transition-all duration-700 ${
-                      isActive ? 'text-primary/50' : 'text-bg-3'
+                      isActive ? 'text-primary/70' : 'text-bg-3'
                     }`}
                     style={{ textShadow: isActive ? '0 0 20px currentColor' : 'none' }}
                   >

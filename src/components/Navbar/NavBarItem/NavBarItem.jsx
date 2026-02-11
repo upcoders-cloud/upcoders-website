@@ -45,6 +45,9 @@ export const NavBarItem = ({
 
       targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
       window.history.replaceState(null, '', `${homePath}${linkHref}`)
+      setTimeout(() => {
+        window.history.replaceState(null, '', homePath)
+      }, 1000)
       return
     }
 

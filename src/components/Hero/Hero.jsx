@@ -28,7 +28,7 @@ export default function Hero() {
             words={typewriterWords}
           />
 
-          <p className="mt-6 max-w-2xl text-gray-300 text-base md:text-xl">
+          <p className="mt-6 max-w-2xl text-gray-300 text-sm sm:text-base md:text-xl">
             {t('hero.description')}
           </p>
 
@@ -36,8 +36,8 @@ export default function Hero() {
             label={t('hero.cta')}
             className="mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base"
             onClick={(e) => {
-              e.preventDefault();
-              document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+              e.preventDefault()
+              document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })
             }}
           />
         </div>

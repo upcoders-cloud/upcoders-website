@@ -14,11 +14,11 @@ export const NAV_ELEMENT = [
     href: "#about",
     labelKey: "navbar.items.about",
   },
-  {
-    id: 3,
-    href: "/projects",
-    labelKey: "navbar.items.projects",
-  },
+  // {
+  //   id: 3,
+  //   href: "/projects",
+  //   labelKey: "navbar.items.projects",
+  // },
   {
     id: 4,
     href: "#contact",

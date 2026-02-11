@@ -13,7 +13,7 @@ export default function HeroHeadline({ line1, line2Prefix, line2PrefixDone, word
   const activePrefix = isDone ? line2PrefixDone : line2Prefix
 
   return (
-    <h1 className="text-6xl md:text-8xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
+    <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight">
       {line1}
       <br />
       {activePrefix}&nbsp;
