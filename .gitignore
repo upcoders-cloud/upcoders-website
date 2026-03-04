@@ -78,3 +78,9 @@ output/
 out/
 tmp/
 temp/
+
+# AI
+CLAUDE.md
+.claude
+.agents
+skills-lock.json

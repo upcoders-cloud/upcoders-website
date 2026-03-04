@@ -87,11 +87,15 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
       {cta && (
         <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
           <h2 className="text-2xl font-bold mb-6">{cta.modalTitle}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {cta.packages.map((pkg) => (
-              <PackageCard key={pkg.name} pkg={pkg} onContact={handleContact} />
-            ))}
-          </div>
+          {cta.packages ? (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {cta.packages.map((pkg) => (
+                <PackageCard key={pkg.name} pkg={pkg} onContact={handleContact} />
+              ))}
+            </div>
+          ) : cta.ModalContent ? (
+            <cta.ModalContent onContact={handleContact} />
+          ) : null}
         </Modal>
       )}
     </li>

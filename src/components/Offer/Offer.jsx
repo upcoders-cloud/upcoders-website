@@ -4,17 +4,20 @@ import { OFFER_ITEMS } from "./index.js";
 import Accordion from 'components/Offer/Accordion/Accordion.jsx'
 import { isMobile } from 'react-device-detect'
 import { useI18n } from '@/i18n/useI18n.js'
+import WebMobileModalContent from 'components/Offer/WebMobileModal/WebMobileModalContent.jsx'
+
+const CUSTOM_MODAL_COMPONENTS = {
+  webMobile: WebMobileModalContent,
+}
 
 export default function Offer() {
   const { t } = useI18n()
 
-  const translatedItems = OFFER_ITEMS.map((item) => ({
-    id: item.id,
-    anchor: item.anchor,
-    title: t(item.titleKey),
-    content: t(item.contentKey),
-    cta: item.cta
-      ? {
+  const translatedItems = OFFER_ITEMS.map((item) => {
+    let cta = undefined
+    if (item.cta) {
+      if (item.cta.packagesBasePath) {
+        cta = {
           label: t(item.cta.labelKey),
           modalTitle: t(item.cta.modalTitleKey),
           packages: item.cta.packages.map((pkg) => {
@@ -27,8 +30,22 @@ export default function Offer() {
             }
           }),
         }
-      : undefined,
-  }))
+      } else {
+        cta = {
+          label: t(item.cta.labelKey),
+          modalTitle: t(item.cta.modalTitleKey),
+          ModalContent: CUSTOM_MODAL_COMPONENTS[item.cta.type],
+        }
+      }
+    }
+    return {
+      id: item.id,
+      anchor: item.anchor,
+      title: t(item.titleKey),
+      content: t(item.contentKey),
+      cta,
+    }
+  })
 
   return (
     <section id="offer" className="relative bg-bg-2 text-white section-wrapper overflow-hidden">
@@ -52,7 +69,7 @@ export default function Offer() {
 
         <div>
           <h3 className="text-xs tracking-widest text-gray-400 mb-4">{t('offer.specializeIn')}</h3>
-          <Accordion items={translatedItems} defaultOpenIndex={0} />
+          <Accordion items={translatedItems} defaultOpenIndex={1} />
           {isMobile && <ZigZag5 size={14} className="opacity-90 mt-10 mx-auto" />}
         </div>
       </div>

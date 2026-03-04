@@ -46,6 +46,34 @@ const en = {
         title: 'Web & Mobile Development',
         content:
           'We build modern web platforms, business apps, and mobile solutions - from landing pages to complex systems.',
+        cta: {
+          label: 'Get a quote',
+          modalTitle: 'Web & Mobile Development',
+          modal: {
+            headline: 'Every project is one of a kind.',
+            subline:
+              'From a sleek landing page to a full-scale enterprise platform — no two projects are the same, and neither are their costs.',
+            pricingNote:
+              'Pricing is always tailored to your technology stack, feature scope, and project complexity. We prepare clear, transparent estimates with no hidden surprises.',
+            badgeSub: 'Quote ready after first contact.',
+            steps: [
+              {
+                step: 'Share your idea',
+                desc: 'Tell us what you\'re building and what problem it solves.',
+              },
+              {
+                step: 'We assess',
+                desc: 'We evaluate scope, technology choices, and timeline.',
+              },
+              {
+                step: 'You get a clear quote',
+                desc: 'A detailed, transparent estimate arrives in your inbox.',
+              },
+            ],
+            tagsLabel: 'Technologies we work with',
+            cta: "Let's talk",
+          },
+        },
       },
       userCentered: {
         title: 'User-Centered Design',
@@ -203,13 +231,149 @@ const en = {
     partners: 'Partners',
   },
   projects: {
+    eyebrow: 'OUR WORK',
     title: 'Projects',
-    description:
-      'This page is ready for your case studies. In the next step, we can connect project cards and detail pages.',
+    description: 'Products and tools we design and build for real business needs.',
+    viewProject: 'View project',
+    comingSoon: 'Coming soon',
+    cta: {
+      eyebrow: 'YOUR PROJECT',
+      headline: "Got an idea? Let's build it.",
+      sub: "We take on new challenges year-round. Share your vision — we'll shape it into a product worth being proud of.",
+      button: 'Start a conversation',
+    },
+    items: {
+      kaizen: {
+        title: 'Kaizen',
+        description: 'Mobile app for operational improvement reports. One process, one place - no Excel, no scattered chats.',
+        category: 'Mobile App',
+      },
+    },
   },
-  projectDetails: {
-    titlePrefix: 'Project:',
-    description: 'Case study details will be added here.',
+  kaizen: {
+    hero: {
+      backLabel: 'All projects',
+      eyebrow: 'KAIZEN BY UPCODERS',
+      badgeMobile: 'Mobile App',
+      badgeMvp: 'MVP',
+      title: 'Operational improvement reports - in one place.',
+      description:
+        'A practical mobile app for logging improvement ideas and operational issues. Employees submit, managers review and act - without Excel, without scattered group chats.',
+    },
+    features: {
+      eyebrow: 'WHAT IT DOES',
+      title: 'A simple, structured process from idea to action.',
+      items: [
+        {
+          title: 'Secure login',
+          description: 'Access via email and password or a shared access code.',
+        },
+        {
+          title: 'Submission form',
+          description:
+            'Title, description, category, assigned manager, and optional photos - everything in one form.',
+        },
+        {
+          title: 'Status workflow',
+          description:
+            'Each report moves through: to verify → submitted → in progress → implemented → rejected.',
+        },
+        {
+          title: 'Manager actions',
+          description:
+            'Approve or reject with a stated reason. Authors can edit and resubmit rejected entries.',
+        },
+        {
+          title: 'List, search & filter',
+          description:
+            'Browse all reports, search by title, filter by status or category, sort by date.',
+        },
+        {
+          title: 'Details & discussion',
+          description: 'Comments, "I have the same issue" reactions, and photo attachments per report.',
+        },
+        {
+          title: 'Notifications',
+          description: 'Alerts for comments, reactions, assignments, approvals, and rejections.',
+        },
+        {
+          title: 'Benefits survey',
+          description: 'Estimated time saved and financial savings attached to each submission.',
+        },
+      ],
+    },
+    screenshots: {
+      eyebrow: 'SCREENS',
+      title: 'How it looks in practice.',
+      captions: [
+        'Login',
+        'Submissions list',
+        'New submission form',
+        'Submission details',
+        'Notifications',
+        'Benefits survey',
+        'Savings summary',
+      ],
+    },
+    value: {
+      eyebrow: 'BUSINESS VALUE',
+      title: 'Why it matters for your team.',
+      items: [
+        {
+          title: 'Faster information flow',
+          description:
+            'Employees and managers work from the same source of truth - no delays, no lost messages.',
+        },
+        {
+          title: 'One clear process',
+          description:
+            'Every idea or problem follows the same structured path from submission to resolution.',
+        },
+        {
+          title: 'Full transparency',
+          description:
+            'Everyone knows the current status and who is responsible - no guessing, no follow-up pings.',
+        },
+        {
+          title: 'Measurable impact',
+          description:
+            'The benefits survey surfaces potential savings and helps prioritize what to implement first.',
+        },
+      ],
+    },
+    scope: {
+      eyebrow: 'PRODUCT PHILOSOPHY',
+      title: 'Simple by design. Effective from day one.',
+      description:
+        'Kaizen is built around one principle: a focused tool that does one thing really well gets used. Every feature is there for a reason - and nothing that would slow teams down made it in.',
+      highlights: [
+        {
+          title: 'Zero onboarding friction',
+          description:
+            'Access code login means employees are in the app in seconds, with no IT setup or account creation required.',
+        },
+        {
+          title: 'No training needed',
+          description:
+            'The flow is intuitive enough for any team member to figure out on their own - no documentation, no sessions.',
+        },
+        {
+          title: 'Ready on day one',
+          description:
+            'No complex integrations or configuration. The app works out of the box and delivers value from the first submission.',
+        },
+        {
+          title: 'Focused feature set',
+          description:
+            'Every function supports the core workflow. No distractions - just the tools your team needs to move ideas forward.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Interested in Kaizen?',
+      description: 'Contact us to learn more or discuss adapting it to your organization.',
+      button: 'GET IN TOUCH',
+    },
   },
   notFound: {
     title: 'Page not found',

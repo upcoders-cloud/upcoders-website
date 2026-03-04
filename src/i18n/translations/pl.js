@@ -46,6 +46,34 @@ const pl = {
         title: 'Tworzenie aplikacji webowych i mobilnych',
         content:
           'Budujemy nowoczesne platformy webowe, aplikacje biznesowe i mobilne - od landing page po złożone systemy.',
+        cta: {
+          label: 'Zapytaj o wycenę',
+          modalTitle: 'Aplikacje webowe i mobilne',
+          modal: {
+            headline: 'Każdy projekt jest inny.',
+            subline:
+              'Od prostej strony wizytówkowej po rozbudowaną platformę enterprise — żaden projekt nie jest taki sam, podobnie jak jego budżet.',
+            pricingNote:
+              'Wycena zawsze zależy od stosu technologicznego, zakresu funkcji i stopnia zaawansowania projektu. Przygotowujemy przejrzyste kosztorysy bez ukrytych kosztów.',
+            badgeSub: 'Wycena gotowa po pierwszym kontakcie.',
+            steps: [
+              {
+                step: 'Opowiedz nam o projekcie',
+                desc: 'Powiedz, co chcesz zbudować i jaki problem to rozwiązuje.',
+              },
+              {
+                step: 'Oceniamy zakres',
+                desc: 'Analizujemy technologię, funkcje i harmonogram realizacji.',
+              },
+              {
+                step: 'Otrzymujesz wycenę',
+                desc: 'Szczegółowy i przejrzysty kosztorys trafia na Twój e-mail.',
+              },
+            ],
+            tagsLabel: 'Technologie, z którymi pracujemy',
+            cta: 'Porozmawiajmy',
+          },
+        },
       },
       userCentered: {
         title: 'Projektowanie zorientowane na użytkownika',
@@ -206,13 +234,153 @@ const pl = {
     partners: 'Partnerzy',
   },
   projects: {
+    eyebrow: 'NASZE REALIZACJE',
     title: 'Realizacje',
-    description:
-      'Ta podstrona jest gotowa pod case studies. W kolejnym kroku możemy podpiąć karty realizacji i widok szczegółów.',
+    description: 'Produkty i narzędzia, które projektujemy i budujemy dla realnych potrzeb biznesowych.',
+    viewProject: 'Zobacz projekt',
+    comingSoon: 'Wkrótce',
+    cta: {
+      eyebrow: 'TWÓJ PROJEKT',
+      headline: 'Masz pomysł? Zbudujmy go razem.',
+      sub: 'Przyjmujemy nowe wyzwania przez cały rok. Opowiedz nam o swojej wizji — zamienimy ją w produkt, z którego będziesz dumny.',
+      button: 'Zacznijmy rozmawiać',
+    },
+    items: {
+      kaizen: {
+        title: 'Kaizen',
+        description: 'Aplikacja mobilna do zgłoszeń usprawnień operacyjnych. Jeden proces, jedno miejsce - bez Excela i rozproszonych wiadomości.',
+        category: 'Aplikacja mobilna',
+      },
+    },
   },
-  projectDetails: {
-    titlePrefix: 'Realizacja:',
-    description: 'Tutaj pojawią się szczegóły case study.',
+  kaizen: {
+    hero: {
+      backLabel: 'Wszystkie projekty',
+      eyebrow: 'KAIZEN BY UPCODERS',
+      badgeMobile: 'Aplikacja mobilna',
+      badgeMvp: 'MVP',
+      title: 'Zgłoszenia usprawnień operacyjnych - w jednym miejscu.',
+      description:
+        'Prosta aplikacja mobilna do zgłaszania pomysłów na usprawnienia i problemów operacyjnych. Pracownicy zgłaszają, kierownicy weryfikują i działają - bez Excela, bez rozproszonych czatów.',
+    },
+    features: {
+      eyebrow: 'CO ROBI',
+      title: 'Prosty, ustrukturyzowany proces - od pomysłu do działania.',
+      items: [
+        {
+          title: 'Bezpieczne logowanie',
+          description: 'Dostęp przez login i hasło lub współdzielony kod dostępu.',
+        },
+        {
+          title: 'Formularz zgłoszenia',
+          description:
+            'Tytuł, opis, kategoria, przypisany kierownik i opcjonalne zdjęcia - wszystko w jednym formularzu.',
+        },
+        {
+          title: 'Obieg statusów',
+          description:
+            'Każde zgłoszenie przechodzi przez: do weryfikacji → zgłoszone → w trakcie wdrożenia → wdrożone → odrzucone.',
+        },
+        {
+          title: 'Akcje kierownika',
+          description:
+            'Zatwierdzenie lub odrzucenie z podaniem powodu. Autorzy mogą edytować i ponownie zgłaszać odrzucone wpisy.',
+        },
+        {
+          title: 'Lista, wyszukiwanie i filtrowanie',
+          description:
+            'Przeglądanie zgłoszeń, wyszukiwanie po tytule, filtrowanie po statusie lub kategorii, sortowanie po dacie.',
+        },
+        {
+          title: 'Szczegóły i dyskusja',
+          description:
+            'Komentarze, reakcje „mam to samo" i załączniki zdjęciowe przy każdym zgłoszeniu.',
+        },
+        {
+          title: 'Powiadomienia',
+          description:
+            'Alerty o komentarzach, reakcjach, przypisaniach, akceptacjach i odrzuceniach.',
+        },
+        {
+          title: 'Ankieta korzyści',
+          description:
+            'Szacowany zysk czasu i oszczędność finansowa dołączona do każdego zgłoszenia.',
+        },
+      ],
+    },
+    screenshots: {
+      eyebrow: 'EKRANY',
+      title: 'Jak to wygląda w praktyce.',
+      captions: [
+        'Logowanie',
+        'Lista zgłoszeń',
+        'Nowe zgłoszenie',
+        'Szczegóły zgłoszenia',
+        'Powiadomienia',
+        'Ankieta korzyści',
+        'Podsumowanie oszczędności',
+      ],
+    },
+    value: {
+      eyebrow: 'WARTOŚĆ BIZNESOWA',
+      title: 'Dlaczego ma to znaczenie dla Twojego zespołu.',
+      items: [
+        {
+          title: 'Szybszy przepływ informacji',
+          description:
+            'Pracownicy i kierownicy pracują na tych samych danych - bez opóźnień i zagubionych wiadomości.',
+        },
+        {
+          title: 'Jeden jasny proces',
+          description:
+            'Każdy pomysł lub problem trafia do jednej, ustrukturyzowanej ścieżki - od zgłoszenia do wdrożenia.',
+        },
+        {
+          title: 'Pełna transparentność',
+          description:
+            'Każdy wie, jaki jest aktualny status i kto odpowiada za dany temat - bez domysłów i ponagleń.',
+        },
+        {
+          title: 'Mierzalny efekt',
+          description:
+            'Ankieta korzyści pokazuje potencjalne oszczędności i pomaga priorytetyzować, co wdrożyć w pierwszej kolejności.',
+        },
+      ],
+    },
+    scope: {
+      eyebrow: 'FILOZOFIA PRODUKTU',
+      title: 'Prosta z założenia. Skuteczna od pierwszego dnia.',
+      description:
+        'Kaizen powstał wokół jednej zasady: skupione narzędzie, które robi jedną rzecz naprawdę dobrze - jest używane. Każda funkcja ma swoje uzasadnienie i wspiera główny cel: sprawne przeprowadzenie pomysłu do wdrożenia.',
+      highlights: [
+        {
+          title: 'Zero bariery wejścia',
+          description:
+            'Logowanie kodem dostępu sprawia, że pracownicy są w aplikacji w kilka sekund - bez konfiguracji IT i zakładania kont.',
+        },
+        {
+          title: 'Bez potrzeby szkoleń',
+          description:
+            'Interfejs jest na tyle intuicyjny, że każdy członek zespołu odnajduje się w nim samodzielnie - bez dokumentacji i onboardingu.',
+        },
+        {
+          title: 'Gotowe od pierwszego dnia',
+          description:
+            'Brak skomplikowanych integracji i konfiguracji. Aplikacja działa od razu i przynosi wartość już od pierwszego zgłoszenia.',
+        },
+        {
+          title: 'Skupiony zakres funkcji',
+          description:
+            'Każda funkcja wspiera główny przepływ pracy. Zero zbędnych elementów - tylko narzędzia, których Twój zespół naprawdę potrzebuje.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Zainteresowany Kaizenem?',
+      description:
+        'Skontaktuj się z nami, aby dowiedzieć się więcej lub omówić adaptację do Twojej organizacji.',
+      button: 'SKONTAKTUJ SIĘ',
+    },
   },
   notFound: {
     title: 'Nie znaleziono strony',

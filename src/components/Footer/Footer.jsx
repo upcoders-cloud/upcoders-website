@@ -4,6 +4,7 @@ import { TiSocialLinkedin } from 'react-icons/ti'
 import Partners from 'components/Footer/Partners.jsx'
 import { NavBarItem } from '@/components/Navbar/NavBarItem/NavBarItem.jsx'
 import { useI18n } from '@/i18n/useI18n.js'
+import { motion } from 'motion/react'
 
 export default function Footer() {
   const { t } = useI18n()
@@ -69,7 +70,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="my-10 border-white/10" />
+        <motion.hr
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          style={{ originX: 0 }}
+          className="my-10 border-white/10"
+        />
 
         <Partners logos={[Logo, Logo, Logo, Logo]} title={t('footer.partners')} />
       </div>

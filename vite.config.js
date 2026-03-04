@@ -8,7 +8,14 @@ import { robots } from 'vite-plugin-robots'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const SITEMAP_STATIC_ROUTES = ['/en', '/pl', '/en/projects', '/pl/projects']
+const SITEMAP_STATIC_ROUTES = [
+  '/en',
+  '/pl',
+  '/en/projects',
+  '/pl/projects',
+  '/en/projects/kaizen',
+  '/pl/projects/kaizen',
+]
 
 export default defineConfig({
   plugins: [

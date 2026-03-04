@@ -8,6 +8,11 @@ export const OFFER_ITEMS = [
     id: '2',
     titleKey: 'offer.items.webMobile.title',
     contentKey: 'offer.items.webMobile.content',
+    cta: {
+      labelKey: 'offer.items.webMobile.cta.label',
+      modalTitleKey: 'offer.items.webMobile.cta.modalTitle',
+      type: 'webMobile',
+    },
   },
   {
     id: '3',
@@ -30,19 +35,19 @@ export const OFFER_ITEMS = [
       ],
     },
   },
-  {
-    id: '5',
-    titleKey: 'offer.items.cloudDevops.title',
-    contentKey: 'offer.items.cloudDevops.content',
-  },
+  // {
+  //   id: '5',
+  //   titleKey: 'offer.items.cloudDevops.title',
+  //   contentKey: 'offer.items.cloudDevops.content',
+  // },
   {
     id: '6',
     titleKey: 'offer.items.aiAutomation.title',
     contentKey: 'offer.items.aiAutomation.content',
   },
-  {
-    id: '7',
-    titleKey: 'offer.items.longTerm.title',
-    contentKey: 'offer.items.longTerm.content',
-  },
+  // {
+  //   id: '7',
+  //   titleKey: 'offer.items.longTerm.title',
+  //   contentKey: 'offer.items.longTerm.content',
+  // },
 ]
