@@ -17,6 +17,9 @@ html {
 
 body {
     font-family: var(--font-upcoders), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     background-color: var(--color-bg-1);
 }
 
