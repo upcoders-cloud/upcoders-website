@@ -45,17 +45,37 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
   };
 
   return (
-    <li id={anchor} className="border-b border-gray-600 pb-2">
+    <li id={anchor} className="border-b border-gray-600/70 pb-2 group/item">
       <button
         id={buttonId}
-        className="flex items-center justify-between w-full text-left font-medium hover:text-primary transition-colors"
+        className="flex items-center justify-between w-full text-left font-medium py-1 transition-colors duration-200 hover:text-primary group-hover/item:text-primary/90 focus-visible:text-primary"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={panelId}
         type="button"
       >
-        <span>{title}</span>
-        <span className="text-base">{isOpen ? "−" : "+"}</span>
+        <span className="inline-flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            className={`inline-block h-px bg-primary transition-all duration-300 ease-[var(--ease-out-quart)] ${
+              isOpen ? "w-6 opacity-100" : "w-0 opacity-0"
+            }`}
+          />
+          <span>{title}</span>
+        </span>
+        <span
+          aria-hidden="true"
+          className={`relative w-4 h-4 shrink-0 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <span className="absolute top-1/2 left-0 right-0 h-px bg-current -translate-y-1/2" />
+          <span
+            className={`absolute top-0 bottom-0 left-1/2 w-px bg-current -translate-x-1/2 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
+              isOpen ? "scale-y-0" : "scale-y-100"
+            }`}
+          />
+        </span>
       </button>
 
       <div
@@ -64,15 +84,22 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
         role="region"
         aria-labelledby={buttonId}
         style={{ maxHeight: isOpen ? `${contentHeight}px` : "0px" }}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
+        className="overflow-hidden transition-[max-height] duration-400 ease-[var(--ease-out-quart)]"
       >
-        <p className="text-gray-400 text-sm mt-2 mb-4">{content}</p>
+        <motion.p
+          initial={false}
+          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -4 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-gray-400 text-sm mt-2 mb-4"
+        >
+          {content}
+        </motion.p>
 
         {cta && isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.3 }}
+            transition={{ delay: 0.15, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mb-4"
           >
             <DefaultButton

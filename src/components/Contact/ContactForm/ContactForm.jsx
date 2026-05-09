@@ -75,8 +75,13 @@ export default function ContactForm() {
     <form
       noValidate
       onSubmit={handleSubmit(onSubmit, onError)}
-      className="relative bg-[#2B2B2B] rounded-lg p-6 md:p-7 w-full shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+      className="relative bg-[#2B2B2B] rounded-lg p-6 md:p-7 w-full shadow-[0_12px_40px_rgba(0,0,0,0.35)] ring-1 ring-white/5 transition-shadow duration-300 hover:ring-primary/20 focus-within:ring-primary/40 focus-within:shadow-[0_12px_40px_rgba(82,113,255,0.18)]"
     >
+      {/* Decorative top accent line */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent"
+      />
       <DefaultInput
         label={t('contact.form.labels.email')}
         type="email"
