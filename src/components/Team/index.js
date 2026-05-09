@@ -14,22 +14,22 @@ const buildPattern = (ascii) => ({
 });
 
 export const MEMBERS = [
-  // {
-  //   id: "pawel",
-  //   firstName: "Paweł",
-  //   lastName: "Biniak",
-  //   img: pawelImg,
-  //   linkedin: "https://www.linkedin.com/in/pawel-biniak/",
-  //   pattern: buildPattern([
-  //     "........",
-  //     "##......",
-  //     "#####...",
-  //     "######..",
-  //     "########",
-  //   ]),
-  //   roleKey: "team.members.pawel.role",
-  //   aboutKey: "team.members.pawel.about",
-  // },
+  {
+    id: "pawel",
+    firstName: "Paweł",
+    lastName: "Biniak",
+    img: pawelImg,
+    linkedin: "https://www.linkedin.com/in/pawel-biniak/",
+    pattern: buildPattern([
+      "........",
+      "##......",
+      "#####...",
+      "######..",
+      "########",
+    ]),
+    roleKey: "team.members.pawel.role",
+    aboutKey: "team.members.pawel.about",
+  },
   {
     id: "fabian",
     firstName: "Fabian",
