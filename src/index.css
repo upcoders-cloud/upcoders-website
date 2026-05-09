@@ -2,8 +2,58 @@
 
 /** {cursor: none !important;}*/
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
 body {
     font-family: var(--font-upcoders), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: var(--color-bg-1);
+}
+
+::selection {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* Custom scrollbar (WebKit + Firefox) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg-3) transparent;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-bg-3);
+    border-radius: 999px;
+    border: 2px solid var(--color-bg-1);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary);
+}
+
+/* Consistent focus ring for keyboard users only */
+*:focus { outline: none; }
+*:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 @theme {
@@ -12,6 +62,11 @@ body {
     --color-bg-3: #4B4B4B;
     --color-primary: #5271FF;
     --color-primary-light: #758DFF;
+
+    /* Easing tokens */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @layer components {
@@ -57,9 +112,21 @@ body {
     --font-upcoders: "Upcoders Sans", system-ui, ui-sans-serif, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     --animate-shimmer: shimmer 2.5s ease-in-out infinite;
+    --animate-glow-pulse: glow-pulse 4s ease-in-out infinite;
+    --animate-float: float 6s ease-in-out infinite;
 }
 
 @keyframes shimmer {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }

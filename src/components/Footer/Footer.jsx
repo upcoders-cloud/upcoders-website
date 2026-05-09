@@ -34,7 +34,7 @@ export default function Footer() {
               <a
                 href="https://www.linkedin.com/company/upcoders-cloud"
                 aria-label="LinkedIn"
-                className="hover:text-primary transition-colors"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full ring-1 ring-white/10 transition-all duration-200 ease-[var(--ease-out-quart)] hover:text-white hover:ring-primary hover:bg-primary/15 hover:-translate-y-0.5"
               >
                 <TiSocialLinkedin />
               </a>
@@ -45,17 +45,17 @@ export default function Footer() {
             <div className="text-xs tracking-widest text-gray-400 mb-3">{t('footer.company')}</div>
             <ul className="space-y-2 text-sm">
               <li>
-                <NavBarItem href="#offer" className="hover:text-white transition">
+                <NavBarItem href="#offer" className="inline-block transition-colors duration-200 hover:text-primary">
                   {t('navbar.items.offer')}
                 </NavBarItem>
               </li>
               <li>
-                <NavBarItem href="#about" className="hover:text-white transition">
+                <NavBarItem href="#about" className="inline-block transition-colors duration-200 hover:text-primary">
                   {t('navbar.items.about')}
                 </NavBarItem>
               </li>
               <li>
-                <NavBarItem href="/projects" className="hover:text-white transition">
+                <NavBarItem href="/projects" className="inline-block transition-colors duration-200 hover:text-primary">
                   {t('navbar.items.projects')}
                 </NavBarItem>
               </li>

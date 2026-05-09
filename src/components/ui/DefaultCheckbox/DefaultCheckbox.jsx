@@ -25,10 +25,11 @@ const DefaultCheckbox = function DefaultCheckbox(
             aria-describedby={describedBy}
             {...registration}
           />
-          <span className={`block w-5 h-5 rounded-md transition-colors
+          <span className={`block w-5 h-5 rounded-md transition-all duration-200 ease-[var(--ease-out-quart)]
               ${hasError ? "bg-red-400/70" : "bg-gray-300"}
-              peer-checked:bg-primary`} />
-          <span className="pointer-events-none absolute left-[7px] top-[2px] w-[6px] h-[12px] border-white border-r-2 border-b-2 rotate-45 opacity-0 transition-opacity peer-checked:opacity-100" />
+              peer-checked:bg-primary peer-checked:scale-105
+              peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-bg-1`} />
+          <span className="pointer-events-none absolute left-[7px] top-[2px] w-[6px] h-[12px] border-white border-r-2 border-b-2 rotate-45 opacity-0 scale-50 transition-all duration-200 ease-[var(--ease-spring)] peer-checked:opacity-100 peer-checked:scale-100" />
         </span>
         {label && <span className="text-gray-300">{label}</span>}
       </label>
