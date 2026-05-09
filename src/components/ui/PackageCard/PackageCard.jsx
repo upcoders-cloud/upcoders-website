@@ -7,10 +7,10 @@ export default function PackageCard({ pkg, onContact }) {
 
   return (
     <div
-      className={`relative flex flex-col p-5 border overflow-hidden ${
+      className={`relative flex flex-col p-5 border overflow-hidden transition-all duration-300 ease-[var(--ease-out-quart)] hover:-translate-y-1 ${
         pkg.recommended
-          ? "border-primary bg-bg-2"
-          : "border-bg-3 bg-bg-1"
+          ? "border-primary bg-bg-2 shadow-[0_8px_30px_rgba(82,113,255,0.15)] hover:shadow-[0_14px_40px_rgba(82,113,255,0.25)]"
+          : "border-bg-3 bg-bg-1 hover:border-primary/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
       }`}
     >
       {pkg.recommended && (

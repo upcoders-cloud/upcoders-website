@@ -118,10 +118,16 @@ export default function HowWeWork() {
         <div className="absolute top-0 right-0 opacity-70">
           <DiagonalPair size={14} gap={5} />
         </div>
-        <div className="text-center mb-0 md:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-0 md:mb-16"
+        >
           <h3 className="text-xs tracking-widest text-gray-400 mb-2">{t('howWeWork.eyebrow')}</h3>
           <h2 className="text-2xl md:text-[28px] font-semibold">{t('howWeWork.title')}</h2>
-        </div>
+        </motion.div>
 
         {/* ── Desktop ── */}
         <div className="hidden md:block relative" style={{ height: D_H }}>
