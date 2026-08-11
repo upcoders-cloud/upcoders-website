@@ -22,12 +22,12 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy built files to OVH via SCP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy built files to OVH via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: ${{ secrets.OVH_HOSTING_USER }}
           password: ${{ secrets.OVH_HOSTING_PASSWORD }}
           host: ssh.cluster121.hosting.ovh.net
-          source: "dist/"
-          target: "/home/upcodew/www/"
-          strip_components: 1
+          local_path: './dist/*'
+          remote_path: '/home/upcodew/www'
+          sftp_only: true
