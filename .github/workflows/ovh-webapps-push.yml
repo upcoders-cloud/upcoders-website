@@ -1,15 +1,33 @@
-on: [push]
+name: Build and Deploy to OVH
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Deploy my nice code
+    name: Build & Deploy site
     steps:
-    - name: Deploy to OVH hosting
-      uses: pitscher/ovh-deploy-hosting-action@v1
-      env:
-        OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
-        OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
-        OVH_HOSTING_DOMAIN: ssh.cluster121.hosting.ovh.net
-        REPOSITORY_NAME: upcoders-website
-        REPOSITORY_URL: git@github.com:upcoders-cloud/upcoders-website.git
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy built files to OVH via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          username: ${{ secrets.OVH_HOSTING_USER }}
+          password: ${{ secrets.OVH_HOSTING_PASSWORD }}
+          host: ssh.cluster121.hosting.ovh.net
+          source: "dist/"
+          target: "/home/upcodew/www/"
+          strip_components: 1
