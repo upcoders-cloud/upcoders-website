@@ -27,7 +27,7 @@ jobs:
         with:
           username: ${{ secrets.OVH_HOSTING_USER }}
           password: ${{ secrets.OVH_HOSTING_PASSWORD }}
-          host: ssh.cluster121.hosting.ovh.net
+          server: ssh.cluster121.hosting.ovh.net
           local_path: './dist/*'
           remote_path: '/home/upcodew/www'
           sftp_only: true
