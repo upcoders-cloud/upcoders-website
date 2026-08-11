@@ -1,0 +1,15 @@
+SetEnv PHP_VER 5_3
+SetEnv REGISTER_GLOBALS 0
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Nie przepisuj żądania, jeśli plik istnieje (np. obrazki, style)
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Wszystkie inne zapytania kieruj do index.html
+  RewriteRule . /index.html [L]
+</IfModule>
