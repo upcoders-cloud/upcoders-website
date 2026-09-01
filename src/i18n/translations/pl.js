@@ -1,4 +1,29 @@
 const pl = {
+  seo: {
+    home: {
+      title: 'Dedykowane oprogramowanie dla firm przemysłowych | Upcoders',
+      description:
+        'Projektujemy i budujemy aplikacje webowe i mobilne dopasowane do procesów firm przemysłowych, technicznych i produkcyjnych. Software house z Poznania.',
+    },
+    projects: {
+      title: 'Realizacje i case studies | Upcoders',
+      description:
+        'Produkty i narzędzia, które projektujemy i budujemy dla realnych potrzeb biznesowych. Zobacz nasze wdrożenia i sposób pracy.',
+    },
+    projectDetails: {
+      title: 'Projekt | Upcoders',
+      description: 'Bliższe spojrzenie na produkt zaprojektowany i zbudowany przez Upcoders.',
+    },
+    kaizen: {
+      title: 'Kaizen: aplikacja do zgłoszeń usprawnień | Upcoders',
+      description:
+        'Mobilne MVP do zbierania, śledzenia i rozliczania zgłoszeń usprawnień operacyjnych na hali produkcyjnej. Projekt i realizacja Upcoders.',
+    },
+    notFound: {
+      title: 'Nie znaleziono strony | Upcoders',
+      description: 'Ten adres nie istnieje na upcoders.cloud.',
+    },
+  },
   common: {
     close: 'Zamknij',
   },

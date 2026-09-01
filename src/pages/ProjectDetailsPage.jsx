@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useI18n } from '@/i18n/useI18n.js'
 import KaizenProject from 'components/projects/KaizenProject/KaizenProject.jsx'
+import Seo from '@/seo/Seo.jsx'
 
 export default function ProjectDetailsPage() {
   const { slug = '' } = useParams()
@@ -13,6 +14,7 @@ export default function ProjectDetailsPage() {
 
   return (
     <section className="bg-bg-2 text-white section-wrapper">
+      <Seo route="projectDetails" noindex />
       <div className="section-inner">
         <Link
           to={`/${language}/projects`}

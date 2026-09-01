@@ -5,6 +5,7 @@ import { useI18n } from '@/i18n/useI18n.js'
 import { ArrowRight, Smartphone, Clock } from 'lucide-react'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 import ZigZag5 from 'components/Decor/ZigZag5.jsx'
+import Seo from '@/seo/Seo.jsx'
 
 const PROJECTS = [
   {
@@ -30,6 +31,7 @@ export default function ProjectsPage() {
 
   return (
     <>
+      <Seo route="projects" />
       <section className="bg-bg-1 text-white section-wrapper">
         <div className="section-inner">
           <motion.div {...fadeUp(0)}>

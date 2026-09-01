@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import Contact from 'components/Contact/Contact.jsx'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
+import Seo from '@/seo/Seo.jsx'
 
 import screenLogin from 'assets/kaizen/kaizen-login.png'
 import screenHomeFeed from 'assets/kaizen/kaizen-home-feed.png'
@@ -208,6 +209,7 @@ export default function KaizenProject() {
 
   return (
     <div className="text-white">
+      <Seo route="kaizen" />
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="bg-bg-1 section-wrapper">
         <div className="section-inner relative overflow-hidden">

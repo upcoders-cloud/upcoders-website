@@ -1,4 +1,29 @@
 const en = {
+  seo: {
+    home: {
+      title: 'Custom software for industrial companies | Upcoders',
+      description:
+        'We design and build tailored web and mobile applications for industrial, technical and manufacturing companies. Software house based in Poznan, Poland.',
+    },
+    projects: {
+      title: 'Projects and case studies | Upcoders',
+      description:
+        'Products and tools we design and build for real business needs. See what we have delivered and how we work.',
+    },
+    projectDetails: {
+      title: 'Project | Upcoders',
+      description: 'A closer look at a product designed and built by Upcoders.',
+    },
+    kaizen: {
+      title: 'Kaizen: app for operational improvement reports | Upcoders',
+      description:
+        'A mobile MVP for collecting, tracking and resolving operational improvement submissions on the shop floor. Designed and built by Upcoders.',
+    },
+    notFound: {
+      title: 'Page not found | Upcoders',
+      description: 'This address does not exist on upcoders.cloud.',
+    },
+  },
   common: {
     close: 'Close',
   },
