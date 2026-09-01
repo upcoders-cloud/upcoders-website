@@ -7,7 +7,6 @@ import {
   isSupportedLanguage,
   resolvePreferredLanguage,
 } from '@/i18n/routing.js'
-import SeoLinks from '@/seo/SeoLinks.jsx'
 
 function getPathWithoutLanguage(pathname, language) {
   const prefix = `/${language}`
@@ -41,10 +40,5 @@ export default function LanguageLayout() {
     )
   }
 
-  return (
-    <>
-      <SeoLinks />
-      <PublicLayout />
-    </>
-  )
+  return <PublicLayout />
 }

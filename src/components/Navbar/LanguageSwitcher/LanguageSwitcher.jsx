@@ -3,11 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { useI18n } from '@/i18n/useI18n.js'
 import { buildLocalizedPath } from '@/i18n/routing.js'
+import { FlagGB, FlagPL } from './Flags.jsx'
 
 const LANGUAGE_META = {
-  en: { flag: '🇬🇧', label: 'English' },
-  pl: { flag: '🇵🇱', label: 'Polski' },
+  en: { Flag: FlagGB, label: 'English' },
+  pl: { Flag: FlagPL, label: 'Polski' },
 }
+
+const FLAG_BOX = 'inline-flex w-6 shrink-0 justify-center'
+const FLAG_SVG = 'h-3 w-auto rounded-[2px] ring-1 ring-white/20'
 
 export default function LanguageSwitcher({ className = '', onLanguageChange, dropUp = false }) {
   const { language, languages, setLanguage, t } = useI18n()
@@ -44,6 +48,7 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
   }
 
   const current = LANGUAGE_META[language] ?? LANGUAGE_META.en
+  const CurrentFlag = current.Flag
 
   return (
     <div ref={ref} className={`relative ${className}`}>
@@ -55,7 +60,9 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
         aria-label={t('navbar.languageSwitcher.ariaLabel')}
         className="flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-white/10 text-sm text-gray-300 transition-all duration-200 hover:border-primary/60 hover:text-white cursor-pointer select-none"
       >
-        <span className="text-base leading-none">{current.flag}</span>
+        <span className={FLAG_BOX}>
+          <CurrentFlag className={FLAG_SVG} />
+        </span>
         <span className="text-xs font-medium tracking-wide">{language.toUpperCase()}</span>
         <svg
           className={`w-3 h-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -87,6 +94,7 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
               const meta = LANGUAGE_META[code]
               if (!meta) return null
               const isActive = language === code
+              const Flag = meta.Flag
 
               return (
                 <li key={code}>
@@ -101,7 +109,9 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
                         : 'text-gray-400 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    <span className="text-base leading-none">{meta.flag}</span>
+                    <span className={FLAG_BOX}>
+                      <Flag className={FLAG_SVG} />
+                    </span>
                     <span className="font-medium tracking-wide">{meta.label}</span>
                     {isActive && (
                       <svg

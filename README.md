@@ -4,7 +4,8 @@ Marketing website for Upcoders built with React + Vite.
 The app currently supports:
 - language routes (`/en`, `/pl`),
 - projects routes (`/:lang/projects`, `/:lang/projects/:slug`),
-- dynamic canonical + hreflang links,
+- per-route, per-language title, description, canonical, hreflang and Open Graph tags,
+- static prerendering of every public route at build time,
 - sitemap generation for language-specific URLs.
 
 ## Tech stack
@@ -120,9 +121,13 @@ Language switcher:
 ## SEO
 
 Implemented:
-- dynamic canonical URL per language route,
-- dynamic `hreflang` links (`en`, `pl`, `x-default`),
+- per-route title and meta description in both languages (`seo` key in the translation files),
+- canonical URL and `hreflang` links (`en`, `pl`, `x-default`) per route,
+- Open Graph and Twitter Cards per route,
+- static prerendering of all public routes (`scripts/prerender.mjs`), so crawlers that do not run JavaScript get full HTML,
 - sitemap generation for language routes.
+
+`npm run build` = `vite build` + prerender. The prerender step needs the Chromium that ships with the `puppeteer` dev dependency.
 
 Current sitemap URLs:
 - `https://upcoders.cloud/en`
@@ -174,5 +179,7 @@ location / {
 - `src/layouts` - shared app layout
 - `src/pages` - route-level pages
 - `src/i18n` - translations, i18n provider, routing helpers
-- `src/seo` - canonical/hreflang head updates
+- `src/seo` - per-route head tags (`Seo.jsx`)
+- `scripts/prerender.mjs` - build-time prerendering of public routes
+- `public/.htaccess` - production Apache config (redirects, prerender lookup, 404s)
 - `src/components` - UI sections and reusable components

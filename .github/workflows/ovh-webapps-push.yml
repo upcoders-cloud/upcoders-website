@@ -17,10 +17,39 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Install dependencies & Build
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
         run: |
           npm ci
+          if [ -z "$VITE_WEB3FORMS_ACCESS_KEY" ]; then
+            echo "::error::Brak sekretu VITE_WEB3FORMS_ACCESS_KEY. Bez niego minifikator usuwa całą ścieżkę wysyłki i formularz kontaktowy na produkcji tylko zgłasza błąd konfiguracji."
+            exit 1
+          fi
           npm run build
+
+      - name: Verify build output
+        run: |
+          if ! grep -q "api.web3forms.com" dist/assets/index-*.js; then
+            echo "::error::Bundle nie zawiera adresu API formularza. Wysyłka została wycięta jako martwy kod."
+            exit 1
+          fi
+          if [ ! -f dist/.htaccess ]; then
+            echo "::error::Brak dist/.htaccess - konfiguracja Apache nie trafi na serwer."
+            exit 1
+          fi
+          for route in en pl en/projects pl/projects en/projects/kaizen pl/projects/kaizen; do
+            page="dist/$route/index.html"
+            if [ ! -f "$page" ]; then
+              echo "::error::Brak prerenderu dla /$route."
+              exit 1
+            fi
+            if [ "$(grep -c 'rel="canonical"' "$page")" != "1" ]; then
+              echo "::error::/$route ma nieprawidłową liczbę znaczników canonical."
+              exit 1
+            fi
+          done
 
       - name: Deploy built files to OVH via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -30,4 +59,16 @@ jobs:
           server: ssh.cluster121.hosting.ovh.net
           local_path: './dist/*'
           remote_path: '/home/upcodew/www'
+          sftp_only: true
+
+      # Wzorzec ./dist/* nie obejmuje plików zaczynających się od kropki,
+      # więc .htaccess wymaga osobnego kroku.
+      - name: Deploy .htaccess to OVH via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.OVH_HOSTING_USER }}
+          password: ${{ secrets.OVH_HOSTING_PASSWORD }}
+          server: ssh.cluster121.hosting.ovh.net
+          local_path: './dist/.htaccess'
+          remote_path: '/home/upcodew/www/.htaccess'
           sftp_only: true

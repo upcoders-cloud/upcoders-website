@@ -1,51 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- PRIMARY META -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Upcoders — Bright the Future</title>
 
-  <meta name="description" content="We design and develop modern applications tailored to the real processes of industrial, technical and manufacturing companies." />
-  <meta name="keywords" content="industrial software, tailored software, manufacturing applications, devops, cloud solutions, custom apps, upcoders, software development" />
+  <!--
+    Tytuł, opis, canonical, hreflang, Open Graph i Twitter Cards ustawia
+    komponent src/seo/Seo.jsx per trasa i per język (React 19 wynosi je do head).
+    Nic z tego nie może stać tutaj na sztywno, bo powstałyby duplikaty,
+    a każda podstrona dziedziczyłaby dane strony głównej.
+    Poniższy tytuł jest tylko wartością awaryjną dla powłoki SPA.
+  -->
+  <title id="uc-fallback-title">Upcoders</title>
   <meta name="author" content="Upcoders" />
 
-  <!-- ROBOTS -->
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <link id="uc-canonical" rel="canonical" href="https://upcoders.cloud/en" />
-  <link id="uc-hreflang-en" rel="alternate" hreflang="en" href="https://upcoders.cloud/en" />
-  <link id="uc-hreflang-pl" rel="alternate" hreflang="pl" href="https://upcoders.cloud/pl" />
-  <link id="uc-hreflang-x-default" rel="alternate" hreflang="x-default" href="https://upcoders.cloud/en" />
-
-  <!-- PRECONNECT -->
-  <link rel="preconnect" href="https://upcoders.cloud" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
 
   <!-- PRELOAD FONTS (correct paths for Vite) -->
   <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Regular.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Medium.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-SemiBold.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Bold.ttf" as="font" type="font/ttf" crossorigin />
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
-
-  <!-- OPEN GRAPH -->
-  <meta property="og:title" content="Upcoders — Bright the Future" />
-  <meta property="og:description" content="We design and develop tailored, modern, industrial-focused applications." />
-  <meta property="og:url" content="https://upcoders.cloud/en" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Upcoders" />
-  <meta property="og:image" content="https://upcoders.cloud/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
-  <!-- TWITTER -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Upcoders — Bright the Future" />
-  <meta name="twitter:description" content="Modern software designed for industrial and technical companies." />
-  <meta name="twitter:image" content="https://upcoders.cloud/og-image.png" />
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
