@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useI18n } from '@/i18n/useI18n.js'
 import { buildLocalizedPath } from '@/i18n/routing.js'
 import { FlagGB, FlagPL } from './Flags.jsx'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
 const LANGUAGE_META = {
   en: { Flag: FlagGB, label: 'English' },
@@ -18,7 +19,16 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
   const location = useLocation()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
+  const [focusedIndex, setFocusedIndex] = useState(0)
   const ref = useRef(null)
+  const triggerRef = useRef(null)
+  const optionRefs = useRef([])
+  const reducedMotion = usePrefersReducedMotion()
+  const listboxId = `language-options-${dropUp ? 'mobile' : 'desktop'}`
+
+  useEffect(() => {
+    if (open) optionRefs.current[focusedIndex]?.focus()
+  }, [open, focusedIndex])
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -30,7 +40,10 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
     }
     if (open) document.addEventListener('keydown', handleEsc)
     return () => document.removeEventListener('keydown', handleEsc)
@@ -39,12 +52,42 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
   const handleSelect = (code) => {
     if (code === language) {
       setOpen(false)
+      triggerRef.current?.focus()
       return
     }
     setLanguage(code)
-    navigate(buildLocalizedPath(code, location.pathname, location.search))
+    navigate(buildLocalizedPath(code, location.pathname, location.search, location.hash))
     setOpen(false)
+    triggerRef.current?.focus()
     onLanguageChange?.()
+  }
+
+  const openList = (index = languages.indexOf(language)) => {
+    setFocusedIndex(index)
+    setOpen(true)
+  }
+
+  const handleTriggerKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      openList(event.key === 'ArrowDown' ? 0 : languages.length - 1)
+    }
+  }
+
+  const handleOptionKeyDown = (event, index, code) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      const direction = event.key === 'ArrowDown' ? 1 : -1
+      setFocusedIndex((index + direction + languages.length) % languages.length)
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault()
+      setFocusedIndex(event.key === 'Home' ? 0 : languages.length - 1)
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      handleSelect(code)
+    } else if (event.key === 'Tab') {
+      setOpen(false)
+    }
   }
 
   const current = LANGUAGE_META[language] ?? LANGUAGE_META.en
@@ -53,12 +96,15 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
   return (
     <div ref={ref} className={`relative ${className}`}>
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => (open ? setOpen(false) : openList())}
+        onKeyDown={handleTriggerKeyDown}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-controls={open ? listboxId : undefined}
         aria-label={t('navbar.languageSwitcher.ariaLabel')}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-white/10 text-sm text-gray-300 transition-all duration-200 hover:border-primary/60 hover:text-white cursor-pointer select-none"
+        className="relative after:absolute after:-inset-y-2 after:inset-x-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-white/10 text-sm text-gray-300 transition-all duration-200 hover:border-primary/60 hover:text-white cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <span className={FLAG_BOX}>
           <CurrentFlag className={FLAG_SVG} />
@@ -80,10 +126,13 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
       <AnimatePresence>
         {open && (
           <motion.ul
+            id={listboxId}
             initial={{ opacity: 0, y: dropUp ? 4 : -4, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: dropUp ? 4 : -4, scale: 0.97 }}
-            transition={{ type: 'spring', duration: 0.25, bounce: 0.1 }}
+            transition={
+              reducedMotion ? { duration: 0 } : { type: 'spring', duration: 0.25, bounce: 0.1 }
+            }
             role="listbox"
             aria-label={t('navbar.languageSwitcher.ariaLabel')}
             className={`absolute left-0 min-w-[130px] rounded border border-white/10 bg-bg-1 shadow-lg shadow-black/40 overflow-hidden z-50 ${
@@ -97,13 +146,18 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
               const Flag = meta.Flag
 
               return (
-                <li key={code}>
+                <li key={code} role="presentation">
                   <button
+                    ref={(element) => {
+                      optionRefs.current[languages.indexOf(code)] = element
+                    }}
                     type="button"
                     role="option"
                     aria-selected={isActive}
+                    tabIndex={-1}
                     onClick={() => handleSelect(code)}
-                    className={`flex items-center gap-2.5 w-full px-3 py-2 text-sm transition-colors duration-150 cursor-pointer ${
+                    onKeyDown={(event) => handleOptionKeyDown(event, languages.indexOf(code), code)}
+                    className={`flex min-h-11 items-center gap-2.5 w-full px-3 py-2 text-sm transition-colors duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-primary ${
                       isActive
                         ? 'text-white bg-primary/10'
                         : 'text-gray-400 hover:text-white hover:bg-white/5'

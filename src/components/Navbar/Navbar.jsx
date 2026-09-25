@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const headerRef = useRef(null)
+  const toggleRef = useRef(null)
   const [navH, setNavH] = useState(0)
 
   useLayoutEffect(() => {
@@ -20,6 +21,23 @@ export default function Navbar() {
     window.addEventListener('resize', measure)
     return () => window.removeEventListener('resize', measure)
   }, [])
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsMobileMenuOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [isMobileMenuOpen])
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -53,8 +71,11 @@ export default function Navbar() {
       >
         <div className="section-inner">
           <div className="flex items-center justify-between h-18">
-            <NavBarItem href={`/${language}`} className="text-2xl font-bold tracking-wide text-white transition-opacity duration-200 hover:opacity-80">
-              <img src={/** @type {string} */ (Logo)} alt="Upcoders logo" className="h-8 w-auto" />
+            <NavBarItem
+              href={`/${language}`}
+              className="text-2xl font-bold tracking-wide text-white transition-opacity duration-200 hover:opacity-80"
+            >
+              <img src={/** @type {string} */ (Logo)} alt="Upcoders" className="h-8 w-auto" />
             </NavBarItem>
 
             <div className="hidden md:flex items-center gap-4 text-gray-300">
@@ -72,11 +93,13 @@ export default function Navbar() {
 
             <div className="md:hidden flex items-center">
               <button
+                ref={toggleRef}
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-white cursor-pointer transition-colors duration-200 hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Toggle menu"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center p-2 rounded-md text-white cursor-pointer transition-colors duration-200 hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                aria-label={t(isMobileMenuOpen ? 'navbar.closeMenu' : 'navbar.openMenu')}
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
               >
                 <span className="relative w-7 h-7 inline-block">
                   <IoMdMenu
@@ -95,6 +118,8 @@ export default function Navbar() {
           </div>
 
           <div
+            id="mobile-navigation"
+            inert={!isMobileMenuOpen}
             className={`md:hidden transition-all duration-300 ease-[var(--ease-out-quart)] ${
               isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
             }`}

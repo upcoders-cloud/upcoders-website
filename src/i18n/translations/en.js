@@ -24,12 +24,18 @@ const en = {
       description:
         'A mobile MVP for collecting, tracking and resolving operational improvement submissions on the shop floor. Designed and built by Upcoders.',
     },
+    privacy: {
+      title: 'Privacy policy | Upcoders',
+      description: 'Information about personal data processing and the Upcoders website. Draft pending verification.',
+    },
     notFound: {
       title: 'Page not found | Upcoders',
       description: 'This address does not exist on upcoders.cloud.',
     },
   },
   navbar: {
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
     items: {
       offer: 'Offer',
       howWeWork: 'How We Work',
@@ -415,11 +421,87 @@ const en = {
       },
     },
   },
+  privacy: {
+    "title": "Privacy policy",
+    "sections": [
+      {
+        "title": "1. Data controller",
+        "paragraphs": [
+          "The controller of your personal data is Upcoders [TO VERIFY: full registered name and legal form], ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Poland, NIP 7812090103, REGON 541840267, KRS 0001175084. You can contact us at contact@upcoders.cloud. This policy applies to https://upcoders.cloud."
+        ]
+      },
+      {
+        "title": "2. Data we process",
+        "paragraphs": [
+          "When you use the contact form, we receive your email address, optionally your phone number, and a record that you checked the required field concerning the privacy policy. The current form does not have a message field. If you email us directly, we may also process the contents of your message and any other information you choose to include.",
+          "When you use the website, technical connection data may be generated, such as your IP address, the date and time of a request, the address of the requested page, and browser information. The scope of data recorded in server logs [TO VERIFY]."
+        ]
+      },
+      {
+        "title": "3. Purposes and legal bases",
+        "paragraphs": [
+          "We process contact details to respond to your enquiry and, if you request it, take steps before entering into a contract (Article 6(1)(b) GDPR). In other cases, we handle correspondence on the basis of our legitimate interest in responding to enquiries (Article 6(1)(f) GDPR).",
+          "We may retain correspondence where necessary to establish, exercise, or defend legal claims. Our legal basis is legitimate interest (Article 6(1)(f) GDPR). We process technical data to keep the website working and secure on the same basis [TO VERIFY: actual scope of logging and purpose of processing].",
+          "The form requires you to check the field concerning the privacy policy. Checking it does not amount to separate marketing consent or provide the legal basis for processing your enquiry. If we ask for separate consent for another purpose in the future, we will explain that purpose and allow you to withdraw consent at any time without affecting the lawfulness of earlier processing."
+        ]
+      },
+      {
+        "title": "4. Recipients of data",
+        "paragraphs": [
+          "The form uses Web3Forms (api.web3forms.com), a service that forwards submissions to our email inbox. Web3Forms processes data submitted through the form on our behalf [TO VERIFY: provider identity, data processing agreement, and scope of processing]. Data may also be accessible to our hosting provider, OVH [TO VERIFY: service provider entity and server location], and our email provider [TO VERIFY: provider identity and role]. We may disclose data to competent authorities where required by law."
+        ]
+      },
+      {
+        "title": "5. How long we keep data",
+        "paragraphs": [
+          "We keep correspondence for as long as needed to handle your enquiry and afterwards only for as long as necessary to establish, exercise, or defend legal claims or meet a legal obligation. The precise retention periods for correspondence and deletion procedures [TO VERIFY]. The retention period for server logs and data held by Web3Forms [TO VERIFY]."
+        ]
+      },
+      {
+        "title": "6. Your rights",
+        "paragraphs": [
+          "You may request access to your data, rectification, erasure, or restriction of processing. Where the GDPR provides for it, you also have the right to data portability. You may object to processing based on our legitimate interests. The scope of these rights depends on the legal basis and circumstances of processing.",
+          "To exercise your rights, email contact@upcoders.cloud. If you believe that the processing infringes the GDPR, you may lodge a complaint with the President of the Polish Personal Data Protection Office (https://uodo.gov.pl)."
+        ]
+      },
+      {
+        "title": "7. Whether you must provide data",
+        "paragraphs": [
+          "Providing data through the form is voluntary, but an email address and checking the required field concerning the privacy policy are necessary to submit it. A phone number is optional. Without contact details, we may be unable to respond."
+        ]
+      },
+      {
+        "title": "8. Browser storage and cookies",
+        "paragraphs": [
+          "The website stores your chosen language in your browser's localStorage under the key upcoders.lang to remember your preference. You can remove this information in your browser settings. We found no analytics tools, advertising tools, or tracking cookies in the website code. The state of services on the live site, any technical cookies, and requirements for consent to storage on your device [TO VERIFY]."
+        ]
+      },
+      {
+        "title": "9. Transfers outside the EEA",
+        "paragraphs": [
+          "The website code alone does not establish whether Web3Forms or other providers process data outside the European Economic Area. Processing locations, any transfers outside the EEA, and applicable safeguards, including an adequacy decision or standard contractual clauses [TO VERIFY]."
+        ]
+      },
+      {
+        "title": "10. Automated decisions",
+        "paragraphs": [
+          "We do not make decisions about website users based solely on automated processing or carry out profiling [TO VERIFY: confirm for external services as well]."
+        ]
+      },
+      {
+        "title": "11. Changes to this policy",
+        "paragraphs": [
+          "We may update this policy if our practices or legal requirements change. The current version will be available on this page. Last updated: [TO VERIFY: DD.MM.YYYY]."
+        ]
+      }
+    ]
+  },
   footer: {
+    privacy: 'Privacy policy',
+    country: 'Poland',
     followUs: 'Follow us',
     company: 'Company',
     contact: 'Contact',
-    partners: 'Partners',
   },
   projects: {
     eyebrow: 'OUR WORK',
@@ -580,6 +662,11 @@ const en = {
     loading: 'Loading calendar...',
     openInNewTab: 'Open the calendar in a new tab',
     close: 'Close',
+  },
+  common: {
+    skipToContent: 'Skip to content',
+    backToTop: 'Back to top',
+    ogImageAlt: 'Upcoders: software for industrial companies',
   },
   notFound: {
     title: 'Page not found',

@@ -13,6 +13,7 @@ DirectorySlash Off
 
   RewriteRule ^$ /en [R=301,L]
   RewriteRule ^offer/?$ /en/offer [R=301,L]
+  RewriteRule ^privacy/?$ /en/privacy [R=301,L]
   RewriteRule ^projects/?$ /en/projects [R=301,L]
   RewriteRule ^projects/(.+)$ /en/projects/$1 [R=301,L]
 
@@ -24,7 +25,7 @@ DirectorySlash Off
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  RewriteRule ^(en|pl)(/.*)?$ /index.html [L]
+  RewriteRule ^(en|pl)(/.*)?$ - [R=404,L]
 </IfModule>
 
 ErrorDocument 404 /404.html

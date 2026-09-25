@@ -37,16 +37,17 @@ export default function Seo({ route, image = DEFAULT_OG_IMAGE, noindex = false }
       <meta name="description" content={description} />
       <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 
-      <link rel="canonical" href={canonicalUrl} />
-      {languages.map((code) => (
-        <link
-          key={code}
-          rel="alternate"
-          hrefLang={code}
-          href={`${SITE_URL}${buildLocalizedPath(code, basePath)}`}
-        />
-      ))}
-      <link rel="alternate" hrefLang="x-default" href={defaultUrl} />
+      {!noindex && <link rel="canonical" href={canonicalUrl} />}
+      {!noindex &&
+        languages.map((code) => (
+          <link
+            key={code}
+            rel="alternate"
+            hrefLang={code}
+            href={`${SITE_URL}${buildLocalizedPath(code, basePath)}`}
+          />
+        ))}
+      {!noindex && <link rel="alternate" hrefLang="x-default" href={defaultUrl} />}
 
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Upcoders" />
@@ -55,8 +56,9 @@ export default function Seo({ route, image = DEFAULT_OG_IMAGE, noindex = false }
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:locale" content={OG_LOCALES[language] ?? OG_LOCALES[DEFAULT_LANGUAGE]} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="615" />
+      <meta property="og:image:height" content="315" />
+      <meta property="og:image:alt" content={t('common.ogImageAlt')} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />

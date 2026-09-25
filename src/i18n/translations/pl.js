@@ -24,12 +24,18 @@ const pl = {
       description:
         'Mobilne MVP do zbierania, śledzenia i rozliczania zgłoszeń usprawnień operacyjnych na hali produkcyjnej. Projekt i realizacja Upcoders.',
     },
+    privacy: {
+      title: 'Polityka prywatności | Upcoders',
+      description: 'Informacje o przetwarzaniu danych osobowych i działaniu strony Upcoders. Wersja robocza do weryfikacji.',
+    },
     notFound: {
       title: 'Nie znaleziono strony | Upcoders',
       description: 'Ten adres nie istnieje na upcoders.cloud.',
     },
   },
   navbar: {
+    openMenu: 'Otwórz menu',
+    closeMenu: 'Zamknij menu',
     items: {
       offer: 'Oferta',
       howWeWork: 'Jak działamy',
@@ -418,11 +424,87 @@ const pl = {
       },
     },
   },
+  privacy: {
+    "title": "Polityka prywatności",
+    "sections": [
+      {
+        "title": "1. Administrator danych",
+        "paragraphs": [
+          "Administratorem danych osobowych jest Upcoders [DO WERYFIKACJI: pełna firma i forma prawna], ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Polska, NIP 7812090103, REGON 541840267, KRS 0001175084. Możesz skontaktować się z nami pod adresem contact@upcoders.cloud. Ta polityka dotyczy strony https://upcoders.cloud."
+        ]
+      },
+      {
+        "title": "2. Jakie dane przetwarzamy",
+        "paragraphs": [
+          "Gdy korzystasz z formularza kontaktowego, otrzymujemy Twój adres e-mail, opcjonalnie numer telefonu oraz informację o zaznaczeniu wymaganego pola dotyczącego polityki prywatności. Obecna wersja formularza nie zawiera pola na treść wiadomości. Gdy piszesz do nas bezpośrednio, możemy przetwarzać również treść Twojej wiadomości i inne dane, które dobrowolnie w niej podasz.",
+          "Podczas korzystania ze strony mogą powstawać techniczne dane o połączeniu, takie jak adres IP, data i godzina żądania, adres żądanej strony oraz informacje o przeglądarce. Zakres danych zapisywanych w logach serwera [DO WERYFIKACJI]."
+        ]
+      },
+      {
+        "title": "3. Cele i podstawy prawne",
+        "paragraphs": [
+          "Przetwarzamy dane kontaktowe, aby odpowiedzieć na zapytanie i, jeśli o to prosisz, podjąć działania przed zawarciem umowy (art. 6 ust. 1 lit. b RODO). W pozostałych przypadkach podstawą korespondencji jest nasz prawnie uzasadniony interes polegający na obsłudze zapytań (art. 6 ust. 1 lit. f RODO).",
+          "Możemy zachować korespondencję, gdy jest to potrzebne do ustalenia, dochodzenia lub obrony roszczeń. Podstawą jest nasz prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO). Dane techniczne przetwarzamy w celu zapewnienia działania i bezpieczeństwa strony na tej samej podstawie [DO WERYFIKACJI: rzeczywisty zakres logowania i cel przetwarzania].",
+          "Zaznaczenie pola dotyczącego polityki prywatności jest wymagane przez formularz. Samo zaznaczenie nie stanowi odrębnej zgody na marketing ani podstawy prawnej przetwarzania zapytania. Jeśli w przyszłości poprosimy Cię o odrębną zgodę na inny cel, podamy ten cel i umożliwimy wycofanie zgody w dowolnym momencie bez wpływu na zgodność z prawem wcześniejszego przetwarzania."
+        ]
+      },
+      {
+        "title": "4. Odbiorcy danych",
+        "paragraphs": [
+          "Formularz korzysta z Web3Forms (api.web3forms.com), usługi pośredniczącej w przesłaniu zgłoszenia na naszą skrzynkę e-mail. Web3Forms przetwarza dane przekazane przez formularz w naszym imieniu [DO WERYFIKACJI: tożsamość dostawcy, umowa powierzenia i zakres przetwarzania]. Dane mogą być dostępne także dostawcy hostingu OVH [DO WERYFIKACJI: podmiot świadczący usługę i lokalizacja serwera] oraz dostawcy poczty elektronicznej [DO WERYFIKACJI: tożsamość dostawcy i jego rola]. Możemy udostępnić dane uprawnionym organom, gdy wymagają tego przepisy prawa."
+        ]
+      },
+      {
+        "title": "5. Jak długo przechowujemy dane",
+        "paragraphs": [
+          "Przechowujemy korespondencję przez czas potrzebny do obsługi zapytania, a następnie tylko tak długo, jak jest to potrzebne do ewentualnego ustalenia, dochodzenia lub obrony roszczeń albo wykonania obowiązku prawnego. Dokładne okresy przechowywania korespondencji oraz zasady jej usuwania [DO WERYFIKACJI]. Okres przechowywania logów serwera i danych przechowywanych przez Web3Forms [DO WERYFIKACJI]."
+        ]
+      },
+      {
+        "title": "6. Twoje prawa",
+        "paragraphs": [
+          "Masz prawo żądać dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania. W przypadkach przewidzianych przez RODO przysługuje Ci też prawo do przenoszenia danych. Możesz wnieść sprzeciw wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie. Zakres tych praw zależy od podstawy i okoliczności przetwarzania.",
+          "Aby skorzystać z praw, napisz na contact@upcoders.cloud. Jeżeli uważasz, że przetwarzanie narusza RODO, możesz wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (https://uodo.gov.pl)."
+        ]
+      },
+      {
+        "title": "7. Dobrowolność podania danych",
+        "paragraphs": [
+          "Podanie danych przez formularz jest dobrowolne, ale adres e-mail i zaznaczenie wymaganego pola dotyczącego polityki prywatności są niezbędne do wysłania formularza. Numer telefonu jest opcjonalny. Brak danych potrzebnych do kontaktu może uniemożliwić nam odpowiedź."
+        ]
+      },
+      {
+        "title": "8. Pamięć przeglądarki i pliki cookies",
+        "paragraphs": [
+          "Strona zapisuje wybrany język w pamięci przeglądarki localStorage pod kluczem upcoders.lang, aby zapamiętać Twój wybór. Możesz usunąć tę informację w ustawieniach przeglądarki. W kodzie strony nie znaleźliśmy narzędzi analitycznych, reklamowych ani śledzących plików cookies. Stan usług działających na stronie produkcyjnej, ewentualne techniczne pliki cookies oraz obowiązki dotyczące zgody na zapis w urządzeniu [DO WERYFIKACJI]."
+        ]
+      },
+      {
+        "title": "9. Przekazywanie danych poza EOG",
+        "paragraphs": [
+          "Nie możemy na podstawie samego kodu strony potwierdzić, czy Web3Forms lub inni dostawcy przetwarzają dane poza Europejskim Obszarem Gospodarczym. Miejsca przetwarzania, ewentualne przekazywanie danych poza EOG i stosowane zabezpieczenia, w tym decyzja stwierdzająca odpowiedni stopień ochrony lub standardowe klauzule umowne [DO WERYFIKACJI]."
+        ]
+      },
+      {
+        "title": "10. Zautomatyzowane decyzje",
+        "paragraphs": [
+          "Nie podejmujemy wobec użytkowników strony decyzji wyłącznie w sposób zautomatyzowany ani nie prowadzimy profilowania [DO WERYFIKACJI: potwierdzić również dla usług zewnętrznych]."
+        ]
+      },
+      {
+        "title": "11. Zmiany polityki",
+        "paragraphs": [
+          "Możemy aktualizować tę politykę, jeśli zmienią się nasze praktyki lub wymagania prawne. Aktualna wersja będzie dostępna na tej stronie. Data ostatniej aktualizacji: [DO WERYFIKACJI: DD.MM.RRRR]."
+        ]
+      }
+    ]
+  },
   footer: {
+    privacy: 'Polityka prywatności',
+    country: 'Polska',
     followUs: 'Obserwuj nas',
     company: 'Firma',
     contact: 'Kontakt',
-    partners: 'Partnerzy',
   },
   projects: {
     eyebrow: 'NASZE REALIZACJE',
@@ -587,6 +669,11 @@ const pl = {
     loading: 'Ładowanie kalendarza...',
     openInNewTab: 'Otwórz kalendarz w nowej karcie',
     close: 'Zamknij',
+  },
+  common: {
+    skipToContent: 'Przejdź do treści',
+    backToTop: 'Wróć na górę',
+    ogImageAlt: 'Upcoders: oprogramowanie dla firm przemysłowych',
   },
   notFound: {
     title: 'Nie znaleziono strony',

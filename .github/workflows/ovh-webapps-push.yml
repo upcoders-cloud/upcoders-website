@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies & Build
         env:
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
+          # Strona rezerwacji Google Calendar (zmienna repozytorium, nie sekret).
+          # Bez niej przyciski "Umów rozmowę" prowadzą do formularza kontaktowego.
+          VITE_GOOGLE_BOOKING_URL: ${{ vars.VITE_GOOGLE_BOOKING_URL }}
         run: |
           npm ci
           if [ -z "$VITE_WEB3FORMS_ACCESS_KEY" ]; then
@@ -39,7 +42,7 @@ jobs:
             echo "::error::Brak dist/.htaccess - konfiguracja Apache nie trafi na serwer."
             exit 1
           fi
-          for route in en pl en/offer pl/offer en/projects pl/projects en/projects/kaizen pl/projects/kaizen; do
+          for route in en pl en/offer pl/offer en/projects pl/projects en/privacy pl/privacy en/projects/kaizen pl/projects/kaizen; do
             page="dist/$route/index.html"
             if [ ! -f "$page" ]; then
               echo "::error::Brak prerenderu dla /$route."

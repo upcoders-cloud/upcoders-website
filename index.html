@@ -1,46 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!--
+    <!--
     Tytuł, opis, canonical, hreflang, Open Graph i Twitter Cards ustawia
     komponent src/seo/Seo.jsx per trasa i per język (React 19 wynosi je do head).
     Nic z tego nie może stać tutaj na sztywno, bo powstałyby duplikaty,
     a każda podstrona dziedziczyłaby dane strony głównej.
     Poniższy tytuł jest tylko wartością awaryjną dla powłoki SPA.
   -->
-  <title id="uc-fallback-title">Upcoders</title>
-  <meta name="author" content="Upcoders" />
+    <title id="uc-fallback-title">Upcoders</title>
+    <meta name="author" content="Upcoders" />
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
+    <!-- FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
 
-  <!-- PRELOAD FONTS (correct paths for Vite) -->
-  <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Regular.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Medium.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-SemiBold.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="src/assets/fonts/DM_Sans/DMSans-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <!-- PRELOAD FONTS (correct paths for Vite) -->
+    <link
+      rel="preload"
+      href="src/assets/fonts/DM_Sans/DMSans-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="src/assets/fonts/DM_Sans/DMSans-Medium.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="src/assets/fonts/DM_Sans/DMSans-SemiBold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="src/assets/fonts/DM_Sans/DMSans-Bold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
 
-  <!-- STRUCTURED DATA -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Upcoders",
-      "url": "https://upcoders.cloud",
-      "logo": "https://upcoders.cloud/uc-logo.png",
-      "description": "We design and develop tailored applications for industrial and technical companies.",
-      "sameAs": [
-        "https://www.linkedin.com/company/upcoders-cloud"
-      ]
-    }
-  </script>
-</head>
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Upcoders",
+        "url": "https://upcoders.cloud",
+        "logo": "https://upcoders.cloud/uc-logo.png",
+        "email": "contact@upcoders.cloud",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Wawrzyńca Engestroma 10",
+          "postalCode": "60-571",
+          "addressLocality": "Poznań",
+          "addressCountry": "PL"
+        },
+        "description": "We design and develop tailored applications for industrial and technical companies.",
+        "sameAs": ["https://www.linkedin.com/company/upcoders-cloud"]
+      }
+    </script>
+  </head>
 
-<body>
-<div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

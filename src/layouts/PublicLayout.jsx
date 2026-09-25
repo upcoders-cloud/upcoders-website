@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from '@/components/Navbar/Navbar.jsx'
 import Footer from '@/components/Footer/Footer.jsx'
 import { stripLanguagePrefix } from '@/i18n/routing.js'
+import { useI18n } from '@/i18n/useI18n.js'
 
 function HashNavigationHandler() {
   const location = useLocation()
@@ -38,11 +39,20 @@ function HashNavigationHandler() {
 }
 
 export default function PublicLayout() {
+  const { t } = useI18n()
   return (
     <>
       <HashNavigationHandler />
+      <a
+        href="#main"
+        className="fixed left-4 top-4 z-[60] -translate-y-24 rounded bg-primary px-4 py-3 text-white focus:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        {t('common.skipToContent')}
+      </a>
       <Navbar />
-      <Outlet />
+      <main id="main" tabIndex={-1}>
+        <Outlet />
+      </main>
       <Footer />
     </>
   )
