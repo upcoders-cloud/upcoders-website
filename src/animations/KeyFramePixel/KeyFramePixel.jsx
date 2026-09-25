@@ -1,4 +1,5 @@
-import * as motion from "motion/react-client";
+import * as motion from 'motion/react-client'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
 /**
  * KeyFramePixel – animowany „piksel”
@@ -10,36 +11,45 @@ import * as motion from "motion/react-client";
  * - ...rest: dowolne propsy motion dla motion.div (np. initial, whileInView, onHoverStart)
  */
 export default function KeyFramePixel({
-                                        size = 100,
-                                        color = "#f5f5f5",
-                                        customStyles = {},
-                                        className = "",
-                                        ...rest
-                                      }) {
+  size = 100,
+  color = '#f5f5f5',
+  customStyles = {},
+  className = '',
+  ...rest
+}) {
+  const prefersReducedMotion = usePrefersReducedMotion()
   const baseStyles = {
     width: size,
     height: size,
     backgroundColor: color,
     borderRadius: 5,
-  };
+  }
 
   return (
     <motion.div
-      animate={{
-        scale: [1, 2, 2, 1, 1],
-        rotate: [0, 0, 180, 180, 0],
-        borderRadius: ["0%", "0%", "50%", "50%", "0%"],
-      }}
-      transition={{
-        duration: 2,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.5, 0.8, 1],
-        repeat: Infinity,
-        repeatDelay: 1,
-      }}
+      animate={
+        prefersReducedMotion
+          ? { scale: 1, rotate: 0, borderRadius: '0%' }
+          : {
+              scale: [1, 2, 2, 1, 1],
+              rotate: [0, 0, 180, 180, 0],
+              borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+            }
+      }
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : {
+              duration: 2,
+              ease: 'easeInOut',
+              times: [0, 0.2, 0.5, 0.8, 1],
+              repeat: Infinity,
+              repeatDelay: 1,
+            }
+      }
       style={{ ...baseStyles, ...customStyles }}
       className={className}
       {...rest}
     />
-  );
+  )
 }
