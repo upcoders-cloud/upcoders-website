@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { motion } from 'motion/react'
-import { FaLinkedinIn } from 'react-icons/fa'
+import { Linkedin } from 'lucide-react'
 import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
 import { useI18n } from '@/i18n/useI18n.js'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
@@ -18,6 +18,7 @@ export default function CardMember({ member, index }) {
   // true, gdy kartę obrócił kursor myszy; wtedy klik myszą nie cofa obrotu.
   const flippedByHover = useRef(false)
   const fullName = `${member.firstName} ${member.lastName}`
+  const detailsId = useId()
 
   // Obrót po najechaniu tylko na urządzeniach, które mają prawdziwy hover.
   // Dotyk i klawiatura obracają kartę przyciskiem.
@@ -63,6 +64,18 @@ export default function CardMember({ member, index }) {
           ease: 'easeInOut',
         }}
       >
+        {/* Przycisk obrotu leży nad obiema stronami karty, więc fokus nie ginie,
+            gdy odwrócona strona staje się nieaktywna. W DOM stoi przed opisem,
+            żeby czytnik ekranu po rozwinięciu czytał opis dalej od przycisku. */}
+        <button
+          type="button"
+          aria-expanded={flipped}
+          aria-controls={detailsId}
+          aria-label={t('team.flipLabel').replace('{name}', fullName)}
+          onClick={handleToggle}
+          className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light"
+        />
+
         <div
           className={[
             'relative w-full aspect-[387/464]',
@@ -121,6 +134,7 @@ export default function CardMember({ member, index }) {
 
           {/* BACK */}
           <div
+            id={detailsId}
             aria-hidden={!flipped}
             inert={!flipped}
             className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
@@ -151,16 +165,6 @@ export default function CardMember({ member, index }) {
           </div>
         </div>
 
-        {/* Przycisk obrotu leży nad obiema stronami karty, więc fokus nie ginie,
-            gdy odwrócona strona staje się nieaktywna. */}
-        <button
-          type="button"
-          aria-pressed={flipped}
-          aria-label={t('team.flipLabel').replace('{name}', fullName)}
-          onClick={handleToggle}
-          className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light"
-        />
-
         {member.linkedin && (
           <a
             href={member.linkedin}
@@ -169,7 +173,7 @@ export default function CardMember({ member, index }) {
             className="absolute top-1 right-1 z-30 flex w-11 h-11 items-center justify-center rounded-full text-white hover:bg-primary active:scale-95 transition-colors duration-200 ease-[var(--ease-out-quart)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
             aria-label={t('team.linkedinLabel').replace('{name}', fullName)}
           >
-            <FaLinkedinIn aria-hidden="true" size={16} />
+            <Linkedin aria-hidden="true" size={18} fill="currentColor" strokeWidth={1.5} />
           </a>
         )}
       </motion.div>

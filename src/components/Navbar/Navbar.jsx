@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Logo from '/uc-logo.png'
 import { NAV_ELEMENT as NavElement } from 'components/Navbar/index.js'
 import { NavBarItem } from 'components/Navbar/NavBarItem/NavBarItem.jsx'
 import LanguageSwitcher from 'components/Navbar/LanguageSwitcher/LanguageSwitcher.jsx'
-import { IoMdMenu, IoMdClose } from 'react-icons/io'
+import { Menu, X } from 'lucide-react'
 import { useI18n } from '@/i18n/useI18n.js'
 
 export default function Navbar() {
   const { t, language } = useI18n()
+  const { pathname } = useLocation()
   const [isVisible, setIsVisible] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -33,11 +35,24 @@ export default function Navbar() {
       }
     }
     document.addEventListener('keydown', closeOnEscape)
+
+    // Menu jest ukryte od breakpointu md, więc po poszerzeniu okna (np. obrót
+    // tabletu) trzeba je zamknąć, inaczej blokada przewijania zostaje.
+    const desktop = window.matchMedia('(min-width: 768px)')
+    const closeOnDesktop = (event) => event.matches && setIsMobileMenuOpen(false)
+    desktop.addEventListener('change', closeOnDesktop)
+
     return () => {
       document.body.style.overflow = previousOverflow
       document.removeEventListener('keydown', closeOnEscape)
+      desktop.removeEventListener('change', closeOnDesktop)
     }
   }, [isMobileMenuOpen])
+
+  // Zmiana strony (także przyciskiem Wstecz) zamyka menu.
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -101,14 +116,16 @@ export default function Navbar() {
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation"
               >
-                <span className="relative w-7 h-7 inline-block">
-                  <IoMdMenu
-                    className={`absolute inset-0 m-auto text-3xl transition-all duration-300 ease-[var(--ease-out-quart)] ${
+                <span className="relative w-8 h-8 inline-block">
+                  <Menu
+                    size={32}
+                    className={`absolute inset-0 m-auto transition-all duration-300 ease-[var(--ease-out-quart)] ${
                       isMobileMenuOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
                     }`}
                   />
-                  <IoMdClose
-                    className={`absolute inset-0 m-auto text-3xl transition-all duration-300 ease-[var(--ease-out-quart)] ${
+                  <X
+                    size={32}
+                    className={`absolute inset-0 m-auto transition-all duration-300 ease-[var(--ease-out-quart)] ${
                       isMobileMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'
                     }`}
                   />
@@ -138,7 +155,12 @@ export default function Navbar() {
               <LanguageSwitcher
                 className="pt-3 pb-8"
                 dropUp
-                onLanguageChange={() => setIsMobileMenuOpen(false)}
+                onLanguageChange={() => {
+                  setIsMobileMenuOpen(false)
+                  // Przełącznik po zamknięciu menu staje się inert, więc fokus
+                  // wraca na przycisk menu zamiast przepaść.
+                  requestAnimationFrame(() => toggleRef.current?.focus())
+                }}
               />
             </div>
           </div>
