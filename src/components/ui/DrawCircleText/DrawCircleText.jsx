@@ -2,8 +2,8 @@ import React from 'react'
 import { motion } from 'motion/react'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
-// Tekst z odręcznym kółkiem dookoła. Kółko rozciąga się do rozmiaru tekstu,
-// więc działa przy każdej długości etykiety i w każdym języku.
+// Tekst z odręcznym kółkiem dookoła. Kółko zachowuje proporcje rysunku,
+// bo rozciągnięte do tekstu wyglądało na przekreślenie.
 export const DrawCircleText = ({ text, svgClassName }) => {
   const prefersReducedMotion = usePrefersReducedMotion()
 
@@ -14,8 +14,7 @@ export const DrawCircleText = ({ text, svgClassName }) => {
         aria-hidden="true"
         viewBox="0 0 286 73"
         fill="none"
-        preserveAspectRatio="none"
-        className={svgClassName || 'absolute -left-3 -right-3 -top-3 -bottom-2 overflow-visible'}
+        className={svgClassName || 'absolute -left-3 -right-3 -top-1 -bottom-4 overflow-visible'}
       >
         <motion.path
           initial={prefersReducedMotion ? false : { pathLength: 0 }}

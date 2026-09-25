@@ -15,9 +15,15 @@ export default function BookingModal({ isOpen, onClose, embedUrl, bookingUrl }) 
 
     const previouslyFocused = document.activeElement
     const previousOverflow = document.body.style.overflow
+    // Okno jest renderowane w portalu poza #root, więc wyłączenie #root
+    // zatrzymuje fokus i czytniki ekranu w oknie.
+    const appRoot = document.getElementById('root')
     document.body.style.overflow = 'hidden'
+    if (appRoot) appRoot.inert = true
     closeButtonRef.current?.focus()
 
+    // Escape z wnętrza iframe Google nie dociera do strony (inna domena),
+    // dlatego przycisk zamknięcia jest zawsze osiągalny klawiszem Tab.
     const handleKey = (event) => {
       if (event.key === 'Escape') onClose()
     }
@@ -25,6 +31,7 @@ export default function BookingModal({ isOpen, onClose, embedUrl, bookingUrl }) 
 
     return () => {
       document.body.style.overflow = previousOverflow
+      if (appRoot) appRoot.inert = false
       window.removeEventListener('keydown', handleKey)
       previouslyFocused?.focus?.()
     }
