@@ -22,14 +22,15 @@ import {
 import Contact from 'components/Contact/Contact.jsx'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
 import Seo from '@/seo/Seo.jsx'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
-import screenLogin from 'assets/kaizen/kaizen-login.png'
-import screenHomeFeed from 'assets/kaizen/kaizen-home-feed.png'
-import screenNewSubmission from 'assets/kaizen/kaizen-new-submission.png'
-import screenDetails from 'assets/kaizen/kaizen-submission-details.png'
-import screenNotifications from 'assets/kaizen/kaizen-notifications.png'
-import screenSurveyForm from 'assets/kaizen/kaizen-survey-form.png'
-import screenSurveyResult from 'assets/kaizen/kaizen-survey-result.png'
+import screenLogin from 'assets/kaizen/kaizen-login.webp'
+import screenHomeFeed from 'assets/kaizen/kaizen-home-feed.webp'
+import screenNewSubmission from 'assets/kaizen/kaizen-new-submission.webp'
+import screenDetails from 'assets/kaizen/kaizen-submission-details.webp'
+import screenNotifications from 'assets/kaizen/kaizen-notifications.webp'
+import screenSurveyForm from 'assets/kaizen/kaizen-survey-form.webp'
+import screenSurveyResult from 'assets/kaizen/kaizen-survey-result.webp'
 
 const SCREENSHOT_IMAGES = [
   screenLogin,
@@ -56,8 +57,10 @@ const VALUE_ICONS = [Zap, Target, Eye, TrendingUp]
 const SCOPE_ICONS = [Zap, Users, CheckCircle2, Target]
 
 const AUTOPLAY_INTERVAL = 3500
+const SCREENSHOT_WIDTH = 560
+const SCREENSHOT_HEIGHT = 1215
 
-// ── Animation helpers ──────────────────────────────────────
+// Animation helpers
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
@@ -71,23 +74,26 @@ const fadeUpInView = (delay = 0) => ({
   transition: { delay, duration: 0.45, ease: 'easeOut' },
 })
 
-// ── Screenshot Carousel ───────────────────────────────────
+// Screenshot carousel
 function ScreenshotCarousel({ images, captions }) {
+  const { t } = useI18n()
+  const reducedMotion = usePrefersReducedMotion()
   const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
   const touchStartX = useRef(null)
   const total = images.length
 
-  const wrap = (i) => ((i % total) + total) % total
+  const wrap = useCallback((i) => ((i % total) + total) % total, [total])
 
-  const next = useCallback(() => setCurrent((i) => wrap(i + 1)), [total])
-  const prev = useCallback(() => setCurrent((i) => wrap(i - 1)), [total])
+  const next = useCallback(() => setCurrent((i) => wrap(i + 1)), [wrap])
+  const prev = useCallback(() => setCurrent((i) => wrap(i - 1)), [wrap])
 
   useEffect(() => {
-    if (paused) return
+    if (hovered || focused || reducedMotion) return
     const id = setInterval(next, AUTOPLAY_INTERVAL)
     return () => clearInterval(id)
-  }, [paused, next])
+  }, [hovered, focused, reducedMotion, next])
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX
@@ -101,43 +107,51 @@ function ScreenshotCarousel({ images, captions }) {
 
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false)
+      }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
       <div className="flex items-center justify-center gap-4 md:gap-10">
-        {/* Previous — desktop only */}
+        {/* Previous preview on desktop */}
         <button
           onClick={prev}
-          aria-label="Previous screen"
+          aria-label={t('kaizen.screenshots.previousScreen')}
           className="hidden md:block w-[160px] shrink-0 opacity-30 hover:opacity-55 transition-opacity duration-300 cursor-pointer"
         >
           <div className="aspect-[9/19.5] bg-bg-2 border-2 border-bg-3/50 rounded-[28px] overflow-hidden">
             <img
               src={images[wrap(current - 1)]}
               alt={captions[wrap(current - 1)]}
+              width={SCREENSHOT_WIDTH}
+              height={SCREENSHOT_HEIGHT}
               className="w-full h-full object-cover object-top"
               loading="lazy"
             />
           </div>
         </button>
 
-        {/* Current — center, animated */}
+        {/* Current screen */}
         <div className="w-[240px] md:w-[280px] shrink-0 flex flex-col items-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, scale: 0.93 }}
+              initial={reducedMotion ? false : { opacity: 0, scale: 0.93 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.93 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              exit={reducedMotion ? undefined : { opacity: 0, scale: 0.93 }}
+              transition={{ duration: reducedMotion ? 0 : 0.25, ease: 'easeOut' }}
               className="w-full"
             >
               <div className="aspect-[9/19.5] bg-bg-2 border-2 border-primary/30 rounded-[36px] overflow-hidden shadow-[0_12px_56px_rgba(82,113,255,0.18),0_4px_24px_rgba(0,0,0,0.55)]">
                 <img
                   src={images[current]}
                   alt={captions[current]}
+                  width={SCREENSHOT_WIDTH}
+                  height={SCREENSHOT_HEIGHT}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
@@ -147,16 +161,18 @@ function ScreenshotCarousel({ images, captions }) {
           <p className="text-xs text-gray-400 text-center mt-3 h-4">{captions[current]}</p>
         </div>
 
-        {/* Next — desktop only */}
+        {/* Next preview on desktop */}
         <button
           onClick={next}
-          aria-label="Next screen"
+          aria-label={t('kaizen.screenshots.nextScreen')}
           className="hidden md:block w-[160px] shrink-0 opacity-30 hover:opacity-55 transition-opacity duration-300 cursor-pointer"
         >
           <div className="aspect-[9/19.5] bg-bg-2 border-2 border-bg-3/50 rounded-[28px] overflow-hidden">
             <img
               src={images[wrap(current + 1)]}
               alt={captions[wrap(current + 1)]}
+              width={SCREENSHOT_WIDTH}
+              height={SCREENSHOT_HEIGHT}
               className="w-full h-full object-cover object-top"
               loading="lazy"
             />
@@ -169,28 +185,35 @@ function ScreenshotCarousel({ images, captions }) {
         <div className="flex gap-3">
           <button
             onClick={prev}
-            className="w-9 h-9 border border-bg-3 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/60 transition-colors"
+            aria-label={t('kaizen.screenshots.previousScreen')}
+            className="w-11 h-11 border border-bg-3 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/60 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={next}
-            className="w-9 h-9 border border-bg-3 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/60 transition-colors"
+            aria-label={t('kaizen.screenshots.nextScreen')}
+            className="w-11 h-11 border border-bg-3 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/60 transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center">
           {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              aria-label={`Go to screen ${i + 1}`}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                i === current ? 'w-6 bg-primary' : 'w-1.5 bg-bg-3 hover:bg-bg-3/70'
-              }`}
-            />
+              aria-label={t('kaizen.screenshots.goToScreen').replace('{n}', i + 1)}
+              aria-current={i === current ? 'true' : undefined}
+              className="w-11 h-11 flex items-center justify-center"
+            >
+              <span
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  i === current ? 'w-6 bg-primary' : 'w-1.5 bg-bg-3 hover:bg-bg-3/70'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>
@@ -198,7 +221,7 @@ function ScreenshotCarousel({ images, captions }) {
   )
 }
 
-// ── Main component ────────────────────────────────────────
+// Main component
 export default function KaizenProject() {
   const { t, language } = useI18n()
 
@@ -210,54 +233,72 @@ export default function KaizenProject() {
   return (
     <div className="text-white">
       <Seo route="kaizen" />
-      {/* ── Hero ─────────────────────────────────────────────── */}
+      {/* Hero */}
       <section className="bg-bg-1 section-wrapper">
-        <div className="section-inner relative overflow-hidden">
+        <div className="section-inner relative lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:items-center lg:gap-16">
           <div className="absolute top-0 right-0 opacity-50 pointer-events-none">
             <DiagonalPair size={10} gap={4} />
           </div>
 
-          <motion.div {...fadeUp(0)}>
-            <Link
-              to={`/${language}/projects`}
-              className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-10"
+          <div className="relative z-10">
+            <motion.div {...fadeUp(0)}>
+              <Link
+                to={`/${language}/projects`}
+                className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-10"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                {t('kaizen.hero.backLabel')}
+              </Link>
+            </motion.div>
+
+            <motion.div {...fadeUp(0.1)} className="flex flex-wrap gap-2 mb-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 border border-bg-3 text-xs text-gray-400">
+                <Smartphone className="w-3 h-3" />
+                {t('kaizen.hero.badgeMobile')}
+              </span>
+              <span className="px-3 py-1 border border-primary/40 text-xs text-primary-light">
+                {t('kaizen.hero.badgeMvp')}
+              </span>
+            </motion.div>
+
+            <motion.p {...fadeUp(0.17)} className="text-xs tracking-widest text-gray-400 mb-4">
+              {t('kaizen.hero.eyebrow')}
+            </motion.p>
+
+            <motion.h1
+              {...fadeUp(0.23)}
+              className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl"
             >
-              <ArrowLeft className="w-4 h-4" />
-              {t('kaizen.hero.backLabel')}
-            </Link>
-          </motion.div>
+              {t('kaizen.hero.title')}
+            </motion.h1>
 
-          <motion.div {...fadeUp(0.1)} className="flex flex-wrap gap-2 mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 border border-bg-3 text-xs text-gray-400">
-              <Smartphone className="w-3 h-3" />
-              {t('kaizen.hero.badgeMobile')}
-            </span>
-            <span className="px-3 py-1 border border-primary/40 text-xs text-primary">
-              {t('kaizen.hero.badgeMvp')}
-            </span>
-          </motion.div>
+            <motion.p
+              {...fadeUp(0.35)}
+              className="mt-6 max-w-2xl text-gray-300 text-lg leading-relaxed"
+            >
+              {t('kaizen.hero.description')}
+            </motion.p>
+          </div>
 
-          <motion.p {...fadeUp(0.17)} className="text-xs tracking-widest text-gray-400 mb-4">
-            {t('kaizen.hero.eyebrow')}
-          </motion.p>
-
-          <motion.h1
-            {...fadeUp(0.23)}
-            className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl"
-          >
-            {t('kaizen.hero.title')}
-          </motion.h1>
-
-          <motion.p
+          <motion.div
             {...fadeUp(0.35)}
-            className="mt-6 max-w-2xl text-gray-300 text-lg leading-relaxed"
+            className="hidden lg:flex justify-center"
+            aria-hidden="true"
           >
-            {t('kaizen.hero.description')}
-          </motion.p>
+            <div className="w-[240px] aspect-[9/19.5] rounded-[34px] border-2 border-primary/30 overflow-hidden shadow-[0_16px_64px_rgba(82,113,255,0.16)] rotate-3">
+              <img
+                src={screenHomeFeed}
+                alt=""
+                width={SCREENSHOT_WIDTH}
+                height={SCREENSHOT_HEIGHT}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── Features ─────────────────────────────────────────── */}
+      {/* Features */}
       <section className="bg-bg-2 section-wrapper">
         <div className="section-inner relative overflow-hidden">
           <motion.p {...fadeUpInView(0)} className="text-xs tracking-widest text-gray-400 mb-2">
@@ -277,8 +318,8 @@ export default function KaizenProject() {
                     {...fadeUpInView(i * 0.07)}
                     className="bg-bg-1 border border-bg-3/40 p-5 hover:border-primary/40 transition-colors"
                   >
-                    {Icon && <Icon className="w-5 h-5 text-primary mb-3" />}
-                    <h4 className="font-semibold text-sm mb-1.5">{feature.title}</h4>
+                    {Icon && <Icon className="w-5 h-5 text-primary-light mb-3" />}
+                    <h3 className="font-semibold text-sm mb-1.5">{feature.title}</h3>
                     <p className="text-xs text-gray-400 leading-relaxed">{feature.description}</p>
                   </motion.div>
                 )
@@ -287,7 +328,7 @@ export default function KaizenProject() {
         </div>
       </section>
 
-      {/* ── Screenshots ──────────────────────────────────────── */}
+      {/* Screenshots */}
       <section className="bg-bg-1 section-wrapper">
         <div className="section-inner relative overflow-hidden">
           <div className="absolute bottom-0 right-0 opacity-40 pointer-events-none">
@@ -301,16 +342,10 @@ export default function KaizenProject() {
             />
           </div>
 
-          <motion.p
-            {...fadeUpInView(0)}
-            className="text-xs tracking-widest text-gray-400 mb-2"
-          >
+          <motion.p {...fadeUpInView(0)} className="text-xs tracking-widest text-gray-400 mb-2">
             {t('kaizen.screenshots.eyebrow')}
           </motion.p>
-          <motion.h2
-            {...fadeUpInView(0.08)}
-            className="text-2xl md:text-3xl font-semibold mb-12"
-          >
+          <motion.h2 {...fadeUpInView(0.08)} className="text-2xl md:text-3xl font-semibold mb-12">
             {t('kaizen.screenshots.title')}
           </motion.h2>
 
@@ -320,7 +355,7 @@ export default function KaizenProject() {
         </div>
       </section>
 
-      {/* ── Business Value ───────────────────────────────────── */}
+      {/* Business value */}
       <section className="bg-bg-2 section-wrapper">
         <div className="section-inner relative overflow-hidden">
           <motion.p {...fadeUpInView(0)} className="text-xs tracking-widest text-gray-400 mb-2">
@@ -338,11 +373,11 @@ export default function KaizenProject() {
                   <motion.div key={i} {...fadeUpInView(i * 0.1)} className="flex gap-4">
                     {Icon && (
                       <div className="shrink-0 w-10 h-10 bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
+                        <Icon className="w-5 h-5 text-primary-light" />
                       </div>
                     )}
                     <div>
-                      <h4 className="font-semibold mb-1">{item.title}</h4>
+                      <h3 className="font-semibold mb-1">{item.title}</h3>
                       <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
                     </div>
                   </motion.div>
@@ -352,7 +387,7 @@ export default function KaizenProject() {
         </div>
       </section>
 
-      {/* ── Product Philosophy ───────────────────────────────── */}
+      {/* Product philosophy */}
       <section className="bg-bg-1 section-wrapper">
         <div className="section-inner relative overflow-hidden">
           <div className="absolute top-0 right-0 opacity-45 pointer-events-none">
@@ -384,10 +419,10 @@ export default function KaizenProject() {
                   >
                     {Icon && (
                       <div className="w-9 h-9 bg-primary/10 border border-primary/30 flex items-center justify-center mb-4">
-                        <Icon className="w-4 h-4 text-primary" />
+                        <Icon className="w-4 h-4 text-primary-light" />
                       </div>
                     )}
-                    <h4 className="font-semibold mb-2">{item.title}</h4>
+                    <h3 className="font-semibold mb-2">{item.title}</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
                   </motion.div>
                 )
@@ -396,7 +431,7 @@ export default function KaizenProject() {
         </div>
       </section>
 
-      {/* ── Contact ──────────────────────────────────────────── */}
+      {/* Contact */}
       <Contact />
     </div>
   )

@@ -6,7 +6,7 @@ const pl = {
         'Projektujemy i budujemy aplikacje webowe i mobilne dopasowane do procesów firm przemysłowych, technicznych i produkcyjnych. Software house z Poznania.',
     },
     projects: {
-      title: 'Realizacje i case studies | Upcoders',
+      title: 'Realizacje | Upcoders',
       description:
         'Produkty i narzędzia, które projektujemy i budujemy dla realnych potrzeb biznesowych. Zobacz nasze wdrożenia i sposób pracy.',
     },
@@ -429,12 +429,17 @@ const pl = {
     title: 'Realizacje',
     description: 'Produkty i narzędzia, które projektujemy i budujemy dla realnych potrzeb biznesowych.',
     viewProject: 'Zobacz projekt',
-    comingSoon: 'Wkrótce',
+    nextProject: {
+      title: 'Twój projekt może być następny',
+      description:
+        'Masz proces, który zjada czas zespołu? Opowiedz nam o nim, a wspólnie sprawdzimy, jak go uprościć.',
+      button: 'Umów rozmowę',
+    },
     cta: {
       eyebrow: 'TWÓJ PROJEKT',
-      headline: 'Masz pomysł? Zbudujmy go razem.',
-      sub: 'Przyjmujemy nowe wyzwania przez cały rok. Opowiedz nam o swojej wizji — zamienimy ją w produkt, z którego będziesz dumny.',
-      button: 'Zacznijmy rozmawiać',
+      headline: 'Chcesz usprawnić proces w swojej firmie?',
+      sub: 'Opowiedz nam, jak dziś pracuje Twój zespół i co chcesz zmienić. Wspólnie ustalimy pierwszy krok.',
+      button: 'Umów rozmowę',
     },
     items: {
       kaizen: {
@@ -502,6 +507,9 @@ const pl = {
     screenshots: {
       eyebrow: 'EKRANY',
       title: 'Jak to wygląda w praktyce.',
+      previousScreen: 'Poprzedni ekran',
+      nextScreen: 'Następny ekran',
+      goToScreen: 'Przejdź do ekranu {n}',
       captions: [
         'Logowanie',
         'Lista zgłoszeń',
@@ -540,24 +548,24 @@ const pl = {
     },
     scope: {
       eyebrow: 'FILOZOFIA PRODUKTU',
-      title: 'Prosta z założenia. Skuteczna od pierwszego dnia.',
+      title: 'Prosta z założenia. Skupiona na działaniu.',
       description:
         'Kaizen powstał wokół jednej zasady: skupione narzędzie, które robi jedną rzecz naprawdę dobrze - jest używane. Każda funkcja ma swoje uzasadnienie i wspiera główny cel: sprawne przeprowadzenie pomysłu do wdrożenia.',
       highlights: [
         {
-          title: 'Zero bariery wejścia',
+          title: 'Prostszy dostęp',
           description:
-            'Logowanie kodem dostępu sprawia, że pracownicy są w aplikacji w kilka sekund - bez konfiguracji IT i zakładania kont.',
+            'Kod dostępu daje zespołowi prostą ścieżkę logowania bez zakładania indywidualnych kont.',
         },
         {
-          title: 'Bez potrzeby szkoleń',
+          title: 'Czytelny przepływ pracy',
           description:
-            'Interfejs jest na tyle intuicyjny, że każdy członek zespołu odnajduje się w nim samodzielnie - bez dokumentacji i onboardingu.',
+            'Ekrany prowadzą użytkownika od zgłoszenia do decyzji, ograniczając potrzebę dodatkowych instrukcji.',
         },
         {
-          title: 'Gotowe od pierwszego dnia',
+          title: 'Prosty start',
           description:
-            'Brak skomplikowanych integracji i konfiguracji. Aplikacja działa od razu i przynosi wartość już od pierwszego zgłoszenia.',
+            'Aplikację można uruchomić bez rozbudowanej konfiguracji. Zakres wdrożenia dopasowujemy do procesu zespołu.',
         },
         {
           title: 'Skupiony zakres funkcji',

@@ -6,7 +6,7 @@ const en = {
         'We design and build tailored web and mobile applications for industrial, technical and manufacturing companies. Software house based in Poznan, Poland.',
     },
     projects: {
-      title: 'Projects and case studies | Upcoders',
+      title: 'Projects | Upcoders',
       description:
         'Products and tools we design and build for real business needs. See what we have delivered and how we work.',
     },
@@ -426,12 +426,17 @@ const en = {
     title: 'Projects',
     description: 'Products and tools we design and build for real business needs.',
     viewProject: 'View project',
-    comingSoon: 'Coming soon',
+    nextProject: {
+      title: 'Your project could be next',
+      description:
+        "Is there a process eating up your team's time? Tell us about it and we will work out together how to simplify it.",
+      button: 'Book a call',
+    },
     cta: {
       eyebrow: 'YOUR PROJECT',
-      headline: "Got an idea? Let's build it.",
-      sub: "We take on new challenges year-round. Share your vision — we'll shape it into a product worth being proud of.",
-      button: 'Start a conversation',
+      headline: 'Want to improve a process in your business?',
+      sub: 'Tell us how your team works today and what you want to change. We will define a practical first step together.',
+      button: 'Book a call',
     },
     items: {
       kaizen: {
@@ -496,6 +501,9 @@ const en = {
     screenshots: {
       eyebrow: 'SCREENS',
       title: 'How it looks in practice.',
+      previousScreen: 'Previous screen',
+      nextScreen: 'Next screen',
+      goToScreen: 'Go to screen {n}',
       captions: [
         'Login',
         'Submissions list',
@@ -534,24 +542,24 @@ const en = {
     },
     scope: {
       eyebrow: 'PRODUCT PHILOSOPHY',
-      title: 'Simple by design. Effective from day one.',
+      title: 'Simple by design. Focused on action.',
       description:
         'Kaizen is built around one principle: a focused tool that does one thing really well gets used. Every feature is there for a reason - and nothing that would slow teams down made it in.',
       highlights: [
         {
-          title: 'Zero onboarding friction',
+          title: 'Simpler access',
           description:
-            'Access code login means employees are in the app in seconds, with no IT setup or account creation required.',
+            'An access code gives the team a simple way to sign in without creating individual accounts.',
         },
         {
-          title: 'No training needed',
+          title: 'A clear workflow',
           description:
-            'The flow is intuitive enough for any team member to figure out on their own - no documentation, no sessions.',
+            'The screens guide users from submission to decision, reducing the need for extra instructions.',
         },
         {
-          title: 'Ready on day one',
+          title: 'A straightforward start',
           description:
-            'No complex integrations or configuration. The app works out of the box and delivers value from the first submission.',
+            "The application can launch without extensive configuration. We tailor the rollout to the team's process.",
         },
         {
           title: 'Focused feature set',
