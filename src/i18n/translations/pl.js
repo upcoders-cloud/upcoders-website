@@ -552,6 +552,13 @@ const pl = {
       button: 'SKONTAKTUJ SIĘ',
     },
   },
+  booking: {
+    title: 'Umów rozmowę',
+    description: 'Wybierz dogodny termin. Link do Google Meet dostaniesz w potwierdzeniu e-mail.',
+    loading: 'Ładowanie kalendarza...',
+    openInNewTab: 'Otwórz kalendarz w nowej karcie',
+    close: 'Zamknij',
+  },
   notFound: {
     title: 'Nie znaleziono strony',
     backHome: 'Wróć na stronę główną',

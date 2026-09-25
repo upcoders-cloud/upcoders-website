@@ -547,6 +547,13 @@ const en = {
       button: 'GET IN TOUCH',
     },
   },
+  booking: {
+    title: 'Book a call',
+    description: 'Pick a time that suits you. You will get a Google Meet link in the confirmation email.',
+    loading: 'Loading calendar...',
+    openInNewTab: 'Open the calendar in a new tab',
+    close: 'Close',
+  },
   notFound: {
     title: 'Page not found',
     backHome: 'Back to home',

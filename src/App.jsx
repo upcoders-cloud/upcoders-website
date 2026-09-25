@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import { FaArrowUp } from 'react-icons/fa6'
 import { I18nProvider } from '@/i18n/I18nProvider.jsx'
 import AppRouter from '@/router/AppRouter.jsx'
+import BookingProvider from '@/components/Booking/BookingProvider.jsx'
 
 const ScrollToTopStyles = { display: 'flex', justifyContent: 'center', alignItems: 'center' }
 
@@ -13,7 +14,9 @@ export default function App() {
       <BrowserRouter>
         <Toaster position="top-center" reverseOrder={false} />
         <ScrollToTop smooth component={<FaArrowUp />} style={ScrollToTopStyles} />
-        <AppRouter />
+        <BookingProvider>
+          <AppRouter />
+        </BookingProvider>
       </BrowserRouter>
     </I18nProvider>
   )
