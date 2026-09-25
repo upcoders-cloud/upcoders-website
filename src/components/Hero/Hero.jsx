@@ -85,7 +85,7 @@ export default function Hero() {
           <a
             href="#contact"
             onClick={handleCtaClick}
-            className="group mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base font-medium bg-primary text-white shadow-[3px_3px_0px_black] transition-[transform,box-shadow,background-color] duration-200 ease-[var(--ease-out-quart)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-primary-light active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            className="group mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base font-medium bg-[#3F5EF0] text-white shadow-[3px_3px_0px_black] transition-[transform,box-shadow,background-color] duration-200 ease-[var(--ease-out-quart)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#4868F8] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
           >
             <span className="relative inline-block transition-transform duration-200 ease-[var(--ease-out-quart)] group-hover:translate-x-0.5">
               {t('hero.cta')}
