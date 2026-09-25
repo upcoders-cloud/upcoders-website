@@ -2,11 +2,14 @@ import React from 'react'
 import { motion } from 'motion/react'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
+import { useBooking } from '@/components/Booking/useBooking.js'
 import { useI18n } from '@/i18n/useI18n.js'
+import WriteToUsLink from './WriteToUsLink.jsx'
 import { fadeUpInView } from './index.js'
 
-export default function OfferCta({ onContact }) {
+export default function OfferCta() {
   const { t } = useI18n()
+  const { openBooking, isBookingAvailable } = useBooking()
 
   return (
     <section className="bg-bg-1 text-white section-wrapper relative overflow-hidden">
@@ -17,7 +20,7 @@ export default function OfferCta({ onContact }) {
         >
           <div>
             <DiagonalPair size={12} gap={4} className="mb-8" />
-            <p className="text-xs tracking-widest text-gray-500 uppercase mb-3">
+            <p className="text-xs tracking-widest text-gray-400 uppercase mb-3">
               {t('offerPage.cta.eyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight max-w-xl">
@@ -27,8 +30,9 @@ export default function OfferCta({ onContact }) {
               {t('offerPage.cta.sub')}
             </p>
           </div>
-          <div className="shrink-0">
-            <DefaultButton label={t('offerPage.cta.button')} onClick={onContact} />
+          <div className="shrink-0 flex flex-col sm:flex-row md:flex-col lg:flex-row sm:items-center md:items-end lg:items-center gap-4">
+            <DefaultButton label={t('offerPage.cta.button')} onClick={openBooking} />
+            {isBookingAvailable && <WriteToUsLink />}
           </div>
         </motion.div>
       </div>

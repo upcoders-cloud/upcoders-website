@@ -93,12 +93,13 @@ const pl = {
     },
   },
   offerPage: {
+    writeToUs: 'Napisz do nas',
     hero: {
       eyebrow: 'OFERTA',
       title: 'Budujemy oprogramowanie, które pracuje na Twój biznes',
       description:
         'Od pierwszego szkicu po utrzymanie na produkcji. Projektujemy, programujemy i rozwijamy aplikacje dla firm, które chcą uporządkować procesy, odciążyć zespół i szybciej odpowiadać na potrzeby klientów.',
-      cta: 'Opisz swój projekt',
+      cta: 'Umów rozmowę',
       note: 'Odezwiemy się, żeby omówić szczegóły',
       indexLabel: 'W czym możemy pomóc',
     },
@@ -362,34 +363,54 @@ const pl = {
   contact: {
     header: {
       line1: 'Porozmawiajmy o',
-      line2: 'Twoim projekcie!',
-      descriptionLine1: 'Zostaw nam adres e-mail i numer telefonu.',
-      descriptionLine2: 'Skontaktujemy się z Tobą w ciągu 48 godzin.',
+      line2: 'Twoim projekcie',
+      description:
+        'Napisz, czego potrzebujesz: nowej aplikacji, rozwoju istniejącego systemu czy automatyzacji. Odezwiemy się, żeby omówić kolejne kroki.',
+    },
+    bookCall: {
+      prompt: 'Wolisz porozmawiać?',
+      action: 'Umów rozmowę',
     },
     form: {
+      label: 'Formularz kontaktowy',
       labels: {
+        name: 'Imię i nazwisko',
         email: 'E-mail',
-        phone: 'Numer telefonu',
-        privacy: 'Akceptuję warunki polityki prywatności *',
+        phone: 'Telefon',
+        message: 'Wiadomość',
       },
       placeholders: {
-        input: 'Wpisz tutaj...',
+        name: 'Jan Kowalski',
+        email: 'jan@firma.pl',
+        phone: '+48 600 000 000',
+        message: 'Opisz krótko swój pomysł lub problem, który chcesz rozwiązać.',
+      },
+      privacy: {
+        before: 'Znam ',
+        link: 'politykę prywatności',
+        after: ' i zgadzam się na kontakt w sprawie mojego zapytania.',
       },
       errors: {
-        emailRequired: 'E-mail jest wymagany.',
+        nameTooLong: 'Imię i nazwisko jest za długie.',
+        emailRequired: 'Podaj adres e-mail.',
         emailInvalid: 'Podaj poprawny adres e-mail.',
         phoneInvalid: 'Podaj poprawny numer telefonu.',
-        privacyRequired: 'Zaznacz zgodę, aby kontynuować.',
+        messageRequired: 'Napisz, w czym możemy pomóc.',
+        messageTooShort: 'Napisz kilka słów więcej (co najmniej 20 znaków).',
+        messageTooLong: 'Wiadomość jest za długa (maksymalnie 5000 znaków).',
+        privacyRequired: 'Zaznacz zgodę, aby wysłać wiadomość.',
       },
       buttons: {
         send: 'WYŚLIJ WIADOMOŚĆ',
         sent: 'WYSŁANO',
       },
+      successMessage: 'Dziękujemy, wiadomość dotarła. Odezwiemy się, żeby omówić kolejne kroki.',
       toasts: {
         success: 'Wiadomość została wysłana.',
-        failed: 'Wysyłka nie powiodła się.',
-        clientError: 'Błąd klienta. Sprawdź konsolę po więcej informacji.',
-        missingConfig: 'Błąd konfiguracji formularza. Skontaktuj się z administratorem strony.',
+        failed:
+          'Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz na contact@upcoders.cloud.',
+        missingConfig:
+          'Formularz jest chwilowo niedostępny. Napisz do nas na contact@upcoders.cloud.',
       },
       web3: {
         subject: 'Nowa wiadomość z naszej strony',

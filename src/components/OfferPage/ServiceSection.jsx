@@ -52,7 +52,7 @@ export default function ServiceSection({ service, index, onContact }) {
             </motion.p>
 
             <motion.div {...fadeUpInView(0.06)}>
-              <h3 className="text-xs tracking-widest text-gray-500 uppercase mb-4">
+              <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-4">
                 {t('offerPage.labels.deliverables')}
               </h3>
               <ul className="grid sm:grid-cols-2 gap-3">
@@ -71,7 +71,7 @@ export default function ServiceSection({ service, index, onContact }) {
             </motion.div>
 
             <motion.div {...fadeUpInView(0.1)} className="border-l-2 border-primary pl-5 py-1">
-              <h3 className="text-xs tracking-widest text-gray-500 uppercase mb-2">
+              <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-2">
                 {t('offerPage.labels.forWhom')}
               </h3>
               <p className="text-gray-300 leading-relaxed">{t(`${base}.forWhom`)}</p>
@@ -79,7 +79,7 @@ export default function ServiceSection({ service, index, onContact }) {
 
             {tags && (
               <motion.div {...fadeUpInView(0.12)}>
-                <h3 className="text-xs tracking-widest text-gray-500 uppercase mb-3">
+                <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-3">
                   {t('offerPage.labels.tech')}
                 </h3>
                 <ul className="flex flex-wrap gap-2">
@@ -99,7 +99,7 @@ export default function ServiceSection({ service, index, onContact }) {
                   className="group flex items-center justify-between gap-4 border border-bg-3/60 hover:border-primary/60 p-5 transition-colors duration-300"
                 >
                   <span>
-                    <span className="block text-xs tracking-widest text-gray-500 uppercase mb-1">
+                    <span className="block text-xs tracking-widest text-gray-400 uppercase mb-1">
                       {t('offerPage.labels.example')}
                     </span>
                     <span className="font-medium">{t(`${base}.example`)}</span>

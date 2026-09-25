@@ -13,7 +13,7 @@ export default function OfferFaq() {
         <div className="lg:col-span-4">
           <motion.p
             {...fadeUpInView(0)}
-            className="text-xs tracking-widest text-gray-500 uppercase mb-3"
+            className="text-xs tracking-widest text-gray-400 uppercase mb-3"
           >
             {t('offerPage.faq.eyebrow')}
           </motion.p>
@@ -31,7 +31,7 @@ export default function OfferFaq() {
         <motion.div {...fadeUpInView(0.1)} className="lg:col-span-8 border-t border-bg-3/70">
           {items.map((item) => (
             <details key={item.question} className="group border-b border-bg-3/70">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-medium transition-colors duration-200 hover:text-primary [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-medium transition-colors duration-200 hover:text-primary-light [&::-webkit-details-marker]:hidden">
                 <span>{item.question}</span>
                 <span
                   aria-hidden="true"

@@ -19,7 +19,7 @@ export default function OfferProcess() {
           <div className="lg:col-span-5">
             <motion.p
               {...fadeUpInView(0)}
-              className="text-xs tracking-widest text-gray-500 uppercase mb-3"
+              className="text-xs tracking-widest text-gray-400 uppercase mb-3"
             >
               {t('offerPage.process.eyebrow')}
             </motion.p>

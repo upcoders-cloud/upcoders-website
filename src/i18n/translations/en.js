@@ -93,12 +93,13 @@ const en = {
     },
   },
   offerPage: {
+    writeToUs: 'Write to us',
     hero: {
       eyebrow: 'OFFER',
       title: 'We build software that works for your business',
       description:
         'From the first sketch to running in production. We design, build and grow applications for companies that want to organize their processes, take work off their team and respond to customers faster.',
-      cta: 'Describe your project',
+      cta: 'Book a call',
       note: 'We will get back to you to discuss the details',
       indexLabel: 'How we can help',
     },
@@ -360,35 +361,53 @@ const en = {
   },
   contact: {
     header: {
-      line1: 'Let us talk about',
-      line2: 'your project!',
-      descriptionLine1: 'Leave us your e-mail address and phone number.',
-      descriptionLine2: 'We will contact you within 48 hours.',
+      line1: "Let's talk about",
+      line2: 'your project',
+      description:
+        'Tell us what you need: a new application, work on an existing system or automation. We will get back to you to discuss the next steps.',
+    },
+    bookCall: {
+      prompt: 'Prefer to talk?',
+      action: 'Book a call',
     },
     form: {
+      label: 'Contact form',
       labels: {
+        name: 'Full name',
         email: 'Email',
-        phone: 'Phone number',
-        privacy: 'I agree to the privacy policy terms *',
+        phone: 'Phone',
+        message: 'Message',
       },
       placeholders: {
-        input: 'Type here...',
+        name: 'Jane Smith',
+        email: 'jane@company.com',
+        phone: '+44 7700 900000',
+        message: 'Briefly describe your idea or the problem you want to solve.',
+      },
+      privacy: {
+        before: 'I have read the ',
+        link: 'privacy policy',
+        after: ' and agree to be contacted about my enquiry.',
       },
       errors: {
-        emailRequired: 'Email is required.',
+        nameTooLong: 'The name is too long.',
+        emailRequired: 'Please enter your email address.',
         emailInvalid: 'Please enter a valid email address.',
         phoneInvalid: 'Please enter a valid phone number.',
-        privacyRequired: 'Check the agreement to continue.',
+        messageRequired: 'Tell us how we can help.',
+        messageTooShort: 'Please write a few more words (at least 20 characters).',
+        messageTooLong: 'The message is too long (5000 characters at most).',
+        privacyRequired: 'Please tick the box to send your message.',
       },
       buttons: {
         send: 'SEND MESSAGE',
         sent: 'SENT',
       },
+      successMessage: 'Thank you, your message has arrived. We will get back to you to discuss the next steps.',
       toasts: {
-        success: 'Message sent successfully.',
-        failed: 'Submission failed.',
-        clientError: 'Client error. Please check the console for more info.',
-        missingConfig: 'Form configuration error. Please contact the website administrator.',
+        success: 'Your message has been sent.',
+        failed: 'We could not send your message. Please try again or email contact@upcoders.cloud.',
+        missingConfig: 'The form is temporarily unavailable. Please email us at contact@upcoders.cloud.',
       },
       web3: {
         subject: 'Someone sent a message from our Website',
