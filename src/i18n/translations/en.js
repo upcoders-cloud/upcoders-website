@@ -49,10 +49,10 @@ const en = {
   },
   hero: {
     title: {
-      line1: 'BRIGHT',
-      line2Prefix: 'THE',
-      line2PrefixDone: 'THE',
-      words: ['FUTURE', 'CODE', 'INNOVATION', 'IDEAS', 'FUTURE'],
+      line1: 'WE BUILD',
+      line2Prefix: 'BETTER',
+      line2PrefixDone: 'A BETTER',
+      words: ['SOLUTIONS', 'PRODUCTS', 'APPS', 'TOOLS', 'FUTURE'],
     },
     description:
       'We design and develop modern applications tailored to the processes of industrial and technical companies.',
@@ -316,36 +316,39 @@ const en = {
   },
   howWeWork: {
     eyebrow: 'OUR PROCESS',
-    title: 'How do we work?',
+    title: 'How we work',
     steps: [
       {
-        title: 'Discovery',
+        title: 'We learn your process',
         description:
-          'Research client requirments. Define project goals, objectives and scope to ensure aligment.',
+          'We talk with your team about how they work today, their goals and constraints. Together we agree how we will know the solution works.',
       },
       {
-        title: 'Scope & Estimate',
+        title: 'We agree on scope and cost',
         description:
-          'Define scope, priorities and timeline. Align budget and milestones before development starts.',
+          'We set priorities and split the work into stages. Before we start, you know the scope and the cost.',
       },
       {
-        title: 'Build & Iterate',
+        title: 'We build and test',
         description:
-          'Build in focused sprints with regular demos. Gather feedback and refine features step by step.',
+          "We regularly show working versions and gather your comments. We test the app on your team's real tasks.",
       },
       {
-        title: 'Launch & Support',
+        title: 'We launch and improve',
         description:
-          'Deploy safely and monitor performance from day one. Provide maintenance, updates and further development.',
+          'We launch the app, keep an eye on how it runs and plan further improvements together.',
       },
     ],
-    highlights: ['Kickoff in 7 days', 'Weekly progress updates', 'Long-term support'],
+    highlights: ['Direct contact with the team', 'Clear scope and quote', 'Support after launch'],
     cta: 'BOOK A DISCOVERY CALL',
   },
   team: {
-    eyebrow: 'MEET OUR TEAM',
+    eyebrow: 'OUR TEAM',
+    title: 'The people behind Upcoders',
     description:
-      'We are more than a tech company - we are a team united by curiosity, creativity, and a drive to make an impact. Together, we turn challenges into opportunities.',
+      'Meet the people you will work with, from defining the scope through launch and ongoing development.',
+    flipLabel: 'Show details: {name}',
+    linkedinLabel: '{name} on LinkedIn',
     members: {
       pawel: {
         role: 'Co-Founder',

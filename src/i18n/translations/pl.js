@@ -320,33 +320,36 @@ const pl = {
     title: 'Jak działamy?',
     steps: [
       {
-        title: 'Faza discovery',
+        title: 'Poznajemy proces',
         description:
-          'Badanie wymagań klienta. Definiujemy cele, założenia i zakres projektu, aby zapewnić spójność.',
+          'Rozmawiamy z Twoim zespołem o tym, jak dziś pracuje, jakie ma cele i ograniczenia. Razem ustalamy, po czym poznamy, że rozwiązanie działa.',
       },
       {
-        title: 'Zakres i wycena',
+        title: 'Ustalamy zakres i wycenę',
         description:
-          'Definiujemy zakres, priorytety i harmonogram realizacji. Uzgadniamy budżet oraz kamienie milowe przed startem developmentu.',
+          'Wybieramy priorytety i dzielimy pracę na etapy. Zanim zaczniemy, znasz zakres prac i koszt.',
       },
       {
-        title: 'Budowa i iteracja',
+        title: 'Budujemy i sprawdzamy',
         description:
-          'Tworzymy produkt w krótkich sprintach i regularnie pokazujemy postępy. Zbieramy feedback i iteracyjnie dopracowujemy funkcje.',
+          'Regularnie pokazujemy działające wersje i zbieramy Twoje uwagi. Sprawdzamy aplikację na prawdziwych zadaniach zespołu.',
       },
       {
-        title: 'Wdrożenie i wsparcie',
+        title: 'Wdrażamy i rozwijamy',
         description:
-          'Wdrażamy rozwiązanie bezpiecznie i monitorujemy działanie od pierwszego dnia. Zapewniamy utrzymanie, aktualizacje i dalszy rozwój.',
+          'Uruchamiamy aplikację, pilnujemy jej działania i razem planujemy kolejne usprawnienia.',
       },
     ],
-    highlights: ['Kickoff w 7 dni', 'Cotygodniowe aktualizacje', 'Długofalowe wsparcie'],
+    highlights: ['Stały kontakt z zespołem', 'Przejrzysty zakres i wycena', 'Wsparcie po wdrożeniu'],
     cta: 'UMÓW ROZMOWĘ',
   },
   team: {
-    eyebrow: 'POZNAJ NASZ ZESPÓŁ',
+    eyebrow: 'NASZ ZESPÓŁ',
+    title: 'Ludzie, którzy tworzą Upcoders',
     description:
-      'Jesteśmy czymś więcej niż firma technologiczna - to zespół ludzi połączonych ciekawością, kreatywnością i chęcią realnego wpływu. Wspólnie zamieniamy wyzwania w możliwości.',
+      'Poznaj osoby, z którymi będziesz pracować nad aplikacją: od ustalenia zakresu po wdrożenie i dalszy rozwój.',
+    flipLabel: 'Pokaż opis: {name}',
+    linkedinLabel: 'Profil {name} na LinkedIn',
     members: {
       pawel: {
         role: 'Współzałożyciel',
