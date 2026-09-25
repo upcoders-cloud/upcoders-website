@@ -51,7 +51,13 @@ export default function PublicLayout() {
       </a>
       <Navbar />
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        {/* Granica Suspense dla leniwie ładowanych podstron. Stoi nad <Outlet>,
+            więc przy nawigacji (router działa w startTransition) jest już
+            zamontowana i React trzyma poprzednią stronę, aż chunk nowej się
+            wczyta. Kotwica z adresu trafia wtedy w istniejący element. */}
+        <React.Suspense fallback={<div className="min-h-screen bg-bg-1" />}>
+          <Outlet />
+        </React.Suspense>
       </main>
       <Footer />
     </>

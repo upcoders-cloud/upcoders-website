@@ -6,11 +6,14 @@ export default function Accordion({ items = [], defaultOpenIndex = null, classNa
     Number.isInteger(defaultOpenIndex) ? defaultOpenIndex : null
   )
 
+  // The hash is only matched on mount, against the items of the first render.
+  const initialItems = React.useRef(items)
+
   React.useEffect(() => {
     const hash = window.location.hash.slice(1)
     if (!hash) return
 
-    const idx = items.findIndex((item) => item.anchor === hash)
+    const idx = initialItems.current.findIndex((item) => item.anchor === hash)
     if (idx === -1) return
 
     setOpenIndex(idx)

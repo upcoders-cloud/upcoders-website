@@ -11,7 +11,7 @@
  *
  * Dlaczego przeglądarka, a nie renderowanie po stronie serwera:
  * aplikacja jest pełna kodu działającego wyłącznie w przeglądarce (animacje
- * na canvasie, react-device-detect, pomiary przez ResizeObserver), a React 19
+ * na canvasie, pomiary przez ResizeObserver), a React 19
  * wynosi znaczniki head dopiero w trakcie renderu. Zrzut z prawdziwej
  * przeglądarki daje dokładnie ten DOM, który widzi użytkownik, bez
  * przebudowywania routingu pod SSR.

@@ -5,7 +5,6 @@ import { ArrowRight } from 'lucide-react'
 import ZigZag5 from 'components/Decor/ZigZag5.jsx'
 import { OFFER_ITEMS } from './index.js'
 import Accordion from 'components/Offer/Accordion/Accordion.jsx'
-import { isMobile } from 'react-device-detect'
 import { useI18n } from '@/i18n/useI18n.js'
 
 const fadeUp = {
@@ -52,7 +51,9 @@ export default function Offer() {
             />
           </Link>
 
-          {!isMobile && <ZigZag5 size={16} className="opacity-90 mt-16" />}
+          <div className="hidden md:block">
+            <ZigZag5 size={16} className="opacity-90 mt-16" />
+          </div>
         </motion.div>
 
         <motion.div
@@ -64,7 +65,9 @@ export default function Offer() {
         >
           <h3 className="text-xs tracking-widest text-gray-400 mb-4">{t('offer.specializeIn')}</h3>
           <Accordion items={translatedItems} defaultOpenIndex={1} />
-          {isMobile && <ZigZag5 size={14} className="opacity-90 mt-10 mx-auto" />}
+          <div className="md:hidden">
+            <ZigZag5 size={14} className="opacity-90 mt-10 mx-auto" />
+          </div>
         </motion.div>
       </div>
     </section>

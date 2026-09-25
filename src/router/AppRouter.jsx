@@ -1,13 +1,10 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '@/pages/HomePage.jsx'
-import OfferPage from '@/pages/OfferPage.jsx'
-import ProjectsPage from '@/pages/ProjectsPage.jsx'
-import ProjectDetailsPage from '@/pages/ProjectDetailsPage.jsx'
-import NotFoundPage from '@/pages/NotFoundPage.jsx'
-import PrivacyPage from '@/pages/PrivacyPage.jsx'
 import LanguageLayout from '@/router/LanguageLayout.jsx'
 import RedirectToPreferredLanguage from '@/router/RedirectToPreferredLanguage.jsx'
+import { lazyPages } from '@/router/lazyPages.js'
+
+const { OfferPage, ProjectsPage, ProjectDetailsPage, PrivacyPage, NotFoundPage } = lazyPages
 
 export default function AppRouter() {
   return (
