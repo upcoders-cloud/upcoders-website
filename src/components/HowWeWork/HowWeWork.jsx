@@ -4,7 +4,7 @@ import { Lightbulb, ClipboardCheck, RefreshCw, MousePointer, Check } from 'lucid
 import { motion, useMotionValue, useScroll, useTransform } from 'motion/react'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
-import { useBooking } from '@/components/Booking/useBooking.js'
+import { useGoToContact } from '@/hooks/useGoToContact/useGoToContact.js'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
 const STEP_ICONS = [Lightbulb, ClipboardCheck, RefreshCw, MousePointer]
@@ -49,7 +49,7 @@ function MobileSegment({ progress, index, count }) {
 
 export default function HowWeWork() {
   const { t } = useI18n()
-  const { openBooking } = useBooking()
+  const goToContact = useGoToContact()
   const prefersReducedMotion = usePrefersReducedMotion()
   const steps = t('howWeWork.steps')
   const highlights = t('howWeWork.highlights')
@@ -187,7 +187,7 @@ export default function HowWeWork() {
           </ul>
           <DefaultButton
             label={t('howWeWork.cta')}
-            onClick={openBooking}
+            onClick={goToContact}
             className="px-6 py-3 text-sm md:text-base"
           />
         </motion.div>

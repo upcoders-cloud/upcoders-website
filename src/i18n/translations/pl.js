@@ -99,13 +99,12 @@ const pl = {
     },
   },
   offerPage: {
-    writeToUs: 'Napisz do nas',
     hero: {
       eyebrow: 'OFERTA',
       title: 'Budujemy oprogramowanie, które pracuje na Twój biznes',
       description:
         'Od pierwszego szkicu po utrzymanie na produkcji. Projektujemy, programujemy i rozwijamy aplikacje dla firm, które chcą uporządkować procesy, odciążyć zespół i szybciej odpowiadać na potrzeby klientów.',
-      cta: 'Umów rozmowę',
+      cta: 'Opisz swój projekt',
       note: 'Odezwiemy się, żeby omówić szczegóły',
       indexLabel: 'W czym możemy pomóc',
     },
@@ -312,7 +311,7 @@ const pl = {
       eyebrow: 'TWÓJ PROJEKT',
       headline: 'Porozmawiajmy o tym, co chcesz zbudować',
       sub: 'Opisz swój pomysł albo problem, z którym mierzy się Twoja firma. Odezwiemy się, doprecyzujemy zakres i przygotujemy wycenę bez zobowiązań.',
-      button: 'Umów rozmowę',
+      button: 'Porozmawiajmy',
     },
   },
   howWeWork: {
@@ -341,7 +340,7 @@ const pl = {
       },
     ],
     highlights: ['Stały kontakt z zespołem', 'Przejrzysty zakres i wycena', 'Wsparcie po wdrożeniu'],
-    cta: 'UMÓW ROZMOWĘ',
+    cta: 'POROZMAWIAJMY',
   },
   team: {
     eyebrow: 'NASZ ZESPÓŁ',
@@ -375,10 +374,6 @@ const pl = {
       line2: 'Twoim projekcie',
       description:
         'Napisz, czego potrzebujesz: nowej aplikacji, rozwoju istniejącego systemu czy automatyzacji. Odezwiemy się, żeby omówić kolejne kroki.',
-    },
-    bookCall: {
-      prompt: 'Wolisz porozmawiać?',
-      action: 'Umów rozmowę',
     },
     form: {
       label: 'Formularz kontaktowy',
@@ -518,13 +513,13 @@ const pl = {
       title: 'Twój projekt może być następny',
       description:
         'Masz proces, który zjada czas zespołu? Opowiedz nam o nim, a wspólnie sprawdzimy, jak go uprościć.',
-      button: 'Umów rozmowę',
+      button: 'Opisz swój projekt',
     },
     cta: {
       eyebrow: 'TWÓJ PROJEKT',
       headline: 'Chcesz usprawnić proces w swojej firmie?',
       sub: 'Opowiedz nam, jak dziś pracuje Twój zespół i co chcesz zmienić. Wspólnie ustalimy pierwszy krok.',
-      button: 'Umów rozmowę',
+      button: 'Porozmawiajmy',
     },
     items: {
       kaizen: {
@@ -665,13 +660,6 @@ const pl = {
         'Skontaktuj się z nami, aby dowiedzieć się więcej lub omówić adaptację do Twojej organizacji.',
       button: 'SKONTAKTUJ SIĘ',
     },
-  },
-  booking: {
-    title: 'Umów rozmowę',
-    description: 'Wybierz dogodny termin. Link do Google Meet dostaniesz w potwierdzeniu e-mail.',
-    loading: 'Ładowanie kalendarza...',
-    openInNewTab: 'Otwórz kalendarz w nowej karcie',
-    close: 'Zamknij',
   },
   common: {
     skipToContent: 'Przejdź do treści',

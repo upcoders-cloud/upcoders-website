@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies & Build
         env:
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
-          # Strona rezerwacji Google Calendar (zmienna repozytorium, nie sekret).
-          # Bez niej przyciski "Umów rozmowę" prowadzą do formularza kontaktowego.
-          VITE_GOOGLE_BOOKING_URL: ${{ vars.VITE_GOOGLE_BOOKING_URL }}
         run: |
           npm ci
           if [ -z "$VITE_WEB3FORMS_ACCESS_KEY" ]; then

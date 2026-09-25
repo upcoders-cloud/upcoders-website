@@ -3,14 +3,13 @@ import { motion } from 'motion/react'
 import { ArrowDownRight } from 'lucide-react'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 import ZigZag5 from 'components/Decor/ZigZag5.jsx'
-import { useBooking } from '@/components/Booking/useBooking.js'
+import { useGoToContact } from '@/hooks/useGoToContact/useGoToContact.js'
 import { useI18n } from '@/i18n/useI18n.js'
-import WriteToUsLink from './WriteToUsLink.jsx'
 import { OFFER_SERVICES, fadeUp } from './index.js'
 
 export default function OfferHero() {
   const { t } = useI18n()
-  const { openBooking, isBookingAvailable } = useBooking()
+  const goToContact = useGoToContact()
 
   return (
     <section className="bg-bg-1 text-white section-wrapper relative overflow-hidden">
@@ -35,12 +34,8 @@ export default function OfferHero() {
             {...fadeUp(0.24)}
             className="mt-10 flex flex-col sm:flex-row sm:items-center gap-5"
           >
-            <DefaultButton label={t('offerPage.hero.cta')} onClick={openBooking} />
-            {isBookingAvailable ? (
-              <WriteToUsLink />
-            ) : (
-              <p className="text-sm text-gray-400">{t('offerPage.hero.note')}</p>
-            )}
+            <DefaultButton label={t('offerPage.hero.cta')} onClick={goToContact} />
+            <p className="text-sm text-gray-400">{t('offerPage.hero.note')}</p>
           </motion.div>
           <div className="hidden lg:block mt-16">
             <ZigZag5 size={12} className="opacity-90" />

@@ -5,7 +5,6 @@ import { MotionConfig } from 'motion/react'
 import { ArrowUp } from 'lucide-react'
 import { I18nProvider } from '@/i18n/I18nProvider.jsx'
 import AppRouter from '@/router/AppRouter.jsx'
-import BookingProvider from '@/components/Booking/BookingProvider.jsx'
 import { useI18n } from '@/i18n/useI18n.js'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
@@ -48,11 +47,11 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <I18nProvider>
-        <BrowserRouter>
+        {/* v7_startTransition keeps the current page on screen while the next
+            page's chunk loads, so navigation never flashes the Suspense fallback. */}
+        <BrowserRouter future={{ v7_startTransition: true }}>
           <Toaster position="top-center" reverseOrder={false} />
-          <BookingProvider>
-            <AppRouter />
-          </BookingProvider>
+          <AppRouter />
           <BackToTop />
         </BrowserRouter>
       </I18nProvider>

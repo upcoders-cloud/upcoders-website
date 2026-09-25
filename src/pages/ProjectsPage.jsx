@@ -5,7 +5,7 @@ import { useI18n } from '@/i18n/useI18n.js'
 import { ArrowRight, Smartphone } from 'lucide-react'
 import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
 import Seo from '@/seo/Seo.jsx'
-import { useBooking } from '@/components/Booking/useBooking.js'
+import { useGoToContact } from '@/hooks/useGoToContact/useGoToContact.js'
 
 const PROJECTS = [
   {
@@ -23,7 +23,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function ProjectsPage() {
   const { t, language } = useI18n()
-  const { openBooking } = useBooking()
+  const goToContact = useGoToContact()
 
   return (
     <>
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
             <motion.div {...fadeUp(0.25)} className="h-full">
               <button
                 type="button"
-                onClick={openBooking}
+                onClick={goToContact}
                 className="group w-full h-full min-h-52 bg-bg-2 border border-primary/40 p-6 text-left flex flex-col justify-between gap-6 hover:border-primary-light focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light transition-colors"
               >
                 <div>
@@ -111,7 +111,7 @@ export default function ProjectsPage() {
             <div className="shrink-0">
               <DefaultButton
                 label={t('projects.cta.button')}
-                onClick={openBooking}
+                onClick={goToContact}
                 className="min-h-11"
               />
             </div>

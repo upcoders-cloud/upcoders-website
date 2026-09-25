@@ -99,13 +99,12 @@ const en = {
     },
   },
   offerPage: {
-    writeToUs: 'Write to us',
     hero: {
       eyebrow: 'OFFER',
       title: 'We build software that works for your business',
       description:
         'From the first sketch to running in production. We design, build and grow applications for companies that want to organize their processes, take work off their team and respond to customers faster.',
-      cta: 'Book a call',
+      cta: 'Tell us about your project',
       note: 'We will get back to you to discuss the details',
       indexLabel: 'How we can help',
     },
@@ -311,7 +310,7 @@ const en = {
       eyebrow: 'YOUR PROJECT',
       headline: "Let's talk about what you want to build",
       sub: 'Describe your idea or the problem your company is facing. We will get back to you, refine the scope and prepare a no-obligation quote.',
-      button: 'Book a call',
+      button: "Let's talk",
     },
   },
   howWeWork: {
@@ -340,7 +339,7 @@ const en = {
       },
     ],
     highlights: ['Direct contact with the team', 'Clear scope and quote', 'Support after launch'],
-    cta: 'BOOK A DISCOVERY CALL',
+    cta: "LET'S TALK",
   },
   team: {
     eyebrow: 'OUR TEAM',
@@ -374,10 +373,6 @@ const en = {
       line2: 'your project',
       description:
         'Tell us what you need: a new application, work on an existing system or automation. We will get back to you to discuss the next steps.',
-    },
-    bookCall: {
-      prompt: 'Prefer to talk?',
-      action: 'Book a call',
     },
     form: {
       label: 'Contact form',
@@ -515,13 +510,13 @@ const en = {
       title: 'Your project could be next',
       description:
         "Is there a process eating up your team's time? Tell us about it and we will work out together how to simplify it.",
-      button: 'Book a call',
+      button: 'Tell us about your project',
     },
     cta: {
       eyebrow: 'YOUR PROJECT',
       headline: 'Want to improve a process in your business?',
       sub: 'Tell us how your team works today and what you want to change. We will define a practical first step together.',
-      button: 'Book a call',
+      button: "Let's talk",
     },
     items: {
       kaizen: {
@@ -658,13 +653,6 @@ const en = {
       description: 'Contact us to learn more or discuss adapting it to your organization.',
       button: 'GET IN TOUCH',
     },
-  },
-  booking: {
-    title: 'Book a call',
-    description: 'Pick a time that suits you. You will get a Google Meet link in the confirmation email.',
-    loading: 'Loading calendar...',
-    openInNewTab: 'Open the calendar in a new tab',
-    close: 'Close',
   },
   common: {
     skipToContent: 'Skip to content',
