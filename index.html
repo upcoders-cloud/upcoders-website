@@ -17,33 +17,27 @@
     <!-- FAVICON -->
     <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
 
-    <!-- PRELOAD FONTS (correct paths for Vite) -->
+    <!-- PRELOAD FONTS: only the faces the home hero uses (H1 800 -> Bold, text 400, nav/CTA 500).
+         Absolute /src paths let Vite hash them to the same files the @font-face rules load. -->
     <link
       rel="preload"
-      href="src/assets/fonts/DM_Sans/DMSans-Regular.ttf"
+      href="/src/assets/fonts/DM_Sans/DMSans-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="src/assets/fonts/DM_Sans/DMSans-Medium.ttf"
+      href="/src/assets/fonts/DM_Sans/DMSans-Medium.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="src/assets/fonts/DM_Sans/DMSans-SemiBold.ttf"
+      href="/src/assets/fonts/DM_Sans/DMSans-Bold.woff2"
       as="font"
-      type="font/ttf"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="src/assets/fonts/DM_Sans/DMSans-Bold.ttf"
-      as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
 
