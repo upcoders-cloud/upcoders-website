@@ -474,13 +474,13 @@ const pl = {
       {
         "title": "8. Pamięć przeglądarki i pliki cookies",
         "paragraphs": [
-          "Strona zapisuje wybrany język w pamięci przeglądarki localStorage pod kluczem upcoders.lang, aby zapamiętać Twój wybór. Możesz usunąć tę informację w ustawieniach przeglądarki. W kodzie strony nie znaleźliśmy narzędzi analitycznych, reklamowych ani śledzących plików cookies. Stan usług działających na stronie produkcyjnej, ewentualne techniczne pliki cookies oraz obowiązki dotyczące zgody na zapis w urządzeniu [DO WERYFIKACJI]."
+          "Strona zapisuje wybrany język w pamięci przeglądarki localStorage pod kluczem upcoders.lang, aby zapamiętać Twój wybór. Możesz usunąć tę informację w ustawieniach przeglądarki. Nie używamy narzędzi analitycznych, reklamowych ani śledzących plików cookies. [DO WERYFIKACJI: potwierdzić dla strony produkcyjnej, w tym ewentualne techniczne pliki cookies hostingu.]"
         ]
       },
       {
         "title": "9. Przekazywanie danych poza EOG",
         "paragraphs": [
-          "Nie możemy na podstawie samego kodu strony potwierdzić, czy Web3Forms lub inni dostawcy przetwarzają dane poza Europejskim Obszarem Gospodarczym. Miejsca przetwarzania, ewentualne przekazywanie danych poza EOG i stosowane zabezpieczenia, w tym decyzja stwierdzająca odpowiedni stopień ochrony lub standardowe klauzule umowne [DO WERYFIKACJI]."
+          "Dane przesłane przez formularz mogą być przetwarzane przez Web3Forms poza Europejskim Obszarem Gospodarczym. W takim przypadku przekazanie odbywa się na podstawie decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony albo standardowych klauzul umownych. [DO WERYFIKACJI: miejsce przetwarzania i podstawa transferu.]"
         ]
       },
       {

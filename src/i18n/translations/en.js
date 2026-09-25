@@ -471,13 +471,13 @@ const en = {
       {
         "title": "8. Browser storage and cookies",
         "paragraphs": [
-          "The website stores your chosen language in your browser's localStorage under the key upcoders.lang to remember your preference. You can remove this information in your browser settings. We found no analytics tools, advertising tools, or tracking cookies in the website code. The state of services on the live site, any technical cookies, and requirements for consent to storage on your device [TO VERIFY]."
+          "The website stores your chosen language in your browser's localStorage under the key upcoders.lang to remember your preference. You can remove this information in your browser settings. We do not use analytics, advertising or tracking cookies. [TO VERIFY: confirm for the live site, including any technical cookies set by the hosting provider.]"
         ]
       },
       {
         "title": "9. Transfers outside the EEA",
         "paragraphs": [
-          "The website code alone does not establish whether Web3Forms or other providers process data outside the European Economic Area. Processing locations, any transfers outside the EEA, and applicable safeguards, including an adequacy decision or standard contractual clauses [TO VERIFY]."
+          "Data sent through the form may be processed by Web3Forms outside the European Economic Area. In that case the transfer is based on a European Commission adequacy decision or standard contractual clauses. [TO VERIFY: processing location and transfer basis.]"
         ]
       },
       {

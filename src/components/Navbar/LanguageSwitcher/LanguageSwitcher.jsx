@@ -157,7 +157,7 @@ export default function LanguageSwitcher({ className = '', onLanguageChange, dro
                     tabIndex={-1}
                     onClick={() => handleSelect(code)}
                     onKeyDown={(event) => handleOptionKeyDown(event, languages.indexOf(code), code)}
-                    className={`flex min-h-11 items-center gap-2.5 w-full px-3 py-2 text-sm transition-colors duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-primary ${
+                    className={`flex items-center gap-2.5 w-full px-3 py-2 text-sm transition-colors duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-primary ${
                       isActive
                         ? 'text-white bg-primary/10'
                         : 'text-gray-400 hover:text-white hover:bg-white/5'

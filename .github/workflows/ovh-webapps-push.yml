@@ -31,6 +31,12 @@ jobs:
 
       - name: Verify build output
         run: |
+          # Szkic polityki prywatności ma znaczniki do weryfikacji prawnej.
+          # Dopóki są w treści, wdrożenie się zatrzymuje.
+          if grep -rlE "DO WERYFIKACJI|TO VERIFY" dist --include=*.html --include=*.js; then
+            echo "::error::Polityka prywatności zawiera niezweryfikowane fragmenty ([DO WERYFIKACJI] / [TO VERIFY]). Uzupełnij je przed wdrożeniem."
+            exit 1
+          fi
           if ! grep -q "api.web3forms.com" dist/assets/index-*.js; then
             echo "::error::Bundle nie zawiera adresu API formularza. Wysyłka została wycięta jako martwy kod."
             exit 1
