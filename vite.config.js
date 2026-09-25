@@ -11,6 +11,8 @@ const __dirname = path.dirname(__filename)
 const SITEMAP_STATIC_ROUTES = [
   '/en',
   '/pl',
+  '/en/offer',
+  '/pl/offer',
   '/en/projects',
   '/pl/projects',
   '/en/projects/kaizen',

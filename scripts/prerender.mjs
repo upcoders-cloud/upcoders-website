@@ -31,6 +31,8 @@ const PORT = 4178
 const ROUTES = [
   '/en',
   '/pl',
+  '/en/offer',
+  '/pl/offer',
   '/en/projects',
   '/pl/projects',
   '/en/projects/kaizen',

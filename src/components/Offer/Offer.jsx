@@ -1,57 +1,29 @@
-import React from "react";
-import { motion } from "motion/react";
-import ZigZag5 from "components/Decor/ZigZag5.jsx";
-import { OFFER_ITEMS } from "./index.js";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
+import ZigZag5 from 'components/Decor/ZigZag5.jsx'
+import { OFFER_ITEMS } from './index.js'
 import Accordion from 'components/Offer/Accordion/Accordion.jsx'
 import { isMobile } from 'react-device-detect'
 import { useI18n } from '@/i18n/useI18n.js'
-import WebMobileModalContent from 'components/Offer/WebMobileModal/WebMobileModalContent.jsx'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 }
 
-const CUSTOM_MODAL_COMPONENTS = {
-  webMobile: WebMobileModalContent,
-}
-
 export default function Offer() {
-  const { t } = useI18n()
+  const { t, language } = useI18n()
+  const offerPath = `/${language}/offer`
 
-  const translatedItems = OFFER_ITEMS.map((item) => {
-    let cta = undefined
-    if (item.cta) {
-      if (item.cta.packagesBasePath) {
-        cta = {
-          label: t(item.cta.labelKey),
-          modalTitle: t(item.cta.modalTitleKey),
-          packages: item.cta.packages.map((pkg) => {
-            const base = `${item.cta.packagesBasePath}.${pkg.key}`
-            return {
-              name: t(`${base}.name`),
-              price: t(`${base}.price`),
-              recommended: pkg.recommended,
-              features: t(`${base}.features`) || [],
-            }
-          }),
-        }
-      } else {
-        cta = {
-          label: t(item.cta.labelKey),
-          modalTitle: t(item.cta.modalTitleKey),
-          ModalContent: CUSTOM_MODAL_COMPONENTS[item.cta.type],
-        }
-      }
-    }
-    return {
-      id: item.id,
-      anchor: item.anchor,
-      title: t(item.titleKey),
-      content: t(item.contentKey),
-      cta,
-    }
-  })
+  const translatedItems = OFFER_ITEMS.map((item) => ({
+    id: item.id,
+    anchor: item.anchor,
+    title: t(item.titleKey),
+    content: t(item.contentKey),
+    link: { href: `${offerPath}#${item.anchor}`, label: t('offer.learnMore') },
+  }))
 
   return (
     <section id="offer" className="relative bg-bg-2 text-white section-wrapper overflow-hidden">
@@ -63,17 +35,22 @@ export default function Offer() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <h3 className="text-xs tracking-widest text-gray-400 mb-2">{t('offer.eyebrow')}</h3>
-          <h2 className="text-2xl md:text-[28px] font-semibold mb-4">
-            {t('offer.title')}
-          </h2>
+          <h2 className="text-2xl md:text-[28px] font-semibold mb-4">{t('offer.title')}</h2>
 
-          <p className="text-gray-400 text-sm md:text-base">
-            {t('offer.paragraph1')}
-          </p>
+          <p className="text-gray-400 text-sm md:text-base">{t('offer.paragraph1')}</p>
 
-          <p className="text-gray-400 text-sm md:text-base mt-4">
-            {t('offer.paragraph2')}
-          </p>
+          <p className="text-gray-400 text-sm md:text-base mt-4">{t('offer.paragraph2')}</p>
+
+          <Link
+            to={offerPath}
+            className="group mt-8 inline-flex items-center gap-2 border border-primary px-5 py-2.5 text-sm font-medium text-white shadow-[3px_3px_0px_black] transition-[transform,box-shadow,background-color] duration-200 ease-[var(--ease-out-quart)] hover:bg-primary hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]"
+          >
+            {t('offer.fullOffer')}
+            <ArrowRight
+              aria-hidden="true"
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </Link>
 
           {!isMobile && <ZigZag5 size={16} className="opacity-90 mt-16" />}
         </motion.div>

@@ -10,6 +10,11 @@ const en = {
       description:
         'Products and tools we design and build for real business needs. See what we have delivered and how we work.',
     },
+    offer: {
+      title: 'Services: custom software, apps and AI for businesses | Upcoders',
+      description:
+        'Custom software, web and mobile apps, UX/UI design, AI and automation, and managed hosting with technical care. Tell us about your project and we will get back to you to discuss the details.',
+    },
     projectDetails: {
       title: 'Project | Upcoders',
       description: 'A closer look at a product designed and built by Upcoders.',
@@ -23,9 +28,6 @@ const en = {
       title: 'Page not found | Upcoders',
       description: 'This address does not exist on upcoders.cloud.',
     },
-  },
-  common: {
-    close: 'Close',
   },
   navbar: {
     items: {
@@ -62,6 +64,8 @@ const en = {
     paragraph2:
       'We also explore emerging technologies - including artificial intelligence and automation - to help our clients unlock new opportunities, optimize processes, and stay ahead in a rapidly changing world.',
     specializeIn: 'WHAT DO WE SPECIALIZE IN?',
+    fullOffer: 'See our full offer',
+    learnMore: 'Learn more',
     items: {
       tailored: {
         title: 'Tailored Software Solutions',
@@ -71,34 +75,6 @@ const en = {
         title: 'Web & Mobile Development',
         content:
           'We build modern web platforms, business apps, and mobile solutions - from landing pages to complex systems.',
-        cta: {
-          label: 'Get a quote',
-          modalTitle: 'Web & Mobile Development',
-          modal: {
-            headline: 'Every project is one of a kind.',
-            subline:
-              'From a sleek landing page to a full-scale enterprise platform — no two projects are the same, and neither are their costs.',
-            pricingNote:
-              'Pricing is always tailored to your technology stack, feature scope, and project complexity. We prepare clear, transparent estimates with no hidden surprises.',
-            badgeSub: 'Quote ready after first contact.',
-            steps: [
-              {
-                step: 'Share your idea',
-                desc: 'Tell us what you\'re building and what problem it solves.',
-              },
-              {
-                step: 'We assess',
-                desc: 'We evaluate scope, technology choices, and timeline.',
-              },
-              {
-                step: 'You get a clear quote',
-                desc: 'A detailed, transparent estimate arrives in your inbox.',
-              },
-            ],
-            tagsLabel: 'Technologies we work with',
-            cta: "Let's talk",
-          },
-        },
       },
       userCentered: {
         title: 'User-Centered Design',
@@ -107,57 +83,228 @@ const en = {
       hosting: {
         title: 'Managed Hosting, Website Administration',
         content:
-          'We provide comprehensive Managed Hosting services for WordPress and other web and mobile applications. We handle full technical care, monitoring, updates, and optimization of your infrastructure - you focus on business, we take care of the technology.',
-        cta: {
-          label: 'See details',
-          modalTitle: 'Hosting & Website Administration',
-        },
-        packages: {
-          basic: {
-            name: 'Basic',
-            price: '99 PLN/mo',
-            features: [
-              'Managed WordPress or Landing Page',
-              'Server configuration and management',
-              'Email support',
-            ],
-          },
-          pro: {
-            name: 'Pro',
-            price: '299 PLN/mo',
-            features: [
-              'Everything in Basic',
-              'Monitoring 24/7',
-              'Priority support',
-              'Performance optimization',
-            ],
-          },
-          enterprise: {
-            name: 'Enterprise',
-            price: 'Custom pricing',
-            features: ['Everything in Pro', 'Dedicated server', 'Custom integrations'],
-          },
-        },
-      },
-      cloudDevops: {
-        title: 'Cloud & DevOps',
-        content:
-          'Scalable infrastructure and modern CI/CD practices to ensure reliability, security, and speed.',
+          'We take over the technical care of your website or app: server, monitoring, updates and optimization. You focus on your business, we take care of the technology.',
       },
       aiAutomation: {
         title: 'AI & Intelligent Automation',
         content:
           'We leverage artificial intelligence and automation to build smarter products, streamline workflows, and unlock new business opportunities.',
       },
-      longTerm: {
-        title: 'Long-Term Tech Partnership',
-        content:
-          'We stay with you long-term, supporting and evolving your software as your business grows.',
+    },
+  },
+  offerPage: {
+    hero: {
+      eyebrow: 'OFFER',
+      title: 'We build software that works for your business',
+      description:
+        'From the first sketch to running in production. We design, build and grow applications for companies that want to organize their processes, take work off their team and respond to customers faster.',
+      cta: 'Describe your project',
+      note: 'We will get back to you to discuss the details',
+      indexLabel: 'How we can help',
+    },
+    labels: {
+      deliverables: 'What we can build for you',
+      forWhom: 'Who it is for',
+      tech: 'Technologies we work with',
+      example: 'Example project',
+    },
+    services: {
+      customSoftware: {
+        title: 'Custom software',
+        lead: 'Off-the-shelf tools force compromises. We build a system that fits the way your company actually works.',
+        body: 'We start with the process, not the technology. We talk to the people who will use the system, map how information flows and only then design the solution. The result is one tool instead of spreadsheets, emails and manually retyped data.',
+        deliverables: [
+          'Internal systems and admin panels',
+          'Tools that support production and operational processes',
+          'Integrations with the systems you already use, such as ERP, CRM or accounting',
+          'Reports and dashboards without manual data collection',
+          'Data migration from legacy systems and spreadsheets',
+        ],
+        forWhom:
+          'For manufacturing, technical and service companies that have outgrown Excel or off-the-shelf software and lose time on workarounds.',
+      },
+      webMobile: {
+        title: 'Web & mobile apps',
+        lead: 'From a landing page to a full-scale platform. Every project is different, so we match the scope and technology to the goal, not the other way around.',
+        body: 'We build apps that run fast on any device and can grow without being rewritten from scratch. We work in short iterations, so you see the first working version early, not at the very end of the project.',
+        deliverables: [
+          'Company websites and landing pages',
+          'Web applications and customer portals',
+          'Mobile apps for iOS and Android',
+          'MVPs that let you test an idea on the market quickly',
+          'Development and modernization of existing apps',
+        ],
+        forWhom:
+          'For companies that want to reach customers online more effectively, and for teams that need a convenient app in the office, in the field or on the shop floor.',
+        example: 'Kaizen: a mobile app for reporting improvements on the shop floor',
+      },
+      design: {
+        title: 'UX/UI design',
+        lead: 'A good app does not need a manual. We design interfaces people understand from the first click.',
+        body: 'Before the first line of code is written, we test the idea with wireframes and a clickable prototype. A fix in the design costs a fraction of a change in a finished app. We take care of readability, accessibility and a consistent look on every device.',
+        deliverables: [
+          'Workshops and user needs analysis',
+          'Wireframes and clickable prototypes',
+          'Visual interface design',
+          'A design system: a consistent library of components',
+          'UX audit of an existing app',
+        ],
+        forWhom:
+          'For companies building a new product, and for those whose current app is hard to use or puts users off.',
+      },
+      aiAutomation: {
+        title: 'AI & automation',
+        lead: 'The system takes over repetitive work, and your team focuses on what really needs a human.',
+        body: 'We look for the places where your company loses the most time: retyping documents, answering the same questions, moving data between systems. That is where we introduce automation and AI, always with a clear goal and a measurable outcome, never for the sake of technology.',
+        deliverables: [
+          'Automated flow of documents and data between systems',
+          'AI assistants that draw on your company knowledge',
+          'Data extraction from invoices, orders and forms',
+          'Chatbots for customers and for your team',
+          'Process analysis that shows what to automate first',
+        ],
+        forWhom:
+          'For companies whose teams spend hours on repetitive tasks and want that time back without hiring more people.',
+      },
+      hosting: {
+        title: 'Hosting, maintenance & DevOps',
+        lead: 'You focus on your business, we make sure your website and app stay fast, secure and online.',
+        body: 'We take over full technical care of WordPress websites and web and mobile applications: server, updates, backups, monitoring and optimization. We also build cloud infrastructure and CI/CD pipelines that ship new versions to users safely and without manual deployments.',
+        deliverables: [
+          'Managed hosting for WordPress and web applications',
+          'Uptime monitoring and fast incident response',
+          'Regular updates and backups',
+          'Scalable cloud infrastructure',
+          'Automated deployments (CI/CD)',
+        ],
+        forWhom:
+          'For companies without an in-house administrator, or whose IT team should be building the product rather than fighting fires.',
+        tiers: {
+          title: 'Care plans',
+          note: 'Plans differ in the scope of care. We set the price individually once we know your website or app.',
+          recommended: 'Recommended',
+          cta: 'Ask for a quote',
+          items: {
+            basic: {
+              name: 'Basic',
+              summary: 'For company websites and landing pages',
+              features: [
+                'Managed WordPress or landing page',
+                'Server configuration and management',
+                'Email support',
+              ],
+            },
+            pro: {
+              name: 'Pro',
+              summary: 'For apps that must never go down',
+              features: [
+                'Everything in Basic',
+                'Monitoring 24/7',
+                'Priority support',
+                'Performance optimization',
+              ],
+            },
+            enterprise: {
+              name: 'Enterprise',
+              summary: 'For complex systems and high traffic',
+              features: ['Everything in Pro', 'Dedicated server', 'Custom integrations'],
+            },
+          },
+        },
       },
     },
-    packageCard: {
-      recommended: 'Recommended',
-      contactButton: 'Contact us',
+    process: {
+      eyebrow: 'WORKING TOGETHER',
+      title: 'From the first call to a long-term partnership',
+      description:
+        'You do not need a finished specification. A description of the problem is enough, we will sort out the rest together.',
+      quoteTitle: 'A quote that fits your project',
+      pricingNote:
+        'The cost depends on the feature scope, technology and complexity of the project. That is why instead of a price list we prepare a clear estimate for your project, with no hidden costs.',
+      followUp: 'After your first contact, we will get back to you to discuss the details.',
+      steps: [
+        {
+          title: 'Tell us about your project',
+          description:
+            'What you want to build and what problem it should solve. A short call or a few sentences in the form is enough.',
+        },
+        {
+          title: 'We assess the scope',
+          description:
+            'We analyze your needs, choose the technology and suggest where to start to see results as soon as possible.',
+        },
+        {
+          title: 'You get a quote',
+          description: 'A clear estimate broken down into stages, with a timeline, lands in your inbox.',
+        },
+        {
+          title: 'We build and show progress',
+          description:
+            'We work in short sprints. We regularly show you what has been built, and you have a say in the next steps.',
+        },
+      ],
+      partnership: {
+        title: 'We stay with you after launch',
+        items: [
+          {
+            title: 'Growing with your company',
+            description:
+              'Your app grows together with your business. We add new features when new needs come up.',
+          },
+          {
+            title: 'The same team',
+            description:
+              'You work with people who know your system, so nothing has to be explained from scratch.',
+          },
+          {
+            title: 'Technical care',
+            description:
+              'We take care of updates, security and monitoring, so nothing quietly stops working.',
+          },
+        ],
+      },
+    },
+    faq: {
+      eyebrow: 'FAQ',
+      title: 'Frequently asked questions',
+      items: [
+        {
+          question: 'How much does an app cost?',
+          answer:
+            'It depends on the feature scope, the number of integrations and platforms. After your first contact we will get back to you to discuss the details, and once the scope is refined we prepare an estimate broken down into stages. We work on a fixed price or time and materials basis, depending on the project.',
+        },
+        {
+          question: 'How long does a project take?',
+          answer:
+            'The timeline depends on the scope of the project, so we agree on it together after our first conversation. We split larger systems into stages, so the first working version reaches users as soon as possible.',
+        },
+        {
+          question: 'Will you sign an NDA?',
+          answer:
+            'Yes. On request, we sign an NDA before discussing the details of your project. We transfer the rights to the code as set out in the contract.',
+        },
+        {
+          question: 'What happens after launch?',
+          answer:
+            'We do not disappear after go-live. We can take over maintenance, monitoring and updates, and keep developing the app. We tailor the scope of care to how critical the system is for you.',
+        },
+        {
+          question: 'Can you take over an existing project?',
+          answer:
+            'Yes. We start with a review of the code and infrastructure to assess the state of the app and the risks. Then we propose a plan: from immediate fixes, through gradual modernization, to further development.',
+        },
+        {
+          question: 'I do not have a specification. Is that a problem?',
+          answer:
+            'No. Most projects start with a description of a problem, not with finished documentation. We define the scope, priorities and plan together in the discovery phase.',
+        },
+      ],
+    },
+    cta: {
+      eyebrow: 'YOUR PROJECT',
+      headline: "Let's talk about what you want to build",
+      sub: 'Describe your idea or the problem your company is facing. We will get back to you, refine the scope and prepare a no-obligation quote.',
+      button: 'Book a call',
     },
   },
   howWeWork: {

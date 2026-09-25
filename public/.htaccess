@@ -12,6 +12,7 @@ DirectorySlash Off
   RewriteRule ^ https://upcoders.cloud%{REQUEST_URI} [R=301,L]
 
   RewriteRule ^$ /en [R=301,L]
+  RewriteRule ^offer/?$ /en/offer [R=301,L]
   RewriteRule ^projects/?$ /en/projects [R=301,L]
   RewriteRule ^projects/(.+)$ /en/projects/$1 [R=301,L]
 

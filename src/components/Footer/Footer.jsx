@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="text-xs tracking-widest text-gray-400 mb-3">{t('footer.company')}</div>
             <ul className="space-y-2 text-sm">
               <li>
-                <NavBarItem href="#offer" className="inline-block transition-colors duration-200 hover:text-primary">
+                <NavBarItem href="/offer" className="inline-block transition-colors duration-200 hover:text-primary">
                   {t('navbar.items.offer')}
                 </NavBarItem>
               </li>

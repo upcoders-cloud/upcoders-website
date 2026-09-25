@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '@/pages/HomePage.jsx'
+import OfferPage from '@/pages/OfferPage.jsx'
 import ProjectsPage from '@/pages/ProjectsPage.jsx'
 import ProjectDetailsPage from '@/pages/ProjectDetailsPage.jsx'
 import NotFoundPage from '@/pages/NotFoundPage.jsx'
@@ -11,11 +12,13 @@ export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<RedirectToPreferredLanguage />} />
+      <Route path="/offer" element={<RedirectToPreferredLanguage pathname="/offer" />} />
       <Route path="/projects" element={<RedirectToPreferredLanguage pathname="/projects" />} />
       <Route path="/projects/:slug" element={<RedirectToPreferredLanguage />} />
 
       <Route path="/:lang" element={<LanguageLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="offer" element={<OfferPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="projects/:slug" element={<ProjectDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
