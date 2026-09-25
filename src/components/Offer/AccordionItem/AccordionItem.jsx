@@ -67,6 +67,7 @@ export default function AccordionItem({ title, content, link, isOpen, onToggle, 
         ref={ref}
         role="region"
         aria-labelledby={buttonId}
+        inert={!isOpen}
         style={{ maxHeight: isOpen ? `${contentHeight}px` : '0px' }}
         className="overflow-hidden transition-[max-height] duration-400 ease-[var(--ease-out-quart)]"
       >

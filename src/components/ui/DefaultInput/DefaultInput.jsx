@@ -55,7 +55,7 @@ const DefaultInput = React.forwardRef(function DefaultInput(
         {/* Animated underline that scales from center on focus */}
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute left-0 right-0 bottom-0 h-px origin-center scale-x-0 peer-focus:scale-x-100 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
+          className={`pointer-events-none absolute left-0 right-0 bottom-0 h-0.5 origin-center scale-x-0 peer-focus:scale-x-100 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
             hasError ? 'bg-red-400' : 'bg-primary'
           }`}
         />

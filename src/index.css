@@ -49,9 +49,10 @@ body {
     background-color: var(--color-primary);
 }
 
-/* Consistent focus ring for keyboard users only */
+/* Consistent focus ring for keyboard users only. Text fields are left out:
+   they show focus with their own animated underline (DefaultInput). */
 *:focus { outline: none; }
-*:focus-visible {
+*:focus-visible:not(input[type='text'], input[type='email'], input[type='tel'], textarea) {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
