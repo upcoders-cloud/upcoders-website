@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react'
 import AccordionItem from 'components/Offer/AccordionItem/AccordionItem.jsx'
 
-export default function Accordion({ items = [], defaultOpenIndex = null, className = "" }) {
+export default function Accordion({ items = [], defaultOpenIndex = null, className = '' }) {
   const [openIndex, setOpenIndex] = React.useState(
     Number.isInteger(defaultOpenIndex) ? defaultOpenIndex : null
-  );
-  const [autoOpenModalIndex, setAutoOpenModalIndex] = React.useState(null);
+  )
+
+  // The hash is only matched on mount, against the items of the first render.
+  const initialItems = React.useRef(items)
 
   React.useEffect(() => {
     const hash = window.location.hash.slice(1)
     if (!hash) return
 
-    const idx = items.findIndex((item) => item.anchor === hash)
+    const idx = initialItems.current.findIndex((item) => item.anchor === hash)
     if (idx === -1) return
 
     setOpenIndex(idx)
@@ -23,16 +25,11 @@ export default function Accordion({ items = [], defaultOpenIndex = null, classNa
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-
-    // open modal if item has cta
-    if (items[idx].cta) {
-      setTimeout(() => setAutoOpenModalIndex(idx), 600)
-    }
   }, [])
 
   const handleToggle = (idx) => {
-    setOpenIndex((prev) => (prev === idx ? null : idx));
-  };
+    setOpenIndex((prev) => (prev === idx ? null : idx))
+  }
 
   return (
     <ul className={`space-y-4 ${className}`}>
@@ -42,16 +39,11 @@ export default function Accordion({ items = [], defaultOpenIndex = null, classNa
           anchor={item.anchor}
           title={item.title}
           content={item.content}
-          cta={item.cta}
+          link={item.link}
           isOpen={openIndex === idx}
           onToggle={() => handleToggle(idx)}
-          autoOpenModal={autoOpenModalIndex === idx}
-          onModalAutoOpened={() => {
-            setAutoOpenModalIndex(null)
-            history.replaceState(null, '', window.location.pathname)
-          }}
         />
       ))}
     </ul>
-  );
+  )
 }

@@ -1,121 +1,92 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useI18n } from '@/i18n/useI18n.js'
-import { Lightbulb, ClipboardCheck, RefreshCw, MousePointer } from 'lucide-react'
-import { motion, useScroll } from 'motion/react'
+import { Lightbulb, ClipboardCheck, RefreshCw, MousePointer, Check } from 'lucide-react'
+import { motion, useMotionValue, useScroll, useTransform } from 'motion/react'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
-import ZigZag5 from 'components/Decor/ZigZag5.jsx'
+import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
+import { useGoToContact } from '@/hooks/useGoToContact/useGoToContact.js'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
 const STEP_ICONS = [Lightbulb, ClipboardCheck, RefreshCw, MousePointer]
 
-// ── Shared ─────────────────────────────────────────────
-const ICON = 40 // w-10 = 40px
-
-// ── Desktop wave (horizontal) ──────────────────────────
-const D_H = 460
-const D_AMP = 0.24
-const D_CY = D_H / 2
-const D_NUM_H = 104       // text-[6.5rem]
-const D_GAP = 8           // my-2
+// Na desktopie kroki stoją w czterech kolumnach, a co drugi jest obniżony o
+// D_DROP. Linia w SVG przechodzi przez środki ikon, więc jej punkty wynikają
+// z wysokości cyfry (6.5rem, leading-none), odstępu my-2 i połowy ikony (w-10).
+// D_DROP musi odpowiadać klasie lg:mt-[220px] na nieparzystych krokach.
+const D_ICON_Y = 104 + 8 + 20
+const D_DROP = 220
 const D_SVG_W = 1000
-const D_ICON_OFFSET = D_NUM_H + D_GAP + ICON / 2
-
-const dWaveY = (i) => D_CY - D_AMP * D_H * Math.cos(i * Math.PI)
-const dWaveXPct = (i, n) => ((i * 2 + 1) / (n * 2)) * 100
+const D_SVG_H = D_ICON_Y * 2 + D_DROP
+// Połowa szerokości zakrętu (w jednostkach viewBox, 1000 = szerokość listy).
+// Linia biegnie poziomo na wysokości ikon i zmienia poziom tylko w pasie
+// między kolumnami, więc nie przecina tekstu kroków. Tekst jest o 2.25rem
+// węższy z każdej strony niż kolumna, a zakręt ma najwyżej ~29px w każdą stronę.
+const D_BEND = 25
 
 function buildDesktopPath(n) {
   const pts = Array.from({ length: n }, (_, i) => ({
-    x: (dWaveXPct(i, n) / 100) * D_SVG_W,
-    y: dWaveY(i),
+    x: ((i * 2 + 1) / (n * 2)) * D_SVG_W,
+    y: D_ICON_Y + (i % 2) * D_DROP,
   }))
   return pts.reduce((d, pt, i) => {
     if (i === 0) return `M${pt.x},${pt.y}`
     const prev = pts[i - 1]
     const mx = (prev.x + pt.x) / 2
-    return `${d} C${mx},${prev.y} ${mx},${pt.y} ${pt.x},${pt.y}`
+    return `${d} L${mx - D_BEND},${prev.y} C${mx},${prev.y} ${mx},${pt.y} ${mx + D_BEND},${pt.y} L${pt.x},${pt.y}`
   }, '')
 }
 
-// ── Mobile wave (vertical / transposed sine) ───────────
-const M_H = 850
-const M_AMP_X = 32          // px offset from center (±)
-const M_SVG_PX_W = 100      // SVG pixel width (covers wave area)
-const M_SVG_CX = M_SVG_PX_W / 2 // wave center in SVG coords = 50
-
-// offset in px from screen center: even→left, odd→right
-const mWaveXOffset = (i) => M_AMP_X * Math.cos(i * Math.PI)
-const mWaveY = (i, n) => ((i * 2 + 1) / (n * 2)) * M_H
-
-// SVG coordinates (center at 50)
-const mWaveXSvg = (i) => M_SVG_CX + mWaveXOffset(i)
-
-function buildMobilePath(n) {
-  const pts = Array.from({ length: n }, (_, i) => ({
-    x: mWaveXSvg(i),
-    y: mWaveY(i, n),
-  }))
-  return pts.reduce((d, pt, i) => {
-    if (i === 0) return `M${pt.x},${pt.y}`
-    const prev = pts[i - 1]
-    const my = (prev.y + pt.y) / 2
-    return `${d} C${prev.x},${my} ${pt.x},${my} ${pt.x},${pt.y}`
-  }, '')
+// Odcinek pionowej linii na mobile między ikoną kroku `index` a następną.
+// Wypełnia się w swojej części postępu przewijania.
+function MobileSegment({ progress, index, count }) {
+  const scaleY = useTransform(progress, [index / (count - 1), (index + 1) / (count - 1)], [0, 1])
+  return (
+    <span aria-hidden="true" className="lg:hidden absolute left-5 top-10 bottom-0 w-px bg-bg-3">
+      <motion.span className="absolute inset-0 origin-top bg-primary" style={{ scaleY }} />
+    </span>
+  )
 }
 
-// ── Component ──────────────────────────────────────────
 export default function HowWeWork() {
   const { t } = useI18n()
+  const goToContact = useGoToContact()
+  const prefersReducedMotion = usePrefersReducedMotion()
   const steps = t('howWeWork.steps')
+  const highlights = t('howWeWork.highlights')
   const n = steps.length
 
-  const sectionRef = useRef(null)
+  const listRef = useRef(null)
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['center 0.8', 'center center'],
+    target: listRef,
+    offset: ['start 0.75', 'end 0.6'],
   })
+  // Przy ograniczonym ruchu linia jest od razu narysowana, a kroki aktywne.
+  const fullProgress = useMotionValue(1)
+  const progress = prefersReducedMotion ? fullProgress : scrollYProgress
 
   const [activeStep, setActiveStep] = useState(-1)
-  const activeStepRef = useRef(-1)
-
-  const mobileRef = useRef(null)
-  const [mobileHeight, setMobileHeight] = useState(M_H)
 
   useEffect(() => {
-    const el = mobileRef.current
-    if (!el) return
-    const stepEls = el.querySelectorAll('[data-mobile-step]')
-    if (!stepEls.length) return
-    const containerTop = el.getBoundingClientRect().top
-    let maxBottom = 0
-    stepEls.forEach((s) => {
-      const bottom = s.getBoundingClientRect().bottom - containerTop
-      if (bottom > maxBottom) maxBottom = bottom
-    })
-    setMobileHeight(Math.max(M_H, maxBottom + 16))
-  }, [steps])
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (latest) => {
+    const update = (latest) => {
       let current = -1
       for (let i = 0; i < n; i++) {
         const threshold = n > 1 ? i / (n - 1) : 0
         if (latest >= threshold - 0.02) current = i
       }
-      if (current !== activeStepRef.current) {
-        activeStepRef.current = current
-        setActiveStep(current)
-      }
-    })
-    return unsubscribe
-  }, [scrollYProgress, n])
+      setActiveStep(current)
+    }
+    update(progress.get())
+    return progress.on('change', update)
+  }, [progress, n])
 
   return (
     <section
       id="how-we-work"
-      ref={sectionRef}
+      aria-labelledby="how-we-work-title"
       className="bg-bg-1 text-white section-wrapper relative overflow-hidden"
     >
       <div className="section-inner relative">
-        <div className="absolute top-0 right-0 opacity-70">
+        <div aria-hidden="true" className="absolute top-0 right-0 opacity-70">
           <DiagonalPair size={14} gap={5} />
         </div>
         <motion.div
@@ -123,17 +94,22 @@ export default function HowWeWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-0 md:mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h3 className="text-xs tracking-widest text-gray-400 mb-2">{t('howWeWork.eyebrow')}</h3>
-          <h2 className="text-2xl md:text-[28px] font-semibold">{t('howWeWork.title')}</h2>
+          <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">
+            {t('howWeWork.eyebrow')}
+          </p>
+          <h2 id="how-we-work-title" className="text-3xl md:text-4xl font-semibold">
+            {t('howWeWork.title')}
+          </h2>
         </motion.div>
 
-        {/* ── Desktop ── */}
-        <div className="hidden md:block relative" style={{ height: D_H }}>
+        <div className="relative">
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox={`0 0 ${D_SVG_W} ${D_H}`}
+            aria-hidden="true"
+            className="hidden lg:block absolute inset-x-0 top-0 w-full pointer-events-none"
+            style={{ height: D_SVG_H }}
+            viewBox={`0 0 ${D_SVG_W} ${D_SVG_H}`}
             fill="none"
             preserveAspectRatio="none"
           >
@@ -149,110 +125,74 @@ export default function HowWeWork() {
               strokeWidth="2.5"
               strokeLinecap="round"
               fill="none"
-              style={{ pathLength: scrollYProgress }}
+              style={{ pathLength: progress }}
             />
           </svg>
 
-          {steps.map((step, i) => {
-            const isActive = i <= activeStep
-            return (
-              <div
-                key={i}
-                className="absolute flex flex-col items-center text-center w-[25%] px-4"
-                style={{
-                  left: `${dWaveXPct(i, n)}%`,
-                  top: dWaveY(i) - D_ICON_OFFSET,
-                  transform: 'translateX(-50%)',
-                }}
-              >
-                <span
-                  className={`text-[6.5rem] font-bold leading-none select-none transition-all duration-700 ${
-                    isActive ? 'text-primary/70' : 'text-bg-3'
+          <ol ref={listRef} className="relative lg:grid lg:grid-cols-4">
+            {steps.map((step, i) => {
+              const isActive = i <= activeStep
+              const Icon = STEP_ICONS[i % STEP_ICONS.length]
+              const isPointer = Icon === MousePointer
+              return (
+                <li
+                  key={step.title}
+                  className={`relative grid grid-cols-[2.5rem_1fr] gap-x-4 pb-10 last:pb-0 lg:flex lg:flex-col lg:items-center lg:pb-0 lg:text-center ${
+                    i % 2 === 1 ? 'lg:mt-[220px]' : ''
                   }`}
-                  style={{ textShadow: isActive ? '0 0 40px currentColor' : 'none' }}
                 >
-                  {i + 1}
-                </span>
-                {React.createElement(STEP_ICONS[i], {
-                  className: `w-10 h-10 rounded-xl bg-bg-2 border border-bg-3/50 p-2 my-2 shrink-0 text-primary ${
-                    STEP_ICONS[i] === MousePointer ? 'rotate-90' : ''
-                  }`,
-                  fill: STEP_ICONS[i] === MousePointer ? 'currentColor' : 'none',
-                })}
-                <h4 className="font-semibold mb-1">{step.title}</h4>
-                <p className="text-sm text-gray-400 leading-relaxed max-w-[220px] ">
-                  {step.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* ── Mobile — transposed sine, centered on 50% ── */}
-        <div className="md:hidden relative" ref={mobileRef} style={{ height: mobileHeight }}>
-          {/* SVG centered at 50% — its center (50) maps to screen center */}
-          <svg
-            className="absolute top-0 pointer-events-none"
-            style={{ width: M_SVG_PX_W, height: M_H, left: '50%', transform: 'translateX(-50%)' }}
-            viewBox={`0 0 ${M_SVG_PX_W} ${M_H}`}
-            fill="none"
-          >
-            <path
-              d={buildMobilePath(n)}
-              stroke="var(--color-primary)"
-              strokeWidth="1.5"
-              opacity="0.25"
-            />
-            <motion.path
-              d={buildMobilePath(n)}
-              stroke="var(--color-primary)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              fill="none"
-              style={{ pathLength: scrollYProgress }}
-            />
-          </svg>
-
-          {steps.map((step, i) => {
-            const offset = mWaveXOffset(i)
-            const y = mWaveY(i, n)
-            const isRight = i % 2 === 0
-            const isActive = i <= activeStep
-
-            const pos = isRight
-              ? { left: `calc(50% + ${offset - ICON / 2}px)` }
-              : { right: `calc(50% + ${-offset - ICON / 2}px)` }
-
-            return (
-              <div
-                key={i}
-                data-mobile-step
-                className={`absolute flex items-start gap-3 ${isRight ? 'flex-row' : 'flex-row-reverse'}`}
-                style={{ ...pos, top: y - ICON / 2 }}
-              >
-                {React.createElement(STEP_ICONS[i], {
-                  className: `w-10 h-10 shrink-0 rounded-xl bg-bg-2 border border-bg-3/50 p-2 text-primary ${
-                    STEP_ICONS[i] === MousePointer ? 'rotate-90' : ''
-                  }`,
-                  fill: STEP_ICONS[i] === MousePointer ? 'currentColor' : 'none',
-                })}
-                <div className={`max-w-[calc(50vw-60px)] ${isRight ? '' : 'text-right'}`}>
+                  {i < n - 1 && <MobileSegment progress={progress} index={i} count={n} />}
                   <span
-                    className={`text-3xl font-bold leading-none select-none transition-all duration-700 ${
-                      isActive ? 'text-primary/70' : 'text-bg-3'
+                    aria-hidden="true"
+                    className={`col-start-2 row-start-1 text-3xl lg:text-[6.5rem] font-bold leading-none select-none transition-all duration-700 ${
+                      isActive ? 'text-primary-light/80' : 'text-bg-3'
                     }`}
-                    style={{ textShadow: isActive ? '0 0 20px currentColor' : 'none' }}
+                    style={{ textShadow: isActive ? '0 0 40px currentColor' : 'none' }}
                   >
                     {i + 1}
                   </span>
-                  <h4 className="font-semibold mt-1 mb-1">{step.title}</h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-            )
-          })}
+                  <Icon
+                    aria-hidden="true"
+                    className={`relative col-start-1 row-start-1 row-span-3 w-10 h-10 lg:my-2 shrink-0 rounded-xl bg-bg-2 border border-bg-3/50 p-2 text-primary-light ${
+                      isPointer ? 'rotate-90' : ''
+                    }`}
+                    fill={isPointer ? 'currentColor' : 'none'}
+                  />
+                  <h3 className="col-start-2 mt-1 mb-1 font-semibold text-lg lg:text-base lg:mt-0 lg:max-w-[min(13rem,calc(100%-4.5rem))]">
+                    {step.title}
+                  </h3>
+                  <p className="col-start-2 text-sm text-gray-400 leading-relaxed lg:max-w-[min(13rem,calc(100%-4.5rem))]">
+                    {step.description}
+                  </p>
+                </li>
+              )
+            })}
+          </ol>
         </div>
-        <div className="absolute bottom-0 left-0 opacity-70 hidden md:block">
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16 md:mt-20 flex flex-col items-center gap-8"
+        >
+          <ul className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-x-8 gap-y-3">
+            {highlights.map((item) => (
+              <li key={item} className="flex items-center gap-2 text-sm text-gray-300">
+                <Check aria-hidden="true" className="w-4 h-4 shrink-0 text-primary-light" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <DefaultButton
+            label={t('howWeWork.cta')}
+            onClick={goToContact}
+            className="px-6 py-3 text-sm md:text-base"
+          />
+        </motion.div>
+
+        <div aria-hidden="true" className="absolute bottom-0 left-0 opacity-70 hidden md:block">
           <DiagonalPair
             matrix={[
               [0, 1],

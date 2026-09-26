@@ -11,7 +11,7 @@
  *
  * Dlaczego przeglądarka, a nie renderowanie po stronie serwera:
  * aplikacja jest pełna kodu działającego wyłącznie w przeglądarce (animacje
- * na canvasie, react-device-detect, pomiary przez ResizeObserver), a React 19
+ * na canvasie, pomiary przez ResizeObserver), a React 19
  * wynosi znaczniki head dopiero w trakcie renderu. Zrzut z prawdziwej
  * przeglądarki daje dokładnie ten DOM, który widzi użytkownik, bez
  * przebudowywania routingu pod SSR.
@@ -31,8 +31,12 @@ const PORT = 4178
 const ROUTES = [
   '/en',
   '/pl',
+  '/en/offer',
+  '/pl/offer',
   '/en/projects',
   '/pl/projects',
+  '/en/privacy',
+  '/pl/privacy',
   '/en/projects/kaizen',
   '/pl/projects/kaizen',
 ]
@@ -91,49 +95,46 @@ async function revealAll(page) {
   })
 }
 
-/** Czeka, aż żaden element z treścią nie jest w trakcie wygaszania.
- *  Dekoracje (piksele, siatki) nie mają tekstu i celowo zostają przezroczyste. */
+/** Czeka na zakończenie animacji elementów w głównej treści. */
 async function waitForContentVisible(page) {
-  try {
-    await page.waitForFunction(
-      () => {
-        const fading = [...document.querySelectorAll('#root [style*="opacity: 0"]')]
-        return !fading.some((node) => {
-          if (!node.textContent.trim()) return false
-          // Zwinięte pozycje akordeonu są ukryte celowo, nie czekamy na nie.
-          const panel = node.closest('[role="region"]')
-          if (panel && getComputedStyle(panel).maxHeight === '0px') return false
-          return true
-        })
-      },
-      { timeout: 15000, polling: 250 }
-    )
-  } catch {
-    console.warn('  uwaga: część sekcji nie dokończyła animacji w 15 s')
-  }
+  await page.waitForFunction(() => window.__ucHiddenContent().length === 0, {
+    timeout: 15000,
+    polling: 250,
+  })
+}
+
+/** Treść w <main>, która po animacjach nadal ma inline opacity < 1. Pomija
+ *  elementy celowo ukryte (zamknięty akordeon, druga strona karty zespołu),
+ *  czyli wszystko wewnątrz [inert], [aria-hidden] lub [hidden], oraz elementy
+ *  bez tekstu, np. dekoracyjne piksele. */
+function defineHiddenContentProbe() {
+  window.__ucHiddenContent = () =>
+    [...document.querySelectorAll('main [style*="opacity"]')].filter((node) => {
+      if (node.style.opacity === '') return false
+      const opacity = Number(node.style.opacity)
+      if (!Number.isFinite(opacity) || opacity >= 0.999) return false
+      if (node.closest('[inert], [aria-hidden="true"], [hidden]')) return false
+      return node.textContent.trim().length > 0
+    })
 }
 
 /** Czeka, aż animacja maszyny do pisania w hero dojedzie do ostatniego słowa. */
 async function waitForHeadline(page) {
-  try {
-    await page.waitForFunction(
-      () => {
-        const heading = document.querySelector('h1')
-        if (!heading) return false
-        const full = heading.querySelector('.sr-only')?.textContent?.trim() ?? ''
-        if (!full) return true
-        const visible = heading
-          .querySelector('[aria-hidden="true"]')
-          ?.textContent?.replace(/\u00a0/g, ' ')
-          .trim()
-        const lastWord = full.split(' ').pop()
-        return Boolean(visible && lastWord && visible.endsWith(lastWord))
-      },
-      { timeout: 20000 }
-    )
-  } catch {
-    console.warn('  uwaga: nagłówek nie ustabilizował się w 20 s, zapisuję bieżący stan')
-  }
+  await page.waitForFunction(
+    () => {
+      const heading = document.querySelector('h1')
+      if (!heading) return false
+      const full = heading.querySelector('.sr-only')?.textContent?.trim() ?? ''
+      if (!full) return true
+      const visible = heading
+        .querySelector('[aria-hidden="true"]')
+        ?.textContent?.replace(/\u00a0/g, ' ')
+        .trim()
+      const lastWord = full.split(' ').pop()
+      return Boolean(visible && lastWord && visible.endsWith(lastWord))
+    },
+    { timeout: 20000 }
+  )
 }
 
 async function main() {
@@ -145,8 +146,17 @@ async function main() {
   const server = createServer()
   await new Promise((resolve) => server.listen(PORT, '127.0.0.1', resolve))
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] })
+  const bundledChrome = puppeteer.executablePath()
+  const systemChrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  const executablePath =
+    process.env.PUPPETEER_EXECUTABLE_PATH ??
+    (!fs.existsSync(bundledChrome) && process.platform === 'darwin' ? systemChrome : bundledChrome)
+  const browser = await puppeteer.launch({
+    executablePath,
+    args: ['--no-sandbox', '--disable-dev-shm-usage'],
+  })
   const page = await browser.newPage()
+  await page.evaluateOnNewDocument(defineHiddenContentProbe)
   await page.setViewport({ width: 1366, height: 900 })
 
   const rendered = new Map()
@@ -187,20 +197,29 @@ async function main() {
         })
       })
 
-      const html = await page.content()
       const check = await page.evaluate(() => ({
         title: document.title,
-        canonical: document.querySelector('link[rel=canonical]')?.href ?? null,
+        canonical: [...document.querySelectorAll('link[rel="canonical"]')].map((link) => link.href),
         lang: document.documentElement.lang,
+        h1Count: document.querySelectorAll('h1').length,
+        hiddenMainCount: window.__ucHiddenContent().length,
         words: document.body.innerText.trim().split(/\s+/).length,
       }))
 
-      if (!check.title || !check.canonical) {
-        throw new Error(`brak tytułu lub canonical na ${route}`)
+      const expectedLang = route.split('/')[1]
+      if (
+        !check.title.trim() ||
+        check.canonical.length !== 1 ||
+        check.lang !== expectedLang ||
+        check.h1Count !== 1 ||
+        check.hiddenMainCount !== 0
+      ) {
+        throw new Error(`nieprawidłowy zrzut ${route}: ${JSON.stringify(check)}`)
       }
 
+      const html = await page.content()
       rendered.set(route, html)
-      console.log(`ok (${check.lang}, ${check.words} słów, ${check.canonical})`)
+      console.log(`ok (${check.lang}, ${check.words} słów, ${check.canonical[0]})`)
     }
   } finally {
     await browser.close()

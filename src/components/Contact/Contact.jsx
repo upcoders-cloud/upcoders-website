@@ -1,5 +1,5 @@
-import React from "react";
-import InteractiveDots from "@/animations/InteractiveDots/InteractiveDots.jsx";
+import React from 'react'
+import InteractiveDots from '@/animations/InteractiveDots/InteractiveDots.jsx'
 import ContactHeader from 'components/Contact/ContactHeader/ContactHeader.jsx'
 import ContactForm from 'components/Contact/ContactForm/ContactForm.jsx'
 
@@ -9,8 +9,10 @@ export default function Contact() {
       <InteractiveDots className="pointer-events-none absolute inset-0" />
       <div className="grid md:grid-cols-2 gap-12 items-center section-inner">
         <ContactHeader />
-        <ContactForm />
+        <div className="relative">
+          <ContactForm />
+        </div>
       </div>
     </section>
-  );
+  )
 }

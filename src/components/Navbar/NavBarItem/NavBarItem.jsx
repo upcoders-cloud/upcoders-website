@@ -10,6 +10,8 @@ export const NavBarItem = ({
   children,
   className = '',
   onClick,
+  target,
+  rel,
 }) => {
   const { language } = useI18n()
   const location = useLocation()
@@ -29,6 +31,15 @@ export const NavBarItem = ({
   })()
 
   const handleClick = (event) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      target
+    )
+      return
     onClick?.(event)
     if (event.defaultPrevented) return
 
@@ -45,9 +56,6 @@ export const NavBarItem = ({
 
       targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
       window.history.replaceState(null, '', `${homePath}${linkHref}`)
-      setTimeout(() => {
-        window.history.replaceState(null, '', homePath)
-      }, 1000)
       return
     }
 
@@ -58,7 +66,7 @@ export const NavBarItem = ({
   }
 
   return (
-    <a href={renderedHref} onClick={handleClick} className={className}>
+    <a href={renderedHref} onClick={handleClick} target={target} rel={rel} className={className}>
       {linkLabel}
     </a>
   )

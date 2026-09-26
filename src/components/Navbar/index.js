@@ -1,7 +1,7 @@
 export const NAV_ELEMENT = [
   {
     id: 1,
-    href: "#offer",
+    href: "/offer",
     labelKey: "navbar.items.offer",
   },
   {

@@ -1,84 +1,103 @@
-import React, { useState } from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { motion } from 'motion/react'
-import { FaLinkedinIn } from 'react-icons/fa'
+import { Linkedin } from 'lucide-react'
 import FallingPixelsPattern from '@/animations/FallingPixelsPattern/FallingPixelsPattern.jsx'
-import { isMobile } from 'react-device-detect'
 import { useI18n } from '@/i18n/useI18n.js'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
-export default function CardMember({ member, index, length }) {
+// Subtle floating idle motion (replaces the harsh shake)
+const idleAnimation = {
+  y: [0, -4, 0, 2, 0],
+  rotate: [0, -0.4, 0.4, -0.2, 0],
+}
+
+export default function CardMember({ member, index }) {
   const { t } = useI18n()
+  const prefersReducedMotion = usePrefersReducedMotion()
   const [flipped, setFlipped] = useState(false)
+  // true, gdy kartę obrócił kursor myszy; wtedy klik myszą nie cofa obrotu.
+  const flippedByHover = useRef(false)
+  const fullName = `${member.firstName} ${member.lastName}`
+  const detailsId = useId()
 
-  const handleMouseEnter = () => {
-    if (!isMobile) setFlipped(true)
+  // Obrót po najechaniu tylko na urządzeniach, które mają prawdziwy hover.
+  // Dotyk i klawiatura obracają kartę przyciskiem.
+  const handlePointerEnter = (event) => {
+    if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover)').matches) return
+    flippedByHover.current = true
+    setFlipped(true)
   }
 
-  const handleMouseLeave = () => {
-    if (!isMobile) setFlipped(false)
+  const handlePointerLeave = () => {
+    if (!flippedByHover.current) return
+    flippedByHover.current = false
+    setFlipped(false)
   }
 
-  const handleClick = () => {
-    if (isMobile) setFlipped(f => !f)
+  const handleToggle = (event) => {
+    // detail === 0 oznacza aktywację z klawiatury (Enter/Spacja).
+    if (flippedByHover.current && event.detail > 0) return
+    setFlipped((value) => !value)
   }
 
-  // Subtle floating idle motion (replaces the harsh shake)
-  const idle = {
-    animate: {
-      y: [0, -4, 0, 2, 0],
-      rotate: [0, -0.4, 0.4, -0.2, 0],
-    },
-    transition: {
-      duration: 6,
-      delay: index * 0.6,
-      repeat: Infinity,
-      repeatType: 'mirror',
-      ease: 'easeInOut',
-    },
-  }
+  const role = member.roleKey ? t(member.roleKey) : member.role
+  const about = member.aboutKey ? t(member.aboutKey) : member.about
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
+    <motion.li
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="relative group [perspective:1000px] [-webkit-perspective:1000px]"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
+      className="relative group"
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
-      <motion.div {...idle}>
+      <motion.div
+        className="relative [perspective:1000px] [-webkit-perspective:1000px]"
+        animate={prefersReducedMotion ? undefined : idleAnimation}
+        transition={{
+          duration: 6,
+          delay: index * 0.6,
+          repeat: Infinity,
+          repeatType: 'mirror',
+          ease: 'easeInOut',
+        }}
+      >
+        {/* Przycisk obrotu leży nad obiema stronami karty, więc fokus nie ginie,
+            gdy odwrócona strona staje się nieaktywna. W DOM stoi przed opisem,
+            żeby czytnik ekranu po rozwinięciu czytał opis dalej od przycisku. */}
+        <button
+          type="button"
+          aria-expanded={flipped}
+          aria-controls={detailsId}
+          aria-label={t('team.flipLabel').replace('{name}', fullName)}
+          onClick={handleToggle}
+          className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light"
+        />
+
         <div
           className={[
             'relative w-full aspect-[387/464]',
-            'transition-transform duration-700 ease-[var(--ease-out-expo)] will-change-transform',
+            'transition-transform duration-700 ease-[var(--ease-out-expo)] will-change-transform motion-reduce:transition-none',
             '[transform-style:preserve-3d] [-webkit-transform-style:preserve-3d]',
-            // desktop → flip via hover
-            !isMobile ? 'group-hover:[transform:rotateY(180deg)]' : '',
-            // mobile → flip via click
-            isMobile && flipped ? '[transform:rotateY(180deg)]' : '',
+            flipped ? '[transform:rotateY(180deg)]' : '',
           ].join(' ')}
         >
           {/* FRONT */}
-          <div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:translateZ(0)]">
-            <div className="relative h-full bg-[#1C1C1C] overflow-hidden ring-1 ring-white/5 transition-shadow duration-300 group-hover:ring-primary/30">
-              {/* LinkedIn (front) */}
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-3 right-3 p-2 rounded-full text-white hover:bg-primary hover:scale-110 active:scale-95 transition-all duration-200 ease-[var(--ease-out-quart)] z-10"
-                  aria-label={`Open ${member.firstName} ${member.lastName} on LinkedIn`}
-                >
-                  <FaLinkedinIn size={16} />
-                </a>
-              )}
-
-              {/* Image */}
+          <div
+            aria-hidden={flipped}
+            inert={flipped}
+            className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:translateZ(0)]"
+          >
+            {/* Rozmiar piksela zależy od szerokości karty (cqw), a imię skaluje się
+                razem z nim, więc napis mieści się w niebieskim bloku przy każdej szerokości. */}
+            <div className="@container [--pixel-cell:10.5cqw] relative h-full bg-[#1C1C1C] overflow-hidden ring-1 ring-white/5 transition-shadow duration-300 group-hover:ring-primary/30">
               <img
                 src={member.img}
-                alt={`${member.firstName} ${member.lastName}`}
+                alt=""
+                width={680}
+                height={680}
                 className="w-full h-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
                 loading="lazy"
                 decoding="async"
@@ -98,64 +117,66 @@ export default function CardMember({ member, index, length }) {
                   color="#5271FF"
                   duration={2.4}
                   staggerFraction={0.7}
-                  className="opacity-95 [--pixel-cell:clamp(20px,6vw,40px)] sm:[--pixel-cell:clamp(10px,5vw,30px)] md:[--pixel-cell:clamp(8px,3.2vw,24px)] lg:[--pixel-cell:clamp(12px,3.2vw,28px)]"
+                  className="opacity-95"
                 />
               </div>
 
               {/* Name */}
-              <div className="absolute bottom-4 left-0 right-0 z-10">
-                <p className="px-4 text-white text-left leading-[0.9] text-2xl sm:text-3xl md:text-2xl lg:text-3xl">
+              <div className="absolute bottom-[calc(var(--pixel-cell)*0.55)] left-0 right-0 z-10">
+                <h3 className="px-[calc(var(--pixel-cell)*0.55)] font-normal text-white text-left leading-[0.9] text-[length:calc(var(--pixel-cell)*1.05)]">
                   {member.firstName}
                   <br />
                   {member.lastName}
-                </p>
+                </h3>
               </div>
             </div>
           </div>
 
-          {/* === BACK === */}
-          <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
+          {/* BACK */}
+          <div
+            id={detailsId}
+            aria-hidden={!flipped}
+            inert={!flipped}
+            className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
+          >
             <div className="relative h-full bg-[#1C1C1C] ring-1 ring-primary/30">
-              {/* Dekor / tło */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-white/5 to-transparent pointer-events-none" />
 
-              {/* LinkedIn (back) */}
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-3 right-3 p-2 rounded-full text-white hover:bg-primary hover:scale-110 active:scale-95 transition-all duration-200 ease-[var(--ease-out-quart)] z-10"
-                  aria-label={`Open ${member.firstName} ${member.lastName} on LinkedIn`}
-                >
-                  <FaLinkedinIn size={16} />
-                </a>
-              )}
-
-              {/* Treść „back side” */}
-              <div className="relative h-full flex flex-col items-center justify-center gap-3 p-4 text-white">
-                <h4 className="text-3xl sm:text-2xl md:text-lg lg:text-3xl leading-[0.95]">
+              <div className="relative h-full flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 text-white">
+                <h3 className="font-normal text-lg sm:text-3xl md:text-lg lg:text-2xl xl:text-3xl leading-[0.95]">
                   {member.firstName}
                   <br />
                   {member.lastName}
-                </h4>
+                </h3>
 
-                {(member.roleKey || member.role) && (
-                  <p className="text-primary sm:text-sm md:text-[11px] lg:text-sm font-medium">
-                    {member.roleKey ? t(member.roleKey) : member.role}
+                {role && (
+                  <p className="text-primary-light text-xs sm:text-sm md:text-xs lg:text-sm font-medium">
+                    {role}
                   </p>
                 )}
 
-                {(member.aboutKey || member.about) && (
-                  <p className="text-white sm:text-sm md:text-[11px] lg:text-sm leading-relaxed">
-                    {member.aboutKey ? t(member.aboutKey) : member.about}
+                {about && (
+                  <p className="text-white text-xs sm:text-sm md:text-xs lg:text-sm leading-relaxed">
+                    {about}
                   </p>
                 )}
               </div>
             </div>
           </div>
         </div>
+
+        {member.linkedin && (
+          <a
+            href={member.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-1 right-1 z-30 flex w-11 h-11 items-center justify-center rounded-full text-white hover:bg-primary active:scale-95 transition-colors duration-200 ease-[var(--ease-out-quart)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
+            aria-label={t('team.linkedinLabel').replace('{name}', fullName)}
+          >
+            <Linkedin aria-hidden="true" size={18} fill="currentColor" strokeWidth={1.5} />
+          </a>
+        )}
       </motion.div>
-    </motion.div>
+    </motion.li>
   )
 }

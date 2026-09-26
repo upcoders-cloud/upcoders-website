@@ -4,13 +4,13 @@ import {
   UPCODERS_SHAPE_COORDS,
   UPCODERS_SHAPE_ROWS,
   UPCODERS_SHAPE_COLS,
-  UPCODERS_SIZES_MAP
-} from "patterns/upcodersShape.js";
-import DefaultButton from 'components/ui/DefaultButton/DefaultButton.jsx'
+  UPCODERS_SIZES_MAP,
+} from 'patterns/upcodersShape.js'
 import DiagonalPair from 'components/Decor/DiagonalPair.jsx'
 import FallingPixelsCanvas from '@/animations/FallingPixelsCanvas/FallingPixelsCanvas.jsx'
 import HeroHeadline from 'components/Hero/HeroHeadline/HeroHeadline.jsx'
 import { useI18n } from '@/i18n/useI18n.js'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion/usePrefersReducedMotion.js'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -24,6 +24,16 @@ const fadeUp = {
 export default function Hero() {
   const { t, language } = useI18n()
   const typewriterWords = t('hero.title.words')
+  const prefersReducedMotion = usePrefersReducedMotion()
+
+  // Zwykły link do #contact działa także bez JS. Płynne przewijanie dokładamy
+  // tylko wtedy, gdy sekcja kontaktu faktycznie jest na stronie.
+  const handleCtaClick = (event) => {
+    const contact = document.getElementById('contact')
+    if (!contact) return
+    event.preventDefault()
+    contact.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
+  }
 
   return (
     <section className="relative overflow-hidden bg-bg-1 text-white section-wrapper">
@@ -47,12 +57,7 @@ export default function Hero() {
       />
 
       <div className="section-inner relative z-10">
-        <motion.div
-          initial="hidden"
-          animate="show"
-          custom={0}
-          variants={fadeUp}
-        >
+        <motion.div initial="hidden" animate="show" custom={0} variants={fadeUp}>
           <DiagonalPair className="relative -left-4 -top-6" gap={0} />
         </motion.div>
 
@@ -71,25 +76,29 @@ export default function Hero() {
           animate="show"
           custom={0.25}
           variants={fadeUp}
-          className="mt-6 max-w-2xl text-gray-300 text-sm sm:text-base md:text-xl"
+          className="mt-6 max-w-2xl lg:max-w-md xl:max-w-xl text-gray-300 text-base md:text-xl"
         >
           {t('hero.description')}
         </motion.p>
 
         <motion.div initial="hidden" animate="show" custom={0.4} variants={fadeUp}>
-          <DefaultButton
-            label={t('hero.cta')}
-            className="mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base"
-            onClick={(e) => {
-              e.preventDefault()
-              document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })
-            }}
-          />
+          <a
+            href="#contact"
+            onClick={handleCtaClick}
+            className="group mt-10 inline-flex items-center px-6 py-3 text-sm md:text-base font-medium bg-[#3F5EF0] text-white shadow-[3px_3px_0px_black] transition-[transform,box-shadow,background-color] duration-200 ease-[var(--ease-out-quart)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#4868F8] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          >
+            <span className="relative inline-block transition-transform duration-200 ease-[var(--ease-out-quart)] group-hover:translate-x-0.5">
+              {t('hero.cta')}
+            </span>
+          </a>
         </motion.div>
       </div>
 
-      {/* PIXELS BEHIND EVERYTHING */}
-      <div className="pointer-events-none z-0 hidden lg:flex w-full absolute inset-y-0 right-0 items-center justify-end">
+      {/* Pikselowe logo zajmuje tylko prawą część sekcji, żeby nie wchodzić pod nagłówek. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none z-0 hidden lg:flex absolute inset-y-0 right-0 w-[38vw] max-w-[672px] items-center justify-end"
+      >
         <FallingPixelsCanvas
           coords={UPCODERS_SHAPE_COORDS}
           rows={UPCODERS_SHAPE_ROWS}
@@ -97,7 +106,7 @@ export default function Hero() {
           cell={48}
           color="#5271FF"
           sizes={UPCODERS_SIZES_MAP}
-          className=" right-0 top-0 pointer-events-none"
+          className="w-full h-auto"
         />
       </div>
     </section>
