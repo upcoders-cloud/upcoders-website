@@ -26,7 +26,7 @@ const en = {
     },
     privacy: {
       title: 'Privacy policy | Upcoders',
-      description: 'Information about personal data processing and the Upcoders website. Draft pending verification.',
+      description: 'Information about personal data processing and the Upcoders website.',
     },
     notFound: {
       title: 'Page not found | Upcoders',
@@ -425,34 +425,33 @@ const en = {
       {
         "title": "1. Data controller",
         "paragraphs": [
-          "The controller of your personal data is Upcoders [TO VERIFY: full registered name and legal form], ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Poland, NIP 7812090103, REGON 541840267, KRS 0001175084. You can contact us at contact@upcoders.cloud. This policy applies to https://upcoders.cloud."
+          "The controller of your personal data is UPCODERS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ, ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Poland, NIP 7812090103, REGON 541840267, KRS 0001175084. You can contact us at contact@upcoders.cloud. This policy applies to https://upcoders.cloud."
         ]
       },
       {
         "title": "2. Data we process",
         "paragraphs": [
-          "When you use the contact form, we receive your email address, optionally your phone number, and a record that you checked the required field concerning the privacy policy. The current form does not have a message field. If you email us directly, we may also process the contents of your message and any other information you choose to include.",
-          "When you use the website, technical connection data may be generated, such as your IP address, the date and time of a request, the address of the requested page, and browser information. The scope of data recorded in server logs [TO VERIFY]."
+          "When you use the contact form, we receive your email address, optionally your phone number, and a record that you checked the required field concerning the privacy policy. The current form does not have a message field. If you email us directly, we may also process the contents of your message and any other information you choose to include."
         ]
       },
       {
         "title": "3. Purposes and legal bases",
         "paragraphs": [
           "We process contact details to respond to your enquiry and, if you request it, take steps before entering into a contract (Article 6(1)(b) GDPR). In other cases, we handle correspondence on the basis of our legitimate interest in responding to enquiries (Article 6(1)(f) GDPR).",
-          "We may retain correspondence where necessary to establish, exercise, or defend legal claims. Our legal basis is legitimate interest (Article 6(1)(f) GDPR). We process technical data to keep the website working and secure on the same basis [TO VERIFY: actual scope of logging and purpose of processing].",
+          "We may retain correspondence where necessary to establish, exercise, or defend legal claims. Our legal basis is legitimate interest (Article 6(1)(f) GDPR).",
           "The form requires you to check the field concerning the privacy policy. Checking it does not amount to separate marketing consent or provide the legal basis for processing your enquiry. If we ask for separate consent for another purpose in the future, we will explain that purpose and allow you to withdraw consent at any time without affecting the lawfulness of earlier processing."
         ]
       },
       {
         "title": "4. Recipients of data",
         "paragraphs": [
-          "The form uses Web3Forms (api.web3forms.com), a service that forwards submissions to our email inbox. Web3Forms processes data submitted through the form on our behalf [TO VERIFY: provider identity, data processing agreement, and scope of processing]. Data may also be accessible to our hosting provider, OVH [TO VERIFY: service provider entity and server location], and our email provider [TO VERIFY: provider identity and role]. We may disclose data to competent authorities where required by law."
+          "The form uses Web3Forms (api.web3forms.com), a service that forwards submissions to our email inbox. Website hosting and email are provided by OVH (OVH Sp. z o.o., ul. Swobodna 1, 50-088 Wrocław, Poland) on servers in the European Union, so data may also be accessible to that provider. We may disclose data to competent authorities where required by law."
         ]
       },
       {
         "title": "5. How long we keep data",
         "paragraphs": [
-          "We keep correspondence for as long as needed to handle your enquiry and afterwards only for as long as necessary to establish, exercise, or defend legal claims or meet a legal obligation. The precise retention periods for correspondence and deletion procedures [TO VERIFY]. The retention period for server logs and data held by Web3Forms [TO VERIFY]."
+          "We keep correspondence for as long as needed to handle your enquiry and afterwards only for as long as necessary to establish, exercise, or defend legal claims or meet a legal obligation."
         ]
       },
       {
@@ -471,25 +470,25 @@ const en = {
       {
         "title": "8. Browser storage and cookies",
         "paragraphs": [
-          "The website stores your chosen language in your browser's localStorage under the key upcoders.lang to remember your preference. You can remove this information in your browser settings. We do not use analytics, advertising or tracking cookies. [TO VERIFY: confirm for the live site, including any technical cookies set by the hosting provider.]"
+          "The website stores your chosen language in your browser's localStorage under the key upcoders.lang to remember your preference. You can remove this information in your browser settings. We do not use analytics, advertising or tracking cookies."
         ]
       },
       {
         "title": "9. Transfers outside the EEA",
         "paragraphs": [
-          "Data sent through the form may be processed by Web3Forms outside the European Economic Area. In that case the transfer is based on a European Commission adequacy decision or standard contractual clauses. [TO VERIFY: processing location and transfer basis.]"
+          "Data sent through the form may be processed by Web3Forms outside the European Economic Area. In that case the transfer is based on a European Commission adequacy decision or standard contractual clauses."
         ]
       },
       {
         "title": "10. Automated decisions",
         "paragraphs": [
-          "We do not make decisions about website users based solely on automated processing or carry out profiling [TO VERIFY: confirm for external services as well]."
+          "We do not make decisions about website users based solely on automated processing or carry out profiling."
         ]
       },
       {
         "title": "11. Changes to this policy",
         "paragraphs": [
-          "We may update this policy if our practices or legal requirements change. The current version will be available on this page. Last updated: [TO VERIFY: DD.MM.YYYY]."
+          "We may update this policy if our practices or legal requirements change. The current version will be available on this page. Last updated: 26.09.2026."
         ]
       }
     ]

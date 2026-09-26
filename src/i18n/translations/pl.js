@@ -26,7 +26,7 @@ const pl = {
     },
     privacy: {
       title: 'Polityka prywatności | Upcoders',
-      description: 'Informacje o przetwarzaniu danych osobowych i działaniu strony Upcoders. Wersja robocza do weryfikacji.',
+      description: 'Informacje o przetwarzaniu danych osobowych i działaniu strony Upcoders.',
     },
     notFound: {
       title: 'Nie znaleziono strony | Upcoders',
@@ -428,34 +428,33 @@ const pl = {
       {
         "title": "1. Administrator danych",
         "paragraphs": [
-          "Administratorem danych osobowych jest Upcoders [DO WERYFIKACJI: pełna firma i forma prawna], ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Polska, NIP 7812090103, REGON 541840267, KRS 0001175084. Możesz skontaktować się z nami pod adresem contact@upcoders.cloud. Ta polityka dotyczy strony https://upcoders.cloud."
+          "Administratorem danych osobowych jest UPCODERS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ, ul. Wawrzyńca Engestroma 10, 60-571 Poznań, Polska, NIP 7812090103, REGON 541840267, KRS 0001175084. Możesz skontaktować się z nami pod adresem contact@upcoders.cloud. Ta polityka dotyczy strony https://upcoders.cloud."
         ]
       },
       {
         "title": "2. Jakie dane przetwarzamy",
         "paragraphs": [
-          "Gdy korzystasz z formularza kontaktowego, otrzymujemy Twój adres e-mail, opcjonalnie numer telefonu oraz informację o zaznaczeniu wymaganego pola dotyczącego polityki prywatności. Obecna wersja formularza nie zawiera pola na treść wiadomości. Gdy piszesz do nas bezpośrednio, możemy przetwarzać również treść Twojej wiadomości i inne dane, które dobrowolnie w niej podasz.",
-          "Podczas korzystania ze strony mogą powstawać techniczne dane o połączeniu, takie jak adres IP, data i godzina żądania, adres żądanej strony oraz informacje o przeglądarce. Zakres danych zapisywanych w logach serwera [DO WERYFIKACJI]."
+          "Gdy korzystasz z formularza kontaktowego, otrzymujemy Twój adres e-mail, opcjonalnie numer telefonu oraz informację o zaznaczeniu wymaganego pola dotyczącego polityki prywatności. Obecna wersja formularza nie zawiera pola na treść wiadomości. Gdy piszesz do nas bezpośrednio, możemy przetwarzać również treść Twojej wiadomości i inne dane, które dobrowolnie w niej podasz."
         ]
       },
       {
         "title": "3. Cele i podstawy prawne",
         "paragraphs": [
           "Przetwarzamy dane kontaktowe, aby odpowiedzieć na zapytanie i, jeśli o to prosisz, podjąć działania przed zawarciem umowy (art. 6 ust. 1 lit. b RODO). W pozostałych przypadkach podstawą korespondencji jest nasz prawnie uzasadniony interes polegający na obsłudze zapytań (art. 6 ust. 1 lit. f RODO).",
-          "Możemy zachować korespondencję, gdy jest to potrzebne do ustalenia, dochodzenia lub obrony roszczeń. Podstawą jest nasz prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO). Dane techniczne przetwarzamy w celu zapewnienia działania i bezpieczeństwa strony na tej samej podstawie [DO WERYFIKACJI: rzeczywisty zakres logowania i cel przetwarzania].",
+          "Możemy zachować korespondencję, gdy jest to potrzebne do ustalenia, dochodzenia lub obrony roszczeń. Podstawą jest nasz prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO).",
           "Zaznaczenie pola dotyczącego polityki prywatności jest wymagane przez formularz. Samo zaznaczenie nie stanowi odrębnej zgody na marketing ani podstawy prawnej przetwarzania zapytania. Jeśli w przyszłości poprosimy Cię o odrębną zgodę na inny cel, podamy ten cel i umożliwimy wycofanie zgody w dowolnym momencie bez wpływu na zgodność z prawem wcześniejszego przetwarzania."
         ]
       },
       {
         "title": "4. Odbiorcy danych",
         "paragraphs": [
-          "Formularz korzysta z Web3Forms (api.web3forms.com), usługi pośredniczącej w przesłaniu zgłoszenia na naszą skrzynkę e-mail. Web3Forms przetwarza dane przekazane przez formularz w naszym imieniu [DO WERYFIKACJI: tożsamość dostawcy, umowa powierzenia i zakres przetwarzania]. Dane mogą być dostępne także dostawcy hostingu OVH [DO WERYFIKACJI: podmiot świadczący usługę i lokalizacja serwera] oraz dostawcy poczty elektronicznej [DO WERYFIKACJI: tożsamość dostawcy i jego rola]. Możemy udostępnić dane uprawnionym organom, gdy wymagają tego przepisy prawa."
+          "Formularz korzysta z Web3Forms (api.web3forms.com), usługi pośredniczącej w przesłaniu zgłoszenia na naszą skrzynkę e-mail. Hosting strony i poczta elektroniczna działają w OVH (OVH Sp. z o.o., ul. Swobodna 1, 50-088 Wrocław) na serwerach w Unii Europejskiej, więc dane mogą być dostępne także temu dostawcy. Możemy udostępnić dane uprawnionym organom, gdy wymagają tego przepisy prawa."
         ]
       },
       {
         "title": "5. Jak długo przechowujemy dane",
         "paragraphs": [
-          "Przechowujemy korespondencję przez czas potrzebny do obsługi zapytania, a następnie tylko tak długo, jak jest to potrzebne do ewentualnego ustalenia, dochodzenia lub obrony roszczeń albo wykonania obowiązku prawnego. Dokładne okresy przechowywania korespondencji oraz zasady jej usuwania [DO WERYFIKACJI]. Okres przechowywania logów serwera i danych przechowywanych przez Web3Forms [DO WERYFIKACJI]."
+          "Przechowujemy korespondencję przez czas potrzebny do obsługi zapytania, a następnie tylko tak długo, jak jest to potrzebne do ewentualnego ustalenia, dochodzenia lub obrony roszczeń albo wykonania obowiązku prawnego."
         ]
       },
       {
@@ -474,25 +473,25 @@ const pl = {
       {
         "title": "8. Pamięć przeglądarki i pliki cookies",
         "paragraphs": [
-          "Strona zapisuje wybrany język w pamięci przeglądarki localStorage pod kluczem upcoders.lang, aby zapamiętać Twój wybór. Możesz usunąć tę informację w ustawieniach przeglądarki. Nie używamy narzędzi analitycznych, reklamowych ani śledzących plików cookies. [DO WERYFIKACJI: potwierdzić dla strony produkcyjnej, w tym ewentualne techniczne pliki cookies hostingu.]"
+          "Strona zapisuje wybrany język w pamięci przeglądarki localStorage pod kluczem upcoders.lang, aby zapamiętać Twój wybór. Możesz usunąć tę informację w ustawieniach przeglądarki. Nie używamy narzędzi analitycznych, reklamowych ani śledzących plików cookies."
         ]
       },
       {
         "title": "9. Przekazywanie danych poza EOG",
         "paragraphs": [
-          "Dane przesłane przez formularz mogą być przetwarzane przez Web3Forms poza Europejskim Obszarem Gospodarczym. W takim przypadku przekazanie odbywa się na podstawie decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony albo standardowych klauzul umownych. [DO WERYFIKACJI: miejsce przetwarzania i podstawa transferu.]"
+          "Dane przesłane przez formularz mogą być przetwarzane przez Web3Forms poza Europejskim Obszarem Gospodarczym. W takim przypadku przekazanie odbywa się na podstawie decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony albo standardowych klauzul umownych."
         ]
       },
       {
         "title": "10. Zautomatyzowane decyzje",
         "paragraphs": [
-          "Nie podejmujemy wobec użytkowników strony decyzji wyłącznie w sposób zautomatyzowany ani nie prowadzimy profilowania [DO WERYFIKACJI: potwierdzić również dla usług zewnętrznych]."
+          "Nie podejmujemy wobec użytkowników strony decyzji wyłącznie w sposób zautomatyzowany ani nie prowadzimy profilowania."
         ]
       },
       {
         "title": "11. Zmiany polityki",
         "paragraphs": [
-          "Możemy aktualizować tę politykę, jeśli zmienią się nasze praktyki lub wymagania prawne. Aktualna wersja będzie dostępna na tej stronie. Data ostatniej aktualizacji: [DO WERYFIKACJI: DD.MM.RRRR]."
+          "Możemy aktualizować tę politykę, jeśli zmienią się nasze praktyki lub wymagania prawne. Aktualna wersja będzie dostępna na tej stronie. Data ostatniej aktualizacji: 26.09.2026."
         ]
       }
     ]
