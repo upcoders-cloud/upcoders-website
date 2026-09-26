@@ -49,9 +49,10 @@ body {
     background-color: var(--color-primary);
 }
 
-/* Consistent focus ring for keyboard users only */
+/* Consistent focus ring for keyboard users only. Text fields are left out:
+   they show focus with their own animated underline (DefaultInput). */
 *:focus { outline: none; }
-*:focus-visible {
+*:focus-visible:not(input[type='text'], input[type='email'], input[type='tel'], textarea) {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
@@ -78,31 +79,31 @@ body {
     }
 }
 
-/* ===== Upcoders Sans: regular / medium / semibold / bold (TTF) ===== */
+/* ===== Upcoders Sans: regular / medium / semibold / bold (WOFF2, Latin + Latin Extended subset) ===== */
 @font-face {
     font-family: "Upcoders Sans";
-    src: url("assets/fonts/DM_Sans/DMSans-Regular.ttf") format("truetype");
+    src: url("assets/fonts/DM_Sans/DMSans-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Upcoders Sans";
-    src: url("assets/fonts/DM_Sans/DMSans-Medium.ttf") format("truetype");
+    src: url("assets/fonts/DM_Sans/DMSans-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Upcoders Sans";
-    src: url("assets/fonts/DM_Sans/DMSans-SemiBold.ttf") format("truetype");
+    src: url("assets/fonts/DM_Sans/DMSans-SemiBold.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Upcoders Sans";
-    src: url("assets/fonts/DM_Sans/DMSans-Bold.ttf") format("truetype");
+    src: url("assets/fonts/DM_Sans/DMSans-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;

@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Logo from '/uc-logo.png'
 import { NAV_ELEMENT as NavElement } from 'components/Navbar/index.js'
 import { NavBarItem } from 'components/Navbar/NavBarItem/NavBarItem.jsx'
 import LanguageSwitcher from 'components/Navbar/LanguageSwitcher/LanguageSwitcher.jsx'
-import { IoMdMenu, IoMdClose } from 'react-icons/io'
+import { Menu, X } from 'lucide-react'
 import { useI18n } from '@/i18n/useI18n.js'
 
 export default function Navbar() {
   const { t, language } = useI18n()
+  const { pathname } = useLocation()
   const [isVisible, setIsVisible] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const headerRef = useRef(null)
+  const toggleRef = useRef(null)
   const [navH, setNavH] = useState(0)
 
   useLayoutEffect(() => {
@@ -20,6 +23,36 @@ export default function Navbar() {
     window.addEventListener('resize', measure)
     return () => window.removeEventListener('resize', measure)
   }, [])
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsMobileMenuOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', closeOnEscape)
+
+    // Menu jest ukryte od breakpointu md, więc po poszerzeniu okna (np. obrót
+    // tabletu) trzeba je zamknąć, inaczej blokada przewijania zostaje.
+    const desktop = window.matchMedia('(min-width: 768px)')
+    const closeOnDesktop = (event) => event.matches && setIsMobileMenuOpen(false)
+    desktop.addEventListener('change', closeOnDesktop)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', closeOnEscape)
+      desktop.removeEventListener('change', closeOnDesktop)
+    }
+  }, [isMobileMenuOpen])
+
+  // Zmiana strony (także przyciskiem Wstecz) zamyka menu.
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -53,8 +86,11 @@ export default function Navbar() {
       >
         <div className="section-inner">
           <div className="flex items-center justify-between h-18">
-            <NavBarItem href={`/${language}`} className="text-2xl font-bold tracking-wide text-white transition-opacity duration-200 hover:opacity-80">
-              <img src={/** @type {string} */ (Logo)} alt="Upcoders logo" className="h-8 w-auto" />
+            <NavBarItem
+              href={`/${language}`}
+              className="text-2xl font-bold tracking-wide text-white transition-opacity duration-200 hover:opacity-80"
+            >
+              <img src={/** @type {string} */ (Logo)} alt="Upcoders" className="h-8 w-auto" />
             </NavBarItem>
 
             <div className="hidden md:flex items-center gap-4 text-gray-300">
@@ -72,20 +108,24 @@ export default function Navbar() {
 
             <div className="md:hidden flex items-center">
               <button
+                ref={toggleRef}
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-white cursor-pointer transition-colors duration-200 hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Toggle menu"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center p-2 rounded-md text-white cursor-pointer transition-colors duration-200 hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                aria-label={t(isMobileMenuOpen ? 'navbar.closeMenu' : 'navbar.openMenu')}
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
               >
-                <span className="relative w-7 h-7 inline-block">
-                  <IoMdMenu
-                    className={`absolute inset-0 m-auto text-3xl transition-all duration-300 ease-[var(--ease-out-quart)] ${
+                <span className="relative w-8 h-8 inline-block">
+                  <Menu
+                    size={32}
+                    className={`absolute inset-0 m-auto transition-all duration-300 ease-[var(--ease-out-quart)] ${
                       isMobileMenuOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
                     }`}
                   />
-                  <IoMdClose
-                    className={`absolute inset-0 m-auto text-3xl transition-all duration-300 ease-[var(--ease-out-quart)] ${
+                  <X
+                    size={32}
+                    className={`absolute inset-0 m-auto transition-all duration-300 ease-[var(--ease-out-quart)] ${
                       isMobileMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'
                     }`}
                   />
@@ -95,6 +135,8 @@ export default function Navbar() {
           </div>
 
           <div
+            id="mobile-navigation"
+            inert={!isMobileMenuOpen}
             className={`md:hidden transition-all duration-300 ease-[var(--ease-out-quart)] ${
               isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
             }`}
@@ -113,7 +155,12 @@ export default function Navbar() {
               <LanguageSwitcher
                 className="pt-3 pb-8"
                 dropUp
-                onLanguageChange={() => setIsMobileMenuOpen(false)}
+                onLanguageChange={() => {
+                  setIsMobileMenuOpen(false)
+                  // Przełącznik po zamknięciu menu staje się inert, więc fokus
+                  // wraca na przycisk menu zamiast przepaść.
+                  requestAnimationFrame(() => toggleRef.current?.focus())
+                }}
               />
             </div>
           </div>

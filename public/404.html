@@ -1,56 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page not found | Upcoders</title>
-  <meta name="robots" content="noindex, follow" />
-  <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
-  <style>
-    :root { color-scheme: dark; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #18181B;
-      color: #fff;
-      font-family: system-ui, ui-sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      padding: 24px;
-    }
-    main { max-width: 32rem; }
-    .code { font-size: 12px; letter-spacing: 0.2em; color: #4B4B4B; margin: 0 0 12px; }
-    h1 { font-size: clamp(28px, 6vw, 44px); font-weight: 700; line-height: 1.1; margin: 0 0 16px; }
-    p { color: #A1A1AA; line-height: 1.6; margin: 0 0 28px; }
-    .links { display: flex; flex-wrap: wrap; gap: 12px; }
-    a {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #5271FF;
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 3px 3px 0 #000;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    a.secondary { background: transparent; border: 1px solid #4B4B4B; box-shadow: none; }
-    a:hover { transform: translate(3px, 3px); box-shadow: none; }
-    a.secondary:hover { transform: none; border-color: #5271FF; }
-    a:focus-visible { outline: 2px solid #5271FF; outline-offset: 3px; }
-  </style>
-</head>
-<body>
-  <main>
-    <p class="code">404</p>
-    <h1>Page not found</h1>
-    <p>
-      This address does not exist on upcoders.cloud.<br />
-      Ten adres nie istnieje na upcoders.cloud.
-    </p>
-    <div class="links">
-      <a href="/en">Go to homepage</a>
-      <a class="secondary" href="/pl">Przejdź na stronę główną</a>
-    </div>
-  </main>
-</body>
+<!doctype html>
+<html lang="und">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 | Upcoders</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/svg+xml" href="/uc-logo-small.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #18181b;
+        color: #fff;
+        font-family:
+          system-ui, ui-sans-serif, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        padding: 24px;
+      }
+      main {
+        max-width: 32rem;
+      }
+      .code {
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        color: #4b4b4b;
+        margin: 0 0 12px;
+      }
+      h1 {
+        font-size: clamp(28px, 6vw, 44px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin: 0 0 16px;
+      }
+      p {
+        color: #a1a1aa;
+        line-height: 1.6;
+        margin: 0 0 28px;
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #5271ff;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 3px 3px 0 #000;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      a.secondary {
+        background: transparent;
+        border: 1px solid #4b4b4b;
+        box-shadow: none;
+      }
+      a:hover {
+        transform: translate(3px, 3px);
+        box-shadow: none;
+      }
+      a.secondary:hover {
+        transform: none;
+        border-color: #5271ff;
+      }
+      a:focus-visible {
+        outline: 2px solid #5271ff;
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">404</p>
+      <h1>404</h1>
+      <p lang="en">This page does not exist.</p>
+      <p lang="pl">Ta strona nie istnieje.</p>
+      <div class="links">
+        <a href="/en" lang="en" hreflang="en">English homepage</a>
+        <a class="secondary" href="/pl" lang="pl" hreflang="pl">Polska strona główna</a>
+      </div>
+    </main>
+  </body>
 </html>

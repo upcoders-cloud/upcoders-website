@@ -1,48 +1,32 @@
-import React from "react";
-import { motion } from "motion/react";
-import DefaultButton from "components/ui/DefaultButton/DefaultButton.jsx";
-import Modal from "components/ui/Modal/Modal.jsx";
-import PackageCard from "components/ui/PackageCard/PackageCard.jsx";
+import React from 'react'
+import { motion } from 'motion/react'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 
-export default function AccordionItem({ title, content, cta, isOpen, onToggle, anchor, autoOpenModal, onModalAutoOpened }) {
-  const [contentHeight, setContentHeight] = React.useState(0);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const ref = React.useRef(null);
-  const panelId = React.useId();
-  const buttonId = React.useId();
+export default function AccordionItem({ title, content, link, isOpen, onToggle, anchor }) {
+  const [contentHeight, setContentHeight] = React.useState(0)
+  const ref = React.useRef(null)
+  const panelId = React.useId()
+  const buttonId = React.useId()
 
   React.useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const el = ref.current
+    if (!el) return
 
-    const measure = () => setContentHeight(el.scrollHeight);
-    measure();
+    const measure = () => setContentHeight(el.scrollHeight)
+    measure()
 
-    let ro;
-    if (typeof ResizeObserver !== "undefined") {
-      ro = new ResizeObserver(measure);
-      ro.observe(el);
+    let ro
+    if (typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(measure)
+      ro.observe(el)
     }
-    window.addEventListener("resize", measure);
+    window.addEventListener('resize', measure)
     return () => {
-      ro?.disconnect?.();
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (autoOpenModal && cta) {
-      setModalOpen(true)
-      onModalAutoOpened?.()
+      ro?.disconnect?.()
+      window.removeEventListener('resize', measure)
     }
-  }, [autoOpenModal])
-
-  const handleContact = () => {
-    setModalOpen(false);
-    setTimeout(() => {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
-  };
+  }, [])
 
   return (
     <li id={anchor} className="border-b border-gray-600/70 pb-2 group/item">
@@ -58,7 +42,7 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
           <span
             aria-hidden="true"
             className={`inline-block h-px bg-primary transition-all duration-300 ease-[var(--ease-out-quart)] ${
-              isOpen ? "w-6 opacity-100" : "w-0 opacity-0"
+              isOpen ? 'w-6 opacity-100' : 'w-0 opacity-0'
             }`}
           />
           <span>{title}</span>
@@ -66,13 +50,13 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
         <span
           aria-hidden="true"
           className={`relative w-4 h-4 shrink-0 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
-            isOpen ? "rotate-180" : ""
+            isOpen ? 'rotate-180' : ''
           }`}
         >
           <span className="absolute top-1/2 left-0 right-0 h-px bg-current -translate-y-1/2" />
           <span
             className={`absolute top-0 bottom-0 left-1/2 w-px bg-current -translate-x-1/2 transition-transform duration-300 ease-[var(--ease-out-quart)] ${
-              isOpen ? "scale-y-0" : "scale-y-100"
+              isOpen ? 'scale-y-0' : 'scale-y-100'
             }`}
           />
         </span>
@@ -83,7 +67,8 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
         ref={ref}
         role="region"
         aria-labelledby={buttonId}
-        style={{ maxHeight: isOpen ? `${contentHeight}px` : "0px" }}
+        inert={!isOpen}
+        style={{ maxHeight: isOpen ? `${contentHeight}px` : '0px' }}
         className="overflow-hidden transition-[max-height] duration-400 ease-[var(--ease-out-quart)]"
       >
         <motion.p
@@ -95,36 +80,25 @@ export default function AccordionItem({ title, content, cta, isOpen, onToggle, a
           {content}
         </motion.p>
 
-        {cta && isOpen && (
+        {link && (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            initial={false}
+            animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -4 }}
+            transition={{ delay: isOpen ? 0.1 : 0, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mb-4"
           >
-            <DefaultButton
-              label={cta.label}
-              onClick={() => setModalOpen(true)}
-              className="text-sm"
-            />
+            <Link
+              to={link.href}
+              tabIndex={isOpen ? undefined : -1}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-[gap,color] duration-200 hover:gap-2.5 hover:text-primary-light"
+            >
+              {link.label}
+              <span className="sr-only">: {title}</span>
+              <ArrowRight aria-hidden="true" className="w-4 h-4" />
+            </Link>
           </motion.div>
         )}
       </div>
-
-      {cta && (
-        <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-          <h2 className="text-2xl font-bold mb-6">{cta.modalTitle}</h2>
-          {cta.packages ? (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {cta.packages.map((pkg) => (
-                <PackageCard key={pkg.name} pkg={pkg} onContact={handleContact} />
-              ))}
-            </div>
-          ) : cta.ModalContent ? (
-            <cta.ModalContent onContact={handleContact} />
-          ) : null}
-        </Modal>
-      )}
     </li>
-  );
+  )
 }
