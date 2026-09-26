@@ -146,7 +146,7 @@ async function main() {
   const server = createServer()
   await new Promise((resolve) => server.listen(PORT, '127.0.0.1', resolve))
 
-  const bundledChrome = puppeteer.executablePath()
+  const bundledChrome = await puppeteer.executablePath()
   const systemChrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
   const executablePath =
     process.env.PUPPETEER_EXECUTABLE_PATH ??
